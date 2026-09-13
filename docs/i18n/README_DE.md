@@ -4,9 +4,9 @@
 
 ### Vom wissenschaftlichen Artikel zur klaren, visuellen Präsentation.
 
-**Standardmäßig 6–8 Folien · Zusammenhängende Belege · Originalabbildungen · Native Formeln · Bearbeitbares PPTX**
+**Vollständige Inhalte · Mehrere Bereiche pro Folie · PPTX**
 
-![Version](https://img.shields.io/badge/version-1.1.2-4455AA?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.2.0-4455AA?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![PowerPoint](https://img.shields.io/badge/PowerPoint-%2Epptx-D24726?style=flat-square)
@@ -35,7 +35,7 @@ PaperLoom erstellt aus wissenschaftlichen Artikeln kompakte, bearbeitbare **Powe
 
 ### 🌐 Upload im Web
 
-Lade **paper-loom-v1.1.2-full.zip** und die **Artikel-PDF** hoch und schreibe:
+Lade **paper-loom-v1.2.0-full.zip** und die **Artikel-PDF** hoch und schreibe:
 
 > Erstelle die PPT zu diesem Artikel gemäß dem Skill im ZIP.
 
@@ -101,11 +101,13 @@ Dieses Beispiel verwendet ausdrücklich gekennzeichnete **fiktive Daten**, die k
 
 ## 🧭 Folien nach Belegen gliedern
 
-Standardmäßig sind **6–8 Folien** vorgesehen, bei komplexen Artikeln **8–10**. Die vom Nutzer gewünschte Anzahl und Vorlage haben Vorrang. Behandle Aufgabe und Forschungsposition, Mechanismen, Training und Ausführung, Experimente und Grenzen sowie die Zusammenfassung. Diese Inhalte benötigen nicht jeweils eine eigene Folie. Ein separater Forschungsüberblick und eine feste Anzahl an Methodenfolien sind nicht vorgeschrieben.
+Erstelle eine vollständige Präsentation **ohne standardmäßige Obergrenze für die Folienzahl**. Bereiche A/B/C erklären mehrere zusammenhängende Punkte pro Seite; beginne mit 3–5 inhaltlich eigenständigen Bereichen. Ergänze Inhaltsfolien, wenn Mechanismen, Experimente oder lesbare Tabellen mehr Platz benötigen. Wesentliche Inhalte dürfen weder entfallen noch ausschließlich in die Notizen wandern. Eine ausdrücklich vorgegebene Folienzahl hat Vorrang.
 
 Lies vor der Erstellung die Regeln zu [Gestaltung](../../references/design.md), [Kompositionen und Gegenbeispielen](../../references/reference-patterns.md) und [Qualitätsprüfung](../../references/quality-gates.md). Erstelle `slide-plan.json` im Arbeitsverzeichnis anhand der [Planvorlage](../../examples/slide-plan.template.json) und fahre anschließend fort, ohne standardmäßig auf eine Freigabe des Plans zu warten.
 
 Verbinde die Übersicht, Zwischenzustände und Rückkopplungsbedingungen eines Mechanismus. Stelle Hauptergebnisse unter demselben Protokoll, Ablationen und ungünstige Ergebnisse nebeneinander. Vergleichsbedingungen bleiben an den Abbildungen und Tabellen, ausführliche Erklärungen und Quellen in den Notizen. Nutze das [Beispiel zur kompakten Darstellung von Belegen](../../examples/evidence-demo/README.md) und prüfe die Lesbarkeit jeder Folie.
+
+[Bereichsplanung und inhaltliche Vollständigkeit](../../references/panel-planning.md)
 
 <a id="development"></a>
 
@@ -140,6 +142,7 @@ Lege im nativen PPTX für jede erforderliche Formel einen eigenen Absatz an, etw
 ```bash
 python scripts/inject_equations.py draft.pptx math.pptx --mapping equations.json --require-all
 python scripts/embed_fonts.py math.pptx final.pptx
+python scripts/audit_slide_plan.py work/slide-plan.json --report work/plan-audit.json
 python scripts/validate_pptx.py final.pptx --expected-slides 8 --expected-math 3 --report validation.json
 ```
 
@@ -159,8 +162,8 @@ python -m unittest discover -s tests -v
 <summary><b>📦 Distributionsarchive erstellen</b></summary>
 
 ```bash
-python scripts/package_skill.py --variant github --output ../paper-loom-v1.1.2-github.zip
-python scripts/package_skill.py --variant full --output ../paper-loom-v1.1.2-full.zip
+python scripts/package_skill.py --variant github --output ../paper-loom-v1.2.0-github.zip
+python scripts/package_skill.py --variant full --output ../paper-loom-v1.2.0-full.zip
 ```
 
 Das vollständige Archiv enthält die im Repository mitgelieferten Schriftarten; das Paketierungswerkzeug prüft deren Vollständigkeit. Mit `--variant github` wird ein Quellcodearchiv ohne separate Schriftdateien erstellt.
@@ -192,6 +195,7 @@ Das vollständige Archiv enthält die im Repository mitgelieferten Schriftarten;
 | `examples/evidence-demo/` | Ausführbares Beispiel mit drei nativen Folienlayouts und Quellcode zur Erstellung |
 | `examples/geonav/workflow.md` | Beispiel für Belegauswahl und Folienplanung |
 | `examples/evidence.template.json` | Vorlage für Quellen, Versuchsbedingungen und Messdefinitionen sowie Prüfprotokolle |
+| `references/panel-planning.md` | Bereichsplanung und inhaltliche Vollständigkeit |
 | `examples/slide-plan.template.json` | Vorlage für Fragen, Belege, Abbildungen und Entscheidungen zum Zusammenführen von Folien |
 | `tests/` | Tests des Skriptverhaltens und Regressionstests |
 

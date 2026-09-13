@@ -4,9 +4,9 @@
 
 ### От научной статьи к наглядной презентации PowerPoint
 
-**6–8 слайдов по умолчанию · Связанные доказательства · Исходные иллюстрации · Редактируемые формулы и PPTX**
+**Полное изложение · Несколько разделов на слайде · PPTX**
 
-![Version](https://img.shields.io/badge/version-1.1.2-4455AA?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.2.0-4455AA?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![PowerPoint](https://img.shields.io/badge/PowerPoint-%2Epptx-D24726?style=flat-square)
@@ -35,7 +35,7 @@ PaperLoom превращает научные статьи в компактны
 
 ### 🌐 Загрузка в веб-версию
 
-Загрузите **paper-loom-v1.1.2-full.zip** и **PDF статьи**, затем напишите:
+Загрузите **paper-loom-v1.2.0-full.zip** и **PDF статьи**, затем напишите:
 
 > Создай PPT по статье, следуя требованиям skill внутри ZIP.
 
@@ -101,11 +101,13 @@ python scripts/install_skill.py
 
 ## 🧭 Структура на основе доказательств
 
-По умолчанию используйте **6–8 слайдов**, для сложной статьи — **8–10**. Явные требования пользователя к числу слайдов и шаблону имеют приоритет. Охватите задачу и её место среди существующих подходов, механизмы, обучение и выполнение, эксперименты и ограничения, выводы. Каждому пункту не требуется отдельный слайд. Обязательного самостоятельного обзора литературы и фиксированного числа слайдов о методе нет.
+Создавайте полную презентацию **без ограничения числа слайдов по умолчанию**. Разделы A/B/C раскрывают несколько связанных вопросов на странице; начните с 3–5 содержательных разделов. Добавляйте основные слайды, если механизмы, эксперименты или читаемые таблицы требуют места. Не пропускайте важное и не переносите его только в заметки. Явное требование пользователя к числу слайдов имеет приоритет.
 
 До создания слайдов прочитайте [правила оформления](../../references/design.md), [композиции и контрпримеры](../../references/reference-patterns.md), [проверки качества](../../references/quality-gates.md). Сохраните `slide-plan.json` в рабочем каталоге по [шаблону плана](../../examples/slide-plan.template.json), затем продолжайте работу, не ожидая по умолчанию утверждения плана.
 
 Объединяйте общий вид механизма, промежуточные состояния и условия обратной связи. Сопоставляйте основные результаты при одинаковом протоколе, абляции и неблагоприятные результаты. Условия сравнения оставляйте рядом с графиками и таблицами, подробные объяснения и источники — в заметках. Используйте [пример компактного представления доказательств](../../examples/evidence-demo/README.md) и проверяйте читаемость каждой страницы.
+
+[Планирование разделов и полнота содержания](../../references/panel-planning.md)
 
 <a id="development"></a>
 
@@ -140,6 +142,7 @@ python scripts/extract_pdf_assets.py paper.pdf --output work/paper-assets
 ```bash
 python scripts/inject_equations.py draft.pptx math.pptx --mapping equations.json --require-all
 python scripts/embed_fonts.py math.pptx final.pptx
+python scripts/audit_slide_plan.py work/slide-plan.json --report work/plan-audit.json
 python scripts/validate_pptx.py final.pptx --expected-slides 8 --expected-math 3 --report validation.json
 ```
 
@@ -159,8 +162,8 @@ python -m unittest discover -s tests -v
 <summary><b>📦 Сборка архивов для распространения</b></summary>
 
 ```bash
-python scripts/package_skill.py --variant github --output ../paper-loom-v1.1.2-github.zip
-python scripts/package_skill.py --variant full --output ../paper-loom-v1.1.2-full.zip
+python scripts/package_skill.py --variant github --output ../paper-loom-v1.2.0-github.zip
+python scripts/package_skill.py --variant full --output ../paper-loom-v1.2.0-full.zip
 ```
 
 Полный архив включает шрифты из репозитория; упаковщик проверяет наличие всех файлов. Параметр `--variant github` создаёт архив исходного кода без отдельных файлов шрифтов.
@@ -192,6 +195,7 @@ python scripts/package_skill.py --variant full --output ../paper-loom-v1.1.2-ful
 | `examples/evidence-demo/` | Запускаемый пример трёх слайдов с собственными объектами PowerPoint и исходный код сборки |
 | `examples/geonav/workflow.md` | Пример отбора доказательств и планирования слайдов |
 | `examples/evidence.template.json` | Шаблон для источников, условий экспериментов и записей о проверке |
+| `references/panel-planning.md` | Планирование разделов и полнота содержания |
 | `examples/slide-plan.template.json` | Шаблон вопросов, доказательств, визуальных материалов и решений об объединении страниц |
 | `tests/` | Тесты поведения скриптов и регрессионные тесты |
 

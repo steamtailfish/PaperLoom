@@ -4,9 +4,9 @@
 
 ### 將科研論文，織成以圖表說故事的 PowerPoint
 
-**預設 6–8 頁 · 緊湊證據 · 論文原圖 · 原生公式 · 可編輯 PPTX**
+**完整講解 · 多分區頁面 · PPTX**
 
-![Version](https://img.shields.io/badge/version-1.1.2-4455AA?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.2.0-4455AA?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![PowerPoint](https://img.shields.io/badge/PowerPoint-%2Epptx-D24726?style=flat-square)
@@ -35,7 +35,7 @@ PaperLoom 是一個將科研論文製作成精簡、以圖表為先、可編輯�
 
 ### 🌐 上載至網頁
 
-上載 **paper-loom-v1.1.2-full.zip** 和**論文 PDF**，然後說：
+上載 **paper-loom-v1.2.0-full.zip** 和**論文 PDF**，然後說：
 
 > 請你按照壓縮包內 skill 的要求製作論文的 PPT。
 
@@ -101,11 +101,13 @@ python scripts/install_skill.py
 
 ## 🧭 按證據安排投影片
 
-預設 **6–8 頁**，複雜論文可用 **8–10 頁**；用戶指定的頁數與模板優先。任務與定位、核心機制、訓練與執行、實驗與邊界、總結都要覆蓋，但不要求各自獨佔一頁，也不強制獨立綜述或固定的技術頁數。
+預設製作**完整科研匯報，不設固定頁數範圍或上限**。每頁以 A/B/C 等區域講解多個相關重點，通常先安排 3–5 個實質分區；機制、實驗或圖表放不下時增加正文頁。核心內容必須可見，不能為壓縮頁數省略或只放備忘稿。用戶明確指定頁數時以其要求為準。
 
 製作前必讀[頁面設計](../../references/design.md)、[參考版式與反例](../../references/reference-patterns.md)及[品質關卡](../../references/quality-gates.md)。先按[逐頁設計範本](../../examples/slide-plan.template.json)完成工作目錄的 `slide-plan.json`，然後繼續生成，不預設等待大綱批准。
 
 同一機制的總覽、狀態與回饋條件可合頁；同口徑主結果、消融及不利結果可並列。比較條件留在圖表附近，長講解與詳細來源放備忘稿。以[緊湊證據示例](../../examples/evidence-demo/README.md)作視覺參考，逐頁檢查可讀性。
+
+[分區規劃與內容完整性](../../references/panel-planning.md)
 
 <a id="development"></a>
 
@@ -140,6 +142,7 @@ python scripts/extract_pdf_assets.py paper.pdf --output work/paper-assets
 ```bash
 python scripts/inject_equations.py draft.pptx math.pptx --mapping equations.json --require-all
 python scripts/embed_fonts.py math.pptx final.pptx
+python scripts/audit_slide_plan.py work/slide-plan.json --report work/plan-audit.json
 python scripts/validate_pptx.py final.pptx --expected-slides 8 --expected-math 3 --report validation.json
 ```
 
@@ -159,8 +162,8 @@ python -m unittest discover -s tests -v
 <summary><b>📦 建置發行封存檔</b></summary>
 
 ```bash
-python scripts/package_skill.py --variant github --output ../paper-loom-v1.1.2-github.zip
-python scripts/package_skill.py --variant full --output ../paper-loom-v1.1.2-full.zip
+python scripts/package_skill.py --variant github --output ../paper-loom-v1.2.0-github.zip
+python scripts/package_skill.py --variant full --output ../paper-loom-v1.2.0-full.zip
 ```
 
 完整封存檔包含儲存庫附帶的字型，封裝工具會檢查檔案是否齊全；`--variant github` 會產生不含獨立字型檔案的原始碼封存檔。
@@ -192,6 +195,7 @@ python scripts/package_skill.py --variant full --output ../paper-loom-v1.1.2-ful
 | `examples/evidence-demo/` | 可執行的三頁原生版面示範及建置原始碼 |
 | `examples/geonav/workflow.md` | 論文證據與頁面規劃示例 |
 | `examples/evidence.template.json` | 來源、實驗條件與評估標準、驗證紀錄範本 |
+| `references/panel-planning.md` | 分區規劃與內容完整性 |
 | `examples/slide-plan.template.json` | 逐頁問題、證據、視覺與合頁判斷範本 |
 | `tests/` | 指令碼行為測試與回歸測試 |
 

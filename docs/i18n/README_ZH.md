@@ -4,9 +4,9 @@
 
 ### 把科研论文，织成清晰、可编辑的 PowerPoint。
 
-**证据紧凑 · 论文原图 · 原生公式 · 可编辑 PPTX**
+**完整讲解 · 多分区页面 · PPTX**
 
-![Version](https://img.shields.io/badge/version-1.1.2-4455AA?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.2.0-4455AA?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![PowerPoint](https://img.shields.io/badge/PowerPoint-%2Epptx-D24726?style=flat-square)
@@ -35,7 +35,7 @@ PaperLoom 面向科研组会，把论文整理成紧凑、图表优先的可编�
 
 ### 🌐 网页上传
 
-上传 **paper-loom-v1.1.2-full.zip** 和**论文 PDF**，然后说：
+上传 **paper-loom-v1.2.0-full.zip** 和**论文 PDF**，然后说：
 
 > 请你按照压缩包内skill的要求制作论文的ppt
 
@@ -101,7 +101,7 @@ python scripts/install_skill.py
 
 ## 🧭 默认汇报结构
 
-默认 **6–8 页**，复杂论文可用 8–10 页；用户指定页数优先。以下是覆盖要求，不要求每项独占一页：
+默认制作**完整科研汇报，不设固定页数区间或上限**。每页用 A/B/C 等区域讲多个相关点，通常从 3–5 个实质分区开始安排；机制、实验或图表放不下时增加正文页。核心内容必须可见，不能为压页数省略或仅放备注。用户明确限定页数时以用户要求为准。以下是覆盖范围，各项可安排为分区或展开为多页：
 
 | 内容 | 组织方式 |
 |---|---|
@@ -112,6 +112,8 @@ python scripts/install_skill.py
 | 总结讨论 | 贡献对应证据，局限说明影响 |
 
 按证据关联与可读性分配页面。制作前读[参考版式](../../references/reference-patterns.md)，填写[逐页计划](../../examples/slide-plan.template.json)，按[质量关卡](../../references/quality-gates.md)审阅。总字数和图片面积均不等于有效信息密度。
+
+[分区规划与内容完整性](../../references/panel-planning.md)
 
 <a id="development"></a>
 
@@ -146,6 +148,7 @@ python scripts/extract_pdf_assets.py paper.pdf --output work/paper-assets
 ```bash
 python scripts/inject_equations.py draft.pptx math.pptx --mapping equations.json --require-all
 python scripts/embed_fonts.py math.pptx final.pptx
+python scripts/audit_slide_plan.py work/slide-plan.json --report work/plan-audit.json
 python scripts/validate_pptx.py final.pptx --expected-slides 8 --expected-math 3 --report validation.json
 python scripts/audit_slide_quality.py final.pptx --report work/slide-quality.json
 ```
@@ -168,8 +171,8 @@ python -m unittest discover -s tests -v
 <summary><b>📦 构建发行归档</b></summary>
 
 ```bash
-python scripts/package_skill.py --variant github --output ../paper-loom-v1.1.2-github.zip
-python scripts/package_skill.py --variant full --output ../paper-loom-v1.1.2-full.zip
+python scripts/package_skill.py --variant github --output ../paper-loom-v1.2.0-github.zip
+python scripts/package_skill.py --variant full --output ../paper-loom-v1.2.0-full.zip
 ```
 
 完整归档包含字体、设计规则和示例；打包器排除工作产物，只生成一份与文件内容一致的校验清单；`--variant github` 生成不含独立字体文件的源码归档。
@@ -196,6 +199,7 @@ python scripts/package_skill.py --variant full --output ../paper-loom-v1.1.2-ful
 | `references/` | 页面设计、提图、兼容性、客户端使用指南 |
 | `examples/aeroduo-reference/` | 六页视觉参考与阅读指南 |
 | `examples/evidence-demo/` | 紧凑证据布局、可编辑示例与公开构建源码 |
+| `references/panel-planning.md` | 分区规划与内容完整性 |
 | `examples/slide-plan.template.json` | 逐页证据、视觉关系、布局和审阅计划 |
 | `references/rendering.md` | 公开 PPTX/PDF 渲染回退与视觉检查 |
 | `examples/geonav/workflow.md` | 论文证据与页面规划示例 |

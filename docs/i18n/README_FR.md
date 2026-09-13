@@ -4,9 +4,9 @@
 
 ### De l’article scientifique à une présentation claire et visuelle.
 
-**6–8 diapositives par défaut · Preuves regroupées · Figures d’origine · Équations natives · PPTX modifiable**
+**Couverture complète · Plusieurs sections par page · PPTX**
 
-![Version](https://img.shields.io/badge/version-1.1.2-4455AA?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.2.0-4455AA?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![PowerPoint](https://img.shields.io/badge/PowerPoint-%2Epptx-D24726?style=flat-square)
@@ -35,7 +35,7 @@ PaperLoom transforme des articles scientifiques en présentations **PowerPoint `
 
 ### 🌐 Téléversement sur le web
 
-Téléversez **paper-loom-v1.1.2-full.zip** et le **PDF de l’article**, puis demandez :
+Téléversez **paper-loom-v1.2.0-full.zip** et le **PDF de l’article**, puis demandez :
 
 > Crée le PPT de cet article en suivant le skill contenu dans le ZIP.
 
@@ -101,11 +101,13 @@ Cette démonstration utilise des **données fictives** clairement signalées ; e
 
 ## 🧭 Une structure guidée par les preuves
 
-Comptez **6–8 diapositives** par défaut, ou **8–10** pour un article complexe. Le nombre et le modèle demandés par l’utilisateur priment. Couvrez la tâche et son positionnement, les mécanismes, l’entraînement et l’exécution, les expériences et leurs limites, puis la synthèse. Ces éléments ne nécessitent pas chacun une page séparée. Une revue bibliographique autonome et un nombre fixe de pages de méthode ne sont pas obligatoires.
+Créez une présentation complète **sans plafond de diapositives par défaut**. Les sections A/B/C expliquent plusieurs points liés sur chaque page, avec 3–5 sections substantielles comme point de départ. Ajoutez des diapositives de contenu lorsque les mécanismes, les expériences ou la lisibilité le nécessitent. Ne supprimez pas les éléments essentiels et ne les reléguez pas uniquement aux notes. Un nombre explicitement demandé par l’utilisateur reste prioritaire.
 
 Avant de créer les diapositives, lisez les guides de [conception](../../references/design.md), de [compositions et contre-exemples](../../references/reference-patterns.md) et de [contrôle qualité](../../references/quality-gates.md). Préparez `slide-plan.json` dans le dossier de travail à partir du [modèle de plan](../../examples/slide-plan.template.json), puis continuez sans attendre par défaut une approbation du plan.
 
 Regroupez la vue d’ensemble, les états intermédiaires et les conditions de retour d’un même mécanisme. Rapprochez les résultats principaux à protocole identique, les ablations et les résultats défavorables. Gardez les conditions près des figures et tableaux, les explications longues et sources détaillées dans les notes. Utilisez la [démonstration centrée sur les preuves](../../examples/evidence-demo/README.md) comme référence visuelle et vérifiez la lisibilité de chaque page.
+
+[Planification des sections et couverture du contenu](../../references/panel-planning.md)
 
 <a id="development"></a>
 
@@ -140,6 +142,7 @@ Dans le PPTX natif, réservez un paragraphe distinct pour chaque équation néce
 ```bash
 python scripts/inject_equations.py draft.pptx math.pptx --mapping equations.json --require-all
 python scripts/embed_fonts.py math.pptx final.pptx
+python scripts/audit_slide_plan.py work/slide-plan.json --report work/plan-audit.json
 python scripts/validate_pptx.py final.pptx --expected-slides 8 --expected-math 3 --report validation.json
 ```
 
@@ -159,8 +162,8 @@ python -m unittest discover -s tests -v
 <summary><b>📦 Créer les archives de distribution</b></summary>
 
 ```bash
-python scripts/package_skill.py --variant github --output ../paper-loom-v1.1.2-github.zip
-python scripts/package_skill.py --variant full --output ../paper-loom-v1.1.2-full.zip
+python scripts/package_skill.py --variant github --output ../paper-loom-v1.2.0-github.zip
+python scripts/package_skill.py --variant full --output ../paper-loom-v1.2.0-full.zip
 ```
 
 L’archive complète inclut les polices fournies avec le dépôt ; l’outil de création de paquets vérifie qu’elles sont toutes présentes. L’option `--variant github` crée une archive du code source sans les fichiers de polices séparés.
@@ -192,6 +195,7 @@ L’archive complète inclut les polices fournies avec le dépôt ; l’outil de
 | `examples/evidence-demo/` | Démonstration exécutable de trois diapositives avec des mises en page natives et code source de génération |
 | `examples/geonav/workflow.md` | Exemple de planification à partir des preuves de l’article |
 | `examples/evidence.template.json` | Modèle pour les sources, les protocoles et définitions des expériences, et les enregistrements de validation |
+| `references/panel-planning.md` | Planification des sections et couverture du contenu |
 | `examples/slide-plan.template.json` | Modèle des questions, preuves, visuels et décisions de regroupement par page |
 | `tests/` | Tests du comportement des scripts et de non-régression |
 

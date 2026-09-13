@@ -23,12 +23,12 @@
       "results_and_limits": [],
       "discussion": []
     },
-    "path_base": "skill_root for reference_profile and reference_pdf; work_directory for evidence and generated assets"
+    "path_base": "skill_root for reference_profile and reference_pdf; work_directory for evidence and generated assets",
+    "page_count_policy": "content_first_no_default_cap"
   },
   "slides": [
     {
       "slide": 1,
-      "question": "",
       "title": "",
       "evidence_units": [
         {
@@ -64,8 +64,32 @@
         "specific_observation": "",
         "revision": "",
         "recheck_observation": "",
-        "stage": "planned"
-      }
+        "stage": "planned",
+        "coverage_verified": false
+      },
+      "panels": [
+        {
+          "label": "A",
+          "title": "",
+          "content_ids": [
+            "M01"
+          ],
+          "key_points": [],
+          "visual": ""
+        }
+      ],
+      "panel_count_reason": "",
+      "overflow_to_slides": [],
+      "topic": ""
+    }
+  ],
+  "content_inventory": [
+    {
+      "id": "M01",
+      "topic": "",
+      "source": "",
+      "required_on_slide": true,
+      "exclusion_reason": ""
     }
   ]
 }

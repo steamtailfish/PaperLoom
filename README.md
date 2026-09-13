@@ -4,9 +4,9 @@
 
 ### Turn research papers into clear, editable PowerPoint presentations.
 
-**Evidence-rich slides · Original figures · Native equations · Editable PPTX**
+**Complete coverage · Multiple panels per slide · Editable PPTX**
 
-![Version](https://img.shields.io/badge/version-1.1.2-4455AA?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.2.0-4455AA?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![PowerPoint](https://img.shields.io/badge/PowerPoint-%2Epptx-D24726?style=flat-square)
@@ -35,7 +35,7 @@ PaperLoom turns research papers into compact, visual-first presentations for res
 
 ### 🌐 Upload on the Web
 
-Upload **paper-loom-v1.1.2-full.zip** and the **paper PDF**, then say:
+Upload **paper-loom-v1.2.0-full.zip** and the **paper PDF**, then say:
 
 > Please make a PPT of the paper following the skill in the ZIP.
 
@@ -101,7 +101,7 @@ These three slides show a compact overview with mechanism details, training/infe
 
 ## 🧭 Default Slide Structure
 
-Default to **6–8 slides**; complex papers may need 8–10. A user-specified count takes priority. These are coverage requirements, not mandatory separate pages:
+Build a complete research presentation with **no default slide-count cap**. Use A/B/C sections to explain several related points on each slide, typically starting with 3–5 substantive panels. Add body slides whenever mechanisms, experiments or readable evidence need more space. Keep essential content visible; notes carry supporting explanations. An explicit user slide count takes priority. The following describes coverage, not one slide per item:
 
 | Content | Organization |
 |---|---|
@@ -112,6 +112,8 @@ Default to **6–8 slides**; complex papers may need 8–10. A user-specified co
 | Discussion | Contributions paired with evidence and remaining questions |
 
 Do not force a six-card literature page or one slide per equation. Read the [reference patterns](references/reference-patterns.md), use the [slide-plan template](examples/slide-plan.template.json), and apply the [quality gates](references/quality-gates.md). Total word count and picture area are not quality scores.
+
+[Panel planning and content coverage](references/panel-planning.md)
 
 <a id="development"></a>
 
@@ -146,6 +148,7 @@ In the native PPTX, reserve a separate paragraph for each necessary equation, su
 ```bash
 python scripts/inject_equations.py draft.pptx math.pptx --mapping equations.json --require-all
 python scripts/embed_fonts.py math.pptx final.pptx
+python scripts/audit_slide_plan.py work/slide-plan.json --report work/plan-audit.json
 python scripts/validate_pptx.py final.pptx --expected-slides 8 --expected-math 3 --report validation.json
 python scripts/audit_slide_quality.py final.pptx --report work/slide-quality.json
 ```
@@ -168,8 +171,8 @@ python -m unittest discover -s tests -v
 <summary><b>📦 Build release archives</b></summary>
 
 ```bash
-python scripts/package_skill.py --variant github --output ../paper-loom-v1.1.2-github.zip
-python scripts/package_skill.py --variant full --output ../paper-loom-v1.1.2-full.zip
+python scripts/package_skill.py --variant github --output ../paper-loom-v1.2.0-github.zip
+python scripts/package_skill.py --variant full --output ../paper-loom-v1.2.0-full.zip
 ```
 
 The full archive includes the bundled fonts, design references and examples. The packager excludes work products and writes one fresh manifest with verified file hashes. `--variant github` creates a source archive without standalone font files.
@@ -196,6 +199,7 @@ The full archive includes the bundled fonts, design references and examples. The
 | `references/` | Guides to slide design, figure extraction, compatibility, and client use |
 | `examples/aeroduo-reference/` | Six-page visual reference and reading guide |
 | `examples/evidence-demo/` | Evidence compositions, editable demo and portable build source |
+| `references/panel-planning.md` | Panel planning and content coverage |
 | `examples/slide-plan.template.json` | Per-slide evidence, layout and review plan |
 | `references/rendering.md` | Public PPTX/PDF rendering fallback for visual review |
 | `examples/geonav/workflow.md` | A paper-to-presentation planning example |
