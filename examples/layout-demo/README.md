@@ -24,7 +24,7 @@
 
 ## 本地复现
 
-需要 Node.js 18+、Python 3.10+ 和 Pandoc。Python 依赖在仓库根目录的 `requirements.txt` 中。先按 `fonts/README.md` 准备中文仿宋 GB2312 与英文字体 Times New Roman；生成器会按中英文拆分文字运行，字体声明不等于字体已经安装或嵌入。
+需要 Node.js 18+、Python 3.10+ 和 Pandoc。Python 依赖在仓库根目录的 `requirements.txt` 中。仓库已附带中文仿宋 GB2312 与英文字体 Times New Roman，使用说明见 [字体指南](../../fonts/README.md)；生成器会按中英文拆分文字运行，字体声明不等于字体已经安装或嵌入。
 
 从仓库根目录执行：
 

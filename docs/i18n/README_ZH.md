@@ -75,7 +75,7 @@ PaperLoom 面向科研组会，把论文整理成紧凑、图表优先的可编�
 
 ### 💻 客户端安装
 
-克隆或下载本仓库，按[字体指南](../../fonts/README.md)准备字体，然后在仓库根目录执行：
+克隆或下载本仓库（已附带所需字体），阅读[字体指南](../../fonts/README.md)，然后在仓库根目录执行：
 
 ```bash
 python scripts/install_skill.py
@@ -146,7 +146,7 @@ npm install
 python scripts/doctor.py
 ```
 
-原生公式转换另需 `pandoc` 命令，按 [Pandoc 官方文档](https://pandoc.org/installing.html) 安装。字体请先按 [fonts/README.md](../../fonts/README.md) 补齐；当前环境已有专用 PowerPoint 工具时不必强制换工具。
+原生公式转换另需 `pandoc` 命令，按 [Pandoc 官方文档](https://pandoc.org/installing.html) 安装。所需字体已包含在 `fonts/` 中，使用说明见 [fonts/README.md](../../fonts/README.md)；当前环境已有专用 PowerPoint 工具时不必强制换工具。
 
 <details>
 <summary><b>🖼️ 提取论文图片</b></summary>
@@ -190,7 +190,7 @@ python scripts/package_skill.py --variant github --output ../paper-loom-v1.0.0-g
 python scripts/package_skill.py --variant full --output ../paper-loom-v1.0.0-full.zip
 ```
 
-生成完整归档前需补齐获授权的字体文件，打包器会检查是否齐全。
+完整归档包含仓库附带的字体，打包器会检查是否齐全；`--variant github` 生成不含独立字体文件的源码归档。
 
 </details>
 
@@ -209,7 +209,7 @@ python scripts/package_skill.py --variant full --output ../paper-loom-v1.0.0-ful
 | `WEB_START.md` | 网页端复制提示词与执行入口 |
 | `README.md` | 英文项目说明与语言切换入口 |
 | `docs/i18n/` | 简体中文、繁體中文（香港）、日语、法语、俄语和德语 README |
-| `fonts/` | 字体配置说明与校验清单 |
+| `fonts/` | 随仓库提供的字体文件、使用说明与校验清单 |
 | `scripts/` | 提图、原生公式、字体嵌入、PPTX 检查、安装和打包工具 |
 | `references/` | 页面设计、提图、兼容性、客户端使用指南 |
 | `examples/layout-demo/` | 可运行的三页原生版式演示及构建源码 |

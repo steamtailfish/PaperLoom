@@ -5,7 +5,5 @@ __pycache__/
 dist/
 build/
 .DS_Store
-fonts/*.ttf
-fonts/*.TTF
 *.tmp
 *.inspect.ndjson

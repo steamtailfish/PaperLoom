@@ -75,7 +75,7 @@ PaperLoom 是一個將科研論文製作成精簡、以圖表為先、可編輯�
 
 ### 💻 本機客戶端
 
-複製或下載本儲存庫，按照[字型指南](../../fonts/README.md)準備字型，然後在儲存庫根目錄執行：
+複製或下載本儲存庫（已附帶所需字型），閱讀[字型指南](../../fonts/README.md)，然後在儲存庫根目錄執行：
 
 ```bash
 python scripts/install_skill.py
@@ -147,7 +147,7 @@ npm install
 python scripts/doctor.py
 ```
 
-原生公式轉換另需 `pandoc` 指令，請按照 [Pandoc 官方文件](https://pandoc.org/installing.html)安裝。字型請先按照[字型指南](../../fonts/README.md)補齊；目前環境如已有專用 PowerPoint 工具，毋須強制轉用其他工具。
+原生公式轉換另需 `pandoc` 指令，請按照 [Pandoc 官方文件](https://pandoc.org/installing.html)安裝。所需字型已包含在 `fonts/` 中，使用說明請參閱[字型指南](../../fonts/README.md)；目前環境如已有專用 PowerPoint 工具，毋須強制轉用其他工具。
 
 <details>
 <summary><b>🖼️ 擷取論文圖片</b></summary>
@@ -191,7 +191,7 @@ python scripts/package_skill.py --variant github --output ../paper-loom-v1.0.0-g
 python scripts/package_skill.py --variant full --output ../paper-loom-v1.0.0-full.zip
 ```
 
-產生完整封存檔前，必須先補齊已獲授權的字型檔案；封裝工具會檢查檔案是否齊全。
+完整封存檔包含儲存庫附帶的字型，封裝工具會檢查檔案是否齊全；`--variant github` 會產生不含獨立字型檔案的原始碼封存檔。
 
 </details>
 
@@ -213,7 +213,7 @@ python scripts/package_skill.py --variant full --output ../paper-loom-v1.0.0-ful
 | `WEB_START.md` | 網頁版可複製的提示詞與執行入口 |
 | `README.md` | 專案的英文版 README |
 | `docs/i18n/` | 其他語言的 README |
-| `fonts/` | 字型設定說明與核對清單 |
+| `fonts/` | 隨儲存庫提供的字型檔案、使用說明與核對清單 |
 | `scripts/` | 圖片擷取、原生公式、字型內嵌、PPTX 檢查、安裝及封裝工具 |
 | `references/` | 頁面設計、圖片擷取、相容性及客戶端使用指南 |
 | `examples/layout-demo/` | 可執行的三頁原生版面示範及建置原始碼 |

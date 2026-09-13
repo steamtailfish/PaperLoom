@@ -75,7 +75,7 @@ These three slides demonstrate native, editable layouts using explicitly labeled
 
 ### 💻 Install in a Local Client
 
-Clone or download this repository, prepare the fonts using the [font guide](fonts/README.md), then run from the repository root:
+Clone or download this repository with its bundled fonts, review the [font guide](fonts/README.md), then run from the repository root:
 
 ```bash
 python scripts/install_skill.py
@@ -152,7 +152,7 @@ npm install
 python scripts/doctor.py
 ```
 
-Native equation conversion also requires the `pandoc` command; follow the [official Pandoc installation guide](https://pandoc.org/installing.html). Add the required fonts as described in [fonts/README.md](fonts/README.md) first. If your environment already provides dedicated PowerPoint tools, there is no need to switch tools.
+Native equation conversion also requires the `pandoc` command; follow the [official Pandoc installation guide](https://pandoc.org/installing.html). The required fonts are included in `fonts/`; see [fonts/README.md](fonts/README.md) for usage details. If your environment already provides dedicated PowerPoint tools, there is no need to switch tools.
 
 <details>
 <summary><b>🖼️ Extract figures from a paper</b></summary>
@@ -196,7 +196,7 @@ python scripts/package_skill.py --variant github --output ../paper-loom-v1.0.0-g
 python scripts/package_skill.py --variant full --output ../paper-loom-v1.0.0-full.zip
 ```
 
-Building the full archive requires the authorized font files to be present; the packager checks for them.
+The full archive includes the bundled fonts, and the packager checks that all required files are present. `--variant github` creates a source archive without standalone font files.
 
 </details>
 
@@ -215,7 +215,7 @@ Building the full archive requires the authorized font files to be present; the 
 | `WEB_START.md` | Copyable prompts and execution entry point for web use |
 | `README.md` | English project overview and language navigation |
 | `docs/i18n/` | READMEs in Simplified Chinese, Traditional Chinese (Hong Kong), Japanese, French, Russian, and German |
-| `fonts/` | Font setup notes and verification manifest |
+| `fonts/` | Bundled font files, usage notes, and verification manifest |
 | `scripts/` | Tools for figure extraction, native equations, font embedding, PPTX inspection, installation, and packaging |
 | `references/` | Guides to slide design, figure extraction, compatibility, and client use |
 | `examples/layout-demo/` | Runnable three-slide demo with native editable layouts and build source |

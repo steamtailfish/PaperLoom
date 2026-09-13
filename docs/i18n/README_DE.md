@@ -75,7 +75,7 @@ Dieses Beispiel verwendet ausdrücklich gekennzeichnete **fiktive Daten**, die k
 
 ### 💻 Lokaler Client
 
-Klone dieses Repository oder lade es herunter. Bereite die Schriftarten gemäß der [Schriftartenanleitung](../../fonts/README.md) vor und führe anschließend im Stammverzeichnis des Repositorys Folgendes aus:
+Klone dieses Repository mit den enthaltenen Schriftarten oder lade es herunter. Lies die [Schriftartenanleitung](../../fonts/README.md) und führe anschließend im Stammverzeichnis des Repositorys Folgendes aus:
 
 ```bash
 python scripts/install_skill.py
@@ -154,7 +154,7 @@ npm install
 python scripts/doctor.py
 ```
 
-Für die Konvertierung in native Formeln wird zusätzlich `pandoc` benötigt; folge der [offiziellen Pandoc-Dokumentation](https://pandoc.org/installing.html). Bereite die Schriftarten gemäß der [Schriftartenanleitung](../../fonts/README.md) vor. Wenn in der Umgebung bereits ein spezielles PowerPoint-Werkzeug verfügbar ist, muss dieses nicht ersetzt werden.
+Für die Konvertierung in native Formeln wird zusätzlich `pandoc` benötigt; folge der [offiziellen Pandoc-Dokumentation](https://pandoc.org/installing.html). Die erforderlichen Schriftarten sind in `fonts/` enthalten; Hinweise zur Verwendung findest du in der [Schriftartenanleitung](../../fonts/README.md). Wenn in der Umgebung bereits ein spezielles PowerPoint-Werkzeug verfügbar ist, muss dieses nicht ersetzt werden.
 
 <details>
 <summary><b>🖼️ Bilder extrahieren</b></summary>
@@ -198,7 +198,7 @@ python scripts/package_skill.py --variant github --output ../paper-loom-v1.0.0-g
 python scripts/package_skill.py --variant full --output ../paper-loom-v1.0.0-full.zip
 ```
 
-Das vollständige Archiv benötigt Schriftdateien, für die die erforderlichen Rechte vorliegen; das Paketierungswerkzeug prüft deren Vollständigkeit.
+Das vollständige Archiv enthält die im Repository mitgelieferten Schriftarten; das Paketierungswerkzeug prüft deren Vollständigkeit. Mit `--variant github` wird ein Quellcodearchiv ohne separate Schriftdateien erstellt.
 
 </details>
 
@@ -220,7 +220,7 @@ Das vollständige Archiv benötigt Schriftdateien, für die die erforderlichen R
 | `WEB_START.md` | Kopierbare Prompts und Ausführungsanleitung für die Web-Nutzung |
 | `README.md` | Projektbeschreibung auf Englisch |
 | `docs/i18n/` | Übersetzungen der README |
-| `fonts/` | Einrichtung der Schriftarten und Prüfmanifest |
+| `fonts/` | Enthaltene Schriftdateien, Nutzungshinweise und Prüfmanifest |
 | `scripts/` | Werkzeuge für Bildextraktion, native Formeln, Schrifteinbettung, PPTX-Prüfung, Installation und Paketierung |
 | `references/` | Anleitungen zu Foliengestaltung, Bildextraktion, Kompatibilität und Nutzung im Client |
 | `examples/layout-demo/` | Ausführbares Beispiel mit drei nativen Folienlayouts und Quellcode zur Erstellung |

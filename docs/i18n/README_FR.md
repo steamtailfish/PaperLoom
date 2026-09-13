@@ -75,7 +75,7 @@ Cette démonstration utilise des **données fictives** clairement signalées ; e
 
 ### 💻 Client local
 
-Clonez ou téléchargez ce dépôt, préparez les polices selon le [guide des polices](../../fonts/README.md), puis exécutez la commande suivante à la racine du dépôt :
+Clonez ou téléchargez ce dépôt avec les polices incluses, consultez le [guide des polices](../../fonts/README.md), puis exécutez la commande suivante à la racine du dépôt :
 
 ```bash
 python scripts/install_skill.py
@@ -153,7 +153,7 @@ npm install
 python scripts/doctor.py
 ```
 
-La conversion en équations natives nécessite également `pandoc` : suivez la [documentation officielle de Pandoc](https://pandoc.org/installing.html). Préparez les polices selon le [guide des polices](../../fonts/README.md). Si l’environnement dispose déjà d’un outil dédié à PowerPoint, il n’est pas nécessaire d’en changer.
+La conversion en équations natives nécessite également `pandoc` : suivez la [documentation officielle de Pandoc](https://pandoc.org/installing.html). Les polices requises sont incluses dans `fonts/` ; consultez le [guide des polices](../../fonts/README.md) pour les modalités d’utilisation. Si l’environnement dispose déjà d’un outil dédié à PowerPoint, il n’est pas nécessaire d’en changer.
 
 <details>
 <summary><b>🖼️ Extraire les images</b></summary>
@@ -197,7 +197,7 @@ python scripts/package_skill.py --variant github --output ../paper-loom-v1.0.0-g
 python scripts/package_skill.py --variant full --output ../paper-loom-v1.0.0-full.zip
 ```
 
-L’archive complète nécessite les fichiers de polices pour lesquels vous disposez des droits requis ; l’outil de création de paquets vérifie qu’ils sont tous présents.
+L’archive complète inclut les polices fournies avec le dépôt ; l’outil de création de paquets vérifie qu’elles sont toutes présentes. L’option `--variant github` crée une archive du code source sans les fichiers de polices séparés.
 
 </details>
 
@@ -219,7 +219,7 @@ L’archive complète nécessite les fichiers de polices pour lesquels vous disp
 | `WEB_START.md` | Prompts à copier et instructions d’exécution pour le web |
 | `README.md` | Présentation du projet en anglais |
 | `docs/i18n/` | Traductions du README |
-| `fonts/` | Configuration des polices et manifeste de vérification |
+| `fonts/` | Fichiers de polices inclus, instructions d’utilisation et manifeste de vérification |
 | `scripts/` | Outils d’extraction d’images, d’équations natives, d’incorporation de polices, de vérification PPTX, d’installation et de création de paquets |
 | `references/` | Guides de conception des diapositives, d’extraction d’images, de compatibilité et d’utilisation dans un client |
 | `examples/layout-demo/` | Démonstration exécutable de trois diapositives avec des mises en page natives et code source de génération |

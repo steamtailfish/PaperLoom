@@ -75,7 +75,7 @@ PaperLoom は、研究論文をコンパクトで図表を中心とした、編�
 
 ### 💻 ローカルクライアント
 
-このリポジトリをクローンまたはダウンロードし、[フォントガイド](../../fonts/README.md)に従ってフォントを揃えてから、リポジトリのルートで実行します。
+必要なフォントが同梱されたこのリポジトリをクローンまたはダウンロードし、[フォントガイド](../../fonts/README.md)を確認してから、リポジトリのルートで実行します。
 
 ```bash
 python scripts/install_skill.py
@@ -149,7 +149,7 @@ npm install
 python scripts/doctor.py
 ```
 
-ネイティブ数式への変換には、別途 `pandoc` コマンドが必要です。[Pandoc 公式ドキュメント](https://pandoc.org/installing.html)に従ってインストールしてください。フォントは先に[フォントガイド](../../fonts/README.md)に従って揃えてください。現在の環境に専用の PowerPoint ツールがある場合は、無理にツールを変更する必要はありません。
+ネイティブ数式への変換には、別途 `pandoc` コマンドが必要です。[Pandoc 公式ドキュメント](https://pandoc.org/installing.html)に従ってインストールしてください。必要なフォントは `fonts/` に同梱されています。使用方法は[フォントガイド](../../fonts/README.md)を参照してください。現在の環境に専用の PowerPoint ツールがある場合は、無理にツールを変更する必要はありません。
 
 <details>
 <summary><b>🖼️ 論文の画像を抽出</b></summary>
@@ -193,7 +193,7 @@ python scripts/package_skill.py --variant github --output ../paper-loom-v1.0.0-g
 python scripts/package_skill.py --variant full --output ../paper-loom-v1.0.0-full.zip
 ```
 
-完全版アーカイブの作成には、使用許可を得たフォントファイルをすべて揃える必要があります。パッケージ作成ツールがファイルの不足を確認します。
+完全版アーカイブにはリポジトリに同梱されたフォントが含まれ、パッケージ作成ツールがファイルの不足を確認します。`--variant github` は、独立したフォントファイルを含まないソースコードアーカイブを作成します。
 
 </details>
 
@@ -215,7 +215,7 @@ python scripts/package_skill.py --variant full --output ../paper-loom-v1.0.0-ful
 | `WEB_START.md` | Web 版向けのコピー用プロンプトと実行手順 |
 | `README.md` | プロジェクトの英語版 README |
 | `docs/i18n/` | その他の言語の README |
-| `fonts/` | フォントの準備手順と検証用一覧 |
+| `fonts/` | 同梱フォントファイル、使用方法、検証用一覧 |
 | `scripts/` | 画像抽出、ネイティブ数式、フォント埋め込み、PPTX 検査、インストール、パッケージ作成用ツール |
 | `references/` | ページデザイン、画像抽出、互換性、クライアント利用のガイド |
 | `examples/layout-demo/` | 実行可能な 3 枚のネイティブレイアウトデモとビルド用ソース |
