@@ -75,11 +75,23 @@ python scripts/embed_fonts.py build/equations.pptx build/embedded.pptx
 
 ## 交付检查
 
+### PptxGenJS 示例的备注主题
+
+本包在 PowerPoint 16.0 实测中发现：仅将 PptxGenJS 4.0.1 的 `notesMasterIdLst` 调到规范顺序，而备注母版与幻灯片母版仍共用 `theme1.xml` 时，两份示例无法打开。为备注母版复制相同内容的独立主题、更新其关系与 Content Type 后，文件可以打开，备注仍在。
+
+两个示例生成器已采用这一最小修复，保留规范顺序，不删除备注、公式或字体。验证器将共享主题报告为兼容风险提示，不将其一概判为 XSD 错误。其他生成器或文件须按实际关系和目标应用验证，不能盲目替换所有主题。规范顺序也可见 [Microsoft 的主题应用示例](https://learn.microsoft.com/en-us/office/open-xml/presentation/how-to-apply-a-theme-to-a-presentation)。
+
+### 检查命令
+
+PptxGenJS 混排文本应先按逻辑行切分，再按字体分 run，并显式设置每个 run 的 `breakLine`。若一个 run 内含换行后再接另一字体，4.0.1 可能把后续变量或数字另起段落。两个示例的 `runs()` 已处理该情况，回归测试直接检查文本框和原生表格中的实际段落及字体。
+
 ```bash
 python scripts/validate_pptx.py final.pptx --expected-slides 8 --expected-math 3 --report build/validation.json
+python scripts/audit_slide_quality.py final.pptx --report work/slide-quality.json
+python scripts/render_preview.py final.pptx --output work/preview
 ```
 
-`validate_pptx.py` 不依赖内部运行时。它检查：
+渲染命令的依赖与 PDF 回退见 [渲染指南](rendering.md)。`validate_pptx.py` 不依赖内部运行时。它检查：
 
 - ZIP 可读性、CRC、重复部件名和 XML 可解析性。
 - 关系 ID、引用目标存在性、相对与包内绝对 Target、Content Types 覆盖。
@@ -107,4 +119,4 @@ python -m unittest discover -s tests -v
 
 Office 辅助脚本测试包括：演示文稿备注母版列表顺序、段落属性重复或后置、非法 `charset=134` 必须失败、乱序字体输入必须生成合法顺序、EOT 字节仍为 134、包内绝对 Target、LaTeX 分式变为原生公式、非目标页改动检测，以及拒绝覆盖源文件。没有字体文件或 Pandoc 时，相应测试以明确原因跳过，不把跳过报告成通过。
 
-默认检查随包版式示例的 3 页 / 1 个原生公式；可用环境变量 `PAPER_DECK_REAL_PPTX` 指向本次 GeoNav 的 8 页 / 3 公式文件，以运行该特定回归。其他论文可直接使用验证器的页数与公式数参数。渲染检查和桌面软件检查需另行执行。
+Office 兼容性回归检查旧 `layout-demo` 的 3 页 / 1 个原生公式；新 `evidence-demo` 为 3 页 / 0 公式，无需为了凑数量添加公式。可用环境变量 `PAPER_DECK_REAL_PPTX` 指向 GeoNav 的 8 页 / 3 公式文件，以运行该特定回归。其他论文按实际页数与公式数调用验证器；渲染检查和桌面软件检查需另行执行。

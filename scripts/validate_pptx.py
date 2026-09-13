@@ -121,6 +121,31 @@ def validate(path: Path, expected_slides=None, expected_math=None,
             except ValueError as exc:
                 errors.append(f'{name} {rid}: {exc}')
         relationships[source] = ids
+    # Empirical desktop compatibility warning, not an OOXML XSD constraint:
+    # PowerPoint 16.0 rejected the PptxGenJS 4.0.1 demo with 0x80070570 when a
+    # correctly ordered notesMaster and the slide master shared a theme. A
+    # byte-identical dedicated theme fixed loading and preserved all notes.
+    themes_by_owner = {'sldMaster': set(), 'notesMaster': set()}
+    for source, rels in relationships.items():
+        owner = roots.get(source)
+        if owner is None or not isinstance(owner.tag, str):
+            continue
+        kind = ET.QName(owner).localname
+        if kind not in themes_by_owner or ET.QName(owner).namespace != NS['p']:
+            continue
+        for rel in rels.values():
+            if (rel.get('Type', '').rsplit('/', 1)[-1] == 'theme' and
+                    rel.get('TargetMode') != 'External' and rel.get('Target')):
+                try:
+                    themes_by_owner[kind].add(resolve_target(source, rel.get('Target')))
+                except ValueError:
+                    pass  # Already reported during relationship validation.
+    shared_themes = sorted(themes_by_owner['sldMaster'] & themes_by_owner['notesMaster'])
+    report['shared_notes_slide_theme_parts'] = shared_themes
+    if shared_themes:
+        warnings.append(f'Desktop compatibility risk: notes master and slide master share theme parts {shared_themes}. '
+                        'PowerPoint 16.0 rejected this arrangement in the PptxGenJS 4.0.1 demo; '
+                        'use a dedicated notes theme and verify desktop opening. This is not an XSD error.')
     for name, root in roots.items():
         if name.endswith('.rels'):
             continue

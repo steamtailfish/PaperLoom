@@ -4,9 +4,9 @@
 
 ### 研究論文から、図表で伝わる PowerPoint へ
 
-**8〜10 枚のスライド · 論文の原図 · ネイティブ数式 · 編集可能な PPTX**
+**標準 6〜8 枚 · 根拠を集約 · 論文の原図 · ネイティブ数式 · 編集可能な PPTX**
 
-![Version](https://img.shields.io/badge/version-1.0.0-4455AA?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.1.0-4455AA?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![PowerPoint](https://img.shields.io/badge/PowerPoint-%2Epptx-D24726?style=flat-square)
@@ -35,7 +35,7 @@ PaperLoom は、研究論文をコンパクトで図表を中心とした、編�
 
 <table>
   <tr>
-    <td width="50%" valign="top"><strong>🎨 図で伝える構成</strong><br>関連研究はブロック分け、手法はフロー図や仕組みの図で説明。実験には、値を正確に読み取れるネイティブの表とグラフを使用します。</td>
+    <td width="50%" valign="top"><strong>🎨 図で伝える構成</strong><br>図表で入力、状態、変換、フィードバックを説明し、関連する根拠を同じページに配置。実験では編集可能な比較表と不利な結果も残します。</td>
     <td width="50%" valign="top"><strong>🖼️ 論文の原図を直接抽出</strong><br>PDF に埋め込まれた画像を直接抽出。ページのスクリーンショットや、その切り抜きを抽出画像として扱いません。</td>
   </tr>
   <tr>
@@ -43,7 +43,7 @@ PaperLoom は、研究論文をコンパクトで図表を中心とした、編�
     <td width="50%" valign="top"><strong>🔤 検証可能なフォント</strong><br>中国語は仿宋 GB2312、英語と数字は Times New Roman。フォントファイル、属性、ハッシュ値を検証できます。</td>
   </tr>
   <tr>
-    <td width="50%" valign="top"><strong>🔎 根拠は発表者ノートに</strong><br>出典と詳細な根拠をノートに記載。ページ下部には控えめな装飾とページ番号だけを残します。</td>
+    <td width="50%" valign="top"><strong>🔎 根拠は発表者ノートに</strong><br>詳しい出典と説明はノートに記載。指標、単位、比較条件、重要な限界は図表の近くに残し、フッターは簡潔にします。</td>
     <td width="50%" valign="top"><strong>🛠️ 指定箇所を丁寧に修正</strong><br>修正箇所を限定し、確認済みの他のページ、フォント、数式、互換性設定を保護します。</td>
   </tr>
 </table>
@@ -56,18 +56,18 @@ PaperLoom は、研究論文をコンパクトで図表を中心とした、編�
 
 <table>
   <tr>
-    <th width="33%">関連研究</th>
-    <th width="33%">手法と数式</th>
-    <th width="33%">実験</th>
+    <th width="33%">仕組みと状態</th>
+    <th width="33%">学習と推論</th>
+    <th width="33%">結果と適用限界</th>
   </tr>
   <tr>
-    <td><a href="../../examples/layout-demo/preview-01.png"><img src="../../examples/layout-demo/preview-01.png" alt="関連研究" width="100%"></a></td>
-    <td><a href="../../examples/layout-demo/preview-02.png"><img src="../../examples/layout-demo/preview-02.png" alt="手法と数式" width="100%"></a></td>
-    <td><a href="../../examples/layout-demo/preview-03.png"><img src="../../examples/layout-demo/preview-03.png" alt="実験" width="100%"></a></td>
+    <td><a href="../../examples/evidence-demo/preview-01.png"><img src="../../examples/evidence-demo/preview-01.png" alt="仕組みと状態" width="100%"></a></td>
+    <td><a href="../../examples/evidence-demo/preview-02.png"><img src="../../examples/evidence-demo/preview-02.png" alt="学習と推論" width="100%"></a></td>
+    <td><a href="../../examples/evidence-demo/preview-03.png"><img src="../../examples/evidence-demo/preview-03.png" alt="結果と適用限界" width="100%"></a></td>
   </tr>
 </table>
 
-[編集可能な PPTX](../../examples/layout-demo/layout-demo.pptx) · [ソースコードと再現手順](../../examples/layout-demo/README.md)
+[編集可能な PPTX](../../examples/evidence-demo/evidence-demo.pptx) · [ソースコードと再現手順](../../examples/evidence-demo/README.md)
 
 <a id="quick-start"></a>
 
@@ -93,15 +93,17 @@ $paper-loom を使って、この論文を研究室ミーティング用の Powe
 
 ### 🌐 Web にアップロード
 
-**必要なフォントを含むプロジェクトディレクトリ全体を ZIP に圧縮**し、論文 PDF と一緒にアップロードして、次のメッセージを送信します。
+配布版の **`paper-loom-v1.1.0-full.zip`** を優先して使い、論文 PDF と一緒にアップロードしてください。ソースから作る場合は、下記の `package_skill.py --variant full` コマンドで生成します。ビルド成果物や個人用キャッシュは除外されます。その後、次のメッセージを送信します。
 
 ```text
-アップロードした PaperLoom を展開し、まず SKILL.md を読んでから、その要件に従ってこの論
-文の研究室ミーティング用 PowerPoint を作成してください。標準構成は課題 1 枚、関連研究 1
-枚、手法 3〜5 枚、実験 2 枚、まとめ 1 枚です。関連研究はブロック分けし、図表を優先して、
-パッケージ内の仿宋 GB2312 と Times New Roman を使用してください。論文の図は直接抽出し、
-重要な数式は PowerPoint のネイティブ数式に変換してください。根拠はノートに記載し、出典を
-フッターの小さな文字で載せないでください。.pptx を実際に生成し、検査してください。
+アップロードした PaperLoom を展開し、WEB_START.md の手順で研究室ミーティング用の
+PowerPoint を作成してください。最初に SKILL.md、references/design.md、
+references/reference-patterns.md、references/quality-gates.md を読んでください。
+論文の根拠を整理し、slide-plan.json を保存してから、そのまま制作を続けてください。
+標準は 6〜8 枚、複雑な論文は 8〜10 枚です。枚数合わせの関連研究や数式の専用ページは不要です。
+関連する仕組みと根拠を同じページの図表で説明し、比較条件、単位、不利な結果も残してください。
+指定フォント、原図抽出、必要なネイティブ数式の要件を守り、詳細な出典と説明はノートに記載してください。
+構造と品質を検査し、全ページをレンダリングして確認・修正した後、ダウンロード可能な .pptx を納品してください。
 ```
 
 > [!NOTE]
@@ -109,29 +111,27 @@ $paper-loom を使って、この論文を研究室ミーティング用の Powe
 
 <a id="workflow"></a>
 
-## 🧭 標準のスライド構成
+## 🧭 根拠に応じたスライド構成
 
-標準構成は **8〜10 枚**です。
+標準は **6〜8 枚**、複雑な論文では **8〜10 枚**です。ユーザー指定の枚数とテンプレートを優先します。課題と位置付け、仕組み、学習と実行、実験と限界、まとめを扱いますが、各項目に独立したページを割り当てる必要はありません。関連研究の専用ページや手法ページの固定枚数も必須ではありません。
 
-| パート | 枚数 |
-|---|---|
-| 既存の課題 | 1 |
-| 関連研究 | 1 |
-| 手法 | 3〜5 |
-| 実験 | 2 |
-| まとめ | 1 |
+制作前に[ページ設計](../../references/design.md)、[参考レイアウトと反例](../../references/reference-patterns.md)、[品質チェック](../../references/quality-gates.md)を読みます。[ページ設計テンプレート](../../examples/slide-plan.template.json)に沿って作業ディレクトリに `slide-plan.json` を保存し、構成案の承認待ちを標準動作にせず制作を続けます。
+
+同じ仕組みの全体像、状態変化、フィードバック条件をまとめ、同条件の主結果とアブレーション、不利な結果を並べます。比較条件は図表の近くに、詳しい説明と出典はノートに残します。[根拠を集約したデモ](../../examples/evidence-demo/README.md)を参考に、全ページの読みやすさを確認してください。
 
 <details>
 <summary><b>ワークフローの背景</b></summary>
+
+以下は初期の GeoNav 制作事例です。当時の固定枚数や関連研究の 6 ブロック構成は、現在の標準要件ではありません。
 
 このスキルは、GeoNav の研究室ミーティング用発表資料を何度も作成・修正した経験から生まれました。内容の圧縮とストーリーの調整、フォントとネイティブ数式への対応、Office 形式の修復、出典フッターの削除、大きな関連研究一覧表を 6 つの研究アプローチに分ける変更など、実際に検証した作業方法を再利用可能な手順とスクリプトにまとめています。
 
 1. **研究室ミーティングの目的とビジュアル基準を決める**：実際の PPTX、コンパクトで情報密度の高い構成、図表の優先、指定フォント、ネイティブ数式。
 2. **論文を読み、根拠の索引を作る**：結論、図表、実験条件・評価基準、失敗例、判断の限界を対応付ける。
-3. **先にストーリーを組み、次にページを配置する**：既存の課題から関連研究、手法、実験、まとめへ進み、手法のページ数は実際の内容量に応じて配分する。
+3. **根拠を整理してからページを設計する**：課題、仕組み、実験、限界を関連付け、同じ図や仕組みに依存するページは読みやすさを確認して統合する。
 4. **元の素材と編集可能なオブジェクトを処理する**：画像を直接抽出し、表とグラフをネイティブ化し、LaTeX を Office Math に変換し、フォントを run 単位で設定する。
 5. **内容、レイアウト、互換性を確認する**：各ページをレンダリングしてデータを照合し、GB2312 の不適合な `charset=134` を `-122` に修正する。
-6. **フィードバックに応じて部分的に修正する**：出典フッターを削除してノートを残し、関連研究の表をブロック分けに変更する。他のページや形式の修正が元に戻らないようにする。
+6. **フィードバックに応じて部分的に修正する**：詳細な出典をノートに、必要な条件を図表の近くに残し、確認済みの他ページや形式の修正を保護する。
 
 全工程は [GeoNav の振り返り](../../examples/geonav/workflow.md)をご覧ください。
 
@@ -189,8 +189,8 @@ python -m unittest discover -s tests -v
 <summary><b>📦 配布用アーカイブの作成</b></summary>
 
 ```bash
-python scripts/package_skill.py --variant github --output ../paper-loom-v1.0.0-github.zip
-python scripts/package_skill.py --variant full --output ../paper-loom-v1.0.0-full.zip
+python scripts/package_skill.py --variant github --output ../paper-loom-v1.1.0-github.zip
+python scripts/package_skill.py --variant full --output ../paper-loom-v1.1.0-full.zip
 ```
 
 完全版アーカイブにはリポジトリに同梱されたフォントが含まれ、パッケージ作成ツールがファイルの不足を確認します。`--variant github` は、独立したフォントファイルを含まないソースコードアーカイブを作成します。
@@ -218,9 +218,10 @@ python scripts/package_skill.py --variant full --output ../paper-loom-v1.0.0-ful
 | `fonts/` | 同梱フォントファイル、使用方法、検証用一覧 |
 | `scripts/` | 画像抽出、ネイティブ数式、フォント埋め込み、PPTX 検査、インストール、パッケージ作成用ツール |
 | `references/` | ページデザイン、画像抽出、互換性、クライアント利用のガイド |
-| `examples/layout-demo/` | 実行可能な 3 枚のネイティブレイアウトデモとビルド用ソース |
+| `examples/evidence-demo/` | 実行可能な 3 枚のネイティブレイアウトデモとビルド用ソース |
 | `examples/geonav/workflow.md` | 今回の制作フロー、最終的な 8 枚の構成、主な修正点 |
 | `examples/evidence.template.json` | 出典、実験条件・評価基準、検証記録のテンプレート |
+| `examples/slide-plan.template.json` | 各ページの問い、根拠、図表、統合判断のテンプレート |
 | `tests/` | スクリプトの動作テストと回帰テスト |
 
 </details>

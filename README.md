@@ -4,9 +4,9 @@
 
 ### Turn research papers into clear, editable PowerPoint presentations.
 
-**8–10 slides · Original figures · Native equations · Editable PPTX**
+**Evidence-rich slides · Original figures · Native equations · Editable PPTX**
 
-![Version](https://img.shields.io/badge/version-1.0.0-4455AA?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.1.0-4455AA?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![PowerPoint](https://img.shields.io/badge/PowerPoint-%2Epptx-D24726?style=flat-square)
@@ -52,22 +52,22 @@ PaperLoom turns research papers into compact, visual-first presentations for res
 
 ## 🖼️ Preview
 
-These three slides demonstrate native, editable layouts using explicitly labeled **fictional data**. They illustrate the design, not findings from a real paper.
+These three slides show a compact overview with mechanism details, training/inference lanes, and results with ablations and limitations. All content is explicitly **fictional**. The package includes design patterns distilled from the user's AeroDuo reference, without redistributing third-party PDFs or paper figures.
 
 <table>
 <tr>
-<th width="33%">Literature review</th>
-<th width="33%">Method & equation</th>
+<th width="33%">Overview & mechanisms</th>
+<th width="33%">Training & inference</th>
 <th width="33%">Experiments</th>
 </tr>
 <tr>
-<td><a href="examples/layout-demo/preview-01.png"><img src="examples/layout-demo/preview-01.png" alt="Literature review" width="100%"></a></td>
-<td><a href="examples/layout-demo/preview-02.png"><img src="examples/layout-demo/preview-02.png" alt="Method & equation" width="100%"></a></td>
-<td><a href="examples/layout-demo/preview-03.png"><img src="examples/layout-demo/preview-03.png" alt="Experiments" width="100%"></a></td>
+<td><a href="examples/evidence-demo/preview-01.png"><img src="examples/evidence-demo/preview-01.png" alt="Overview and mechanisms" width="100%"></a></td>
+<td><a href="examples/evidence-demo/preview-02.png"><img src="examples/evidence-demo/preview-02.png" alt="Training & inference" width="100%"></a></td>
+<td><a href="examples/evidence-demo/preview-03.png"><img src="examples/evidence-demo/preview-03.png" alt="Experiments" width="100%"></a></td>
 </tr>
 </table>
 
-[Open the editable PowerPoint](examples/layout-demo/layout-demo.pptx) · [View demo source & build instructions](examples/layout-demo/README.md)
+[Open the editable PowerPoint](examples/evidence-demo/evidence-demo.pptx) · [View demo source & build instructions](examples/evidence-demo/README.md)
 
 <a id="quick-start"></a>
 
@@ -94,17 +94,18 @@ and deliver the .pptx file.
 
 ### 🌐 Upload on the Web
 
-ZIP the **complete project directory, including the required fonts**, and upload it together with the **paper PDF**. Then send:
+Upload the released **paper-loom-v1.1.0-full.zip** together with the **paper PDF**. To rebuild from this repository, use `python scripts/package_skill.py --variant full --output ../paper-loom-v1.1.0-full.zip`; this excludes working files and caches. Then send:
 
 ```text
-Please extract the PaperLoom archive I uploaded, read SKILL.md first, and follow its
-requirements to create a PowerPoint presentation of this paper for a research group
-meeting. Use the default structure: problem (1 slide), literature review (1), methods
-(3–5), experiments (2), and conclusion (1). Organize the literature review into thematic
-blocks, prioritize figures and charts, and use the bundled FangSong GB2312 and Times New
-Roman fonts. Extract figures directly from the paper and convert key equations into
-native PowerPoint equations. Put evidence in speaker notes, without small source text in
-slide footers. Actually generate and inspect the .pptx file.
+Unzip PaperLoom and read SKILL.md, references/design.md,
+references/reference-patterns.md and references/quality-gates.md before authoring.
+Read the paper, map its evidence and prepare slide-plan.json, then continue directly
+to an editable research presentation. Aim for 6–8 slides unless the evidence needs more.
+Combine related mechanisms and evidence; avoid repetitive text cards, small figures
+surrounded by whitespace, and splitting one mechanism across several pages.
+Keep comparisons, data and conditions; put long explanations in speaker notes.
+Use the bundled fonts, original extracted figures and native equations. Run the package
+and slide-quality audits, render and inspect every slide, fix issues, then deliver .pptx.
 ```
 
 > [!NOTE]
@@ -114,20 +115,22 @@ slide footers. Actually generate and inspect the .pptx file.
 
 ## 🧭 Default Slide Structure
 
-A compact **8–10-slide** narrative, with room to adjust the methods section to the paper:
+Default to **6–8 slides**; complex papers may need 8–10. A user-specified count takes priority. These are coverage requirements, not mandatory separate pages:
 
-| Section | Slides | Focus |
-|---|:---:|---|
-| 🎯 Research problem | 1 | Motivation, existing gaps, and the question to answer |
-| 📚 Literature review | 1 | Research themes and the paper’s position |
-| ⚙️ Methods | 3–5 | Mechanisms, information flow, and key equations |
-| 📊 Experiments | 2 | Results, comparisons, and experimental conditions |
-| 💡 Conclusion | 1 | Contributions and limitations |
+| Content | Organization |
+|---|---|
+| Task and research position | A concrete scene, input/output contract and relevant comparisons |
+| Methods | A compact overview with expanded mechanisms and intermediate states |
+| Training and execution | Supervision, deployed inputs, update and stopping conditions |
+| Results | Main comparisons with ablations, cases, costs and limits |
+| Discussion | Contributions paired with evidence and remaining questions |
+
+Do not force a six-card literature page or one slide per equation. Read the [reference patterns](references/reference-patterns.md), use the [slide-plan template](examples/slide-plan.template.json), and apply the [quality gates](references/quality-gates.md). Total word count and picture area are not quality scores.
 
 <details>
 <summary><b>Behind the workflow</b></summary>
 
-This skill grew out of several rounds of creating and refining a GeoNav research group presentation: condensing content, adjusting the narrative, handling fonts and native equations, fixing Office formatting, removing footer notes, and replacing a large literature review table with six research themes. It turns that verified workflow into reusable instructions and scripts.
+The original GeoNav iteration established fonts, native equations and Office compatibility. Version 1.1 adds lessons from comparing YOPO with AeroDuo: plan evidence before pages, combine related explanations, and inspect the actual visual result. The old GeoNav allocation is a historical example.
 
 1. **Define the meeting's goals and visual standards**: a real PPTX, compact and information-rich slides, priority for figures and charts, specified fonts, and native equations.
 2. **Read the paper and build an evidence index**: connect conclusions, figures, experimental conditions, failure cases, and the limits of each claim.
@@ -174,6 +177,7 @@ In the native PPTX, reserve a separate paragraph for each necessary equation, su
 python scripts/inject_equations.py draft.pptx math.pptx --mapping equations.json --require-all
 python scripts/embed_fonts.py math.pptx final.pptx
 python scripts/validate_pptx.py final.pptx --expected-slides 8 --expected-math 3 --report validation.json
+python scripts/audit_slide_quality.py final.pptx --report work/slide-quality.json
 ```
 
 The `8` slides and `3` equations are example requirements from the GeoNav presentation; adjust them for each new paper. Do not add equations just to reach a count when the paper does not need them. Font embedding must comply with the fonts' own licenses; by default, the five files in `fonts/` are embedded.
@@ -181,6 +185,8 @@ The `8` slides and `3` equations are example requirements from the GeoNav presen
 The validator checks package structure, relationships, font character sets, native equations, and placeholders. It **does not provide full OOXML Schema validation or replace testing in desktop Microsoft PowerPoint**. After rendering, inspect the content and layout of every slide. See the [compatibility guide](references/powerpoint-compatibility.md).
 
 </details>
+
+The quality audit flags observable risks, distinguishes table data from prose, and does not impose a total-word ceiling. Zero warnings do not prove reference-quality design.
 
 Run the script tests:
 
@@ -192,11 +198,11 @@ python -m unittest discover -s tests -v
 <summary><b>📦 Build release archives</b></summary>
 
 ```bash
-python scripts/package_skill.py --variant github --output ../paper-loom-v1.0.0-github.zip
-python scripts/package_skill.py --variant full --output ../paper-loom-v1.0.0-full.zip
+python scripts/package_skill.py --variant github --output ../paper-loom-v1.1.0-github.zip
+python scripts/package_skill.py --variant full --output ../paper-loom-v1.1.0-full.zip
 ```
 
-The full archive includes the bundled fonts, and the packager checks that all required files are present. `--variant github` creates a source archive without standalone font files.
+The full archive includes the bundled fonts, new design references and examples. The packager excludes work products and writes one fresh manifest with verified file hashes. `--variant github` creates a source archive without standalone font files.
 
 </details>
 
@@ -218,7 +224,9 @@ The full archive includes the bundled fonts, and the packager checks that all re
 | `fonts/` | Bundled font files, usage notes, and verification manifest |
 | `scripts/` | Tools for figure extraction, native equations, font embedding, PPTX inspection, installation, and packaging |
 | `references/` | Guides to slide design, figure extraction, compatibility, and client use |
-| `examples/layout-demo/` | Runnable three-slide demo with native editable layouts and build source |
+| `examples/evidence-demo/` | Evidence compositions, editable demo and portable build source |
+| `examples/slide-plan.template.json` | Per-slide evidence, layout and review plan |
+| `references/rendering.md` | Public PPTX/PDF rendering fallback for visual review |
 | `examples/geonav/workflow.md` | The production workflow, final eight-slide structure, and key corrections |
 | `examples/evidence.template.json` | Template for sources, experimental conditions, and validation records |
 | `tests/` | Script behavior and regression tests |

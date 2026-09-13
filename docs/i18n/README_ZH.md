@@ -4,9 +4,9 @@
 
 ### 把科研论文，织成清晰、可编辑的 PowerPoint。
 
-**8–10 页紧凑叙事 · 论文原图 · 原生公式 · 可编辑 PPTX**
+**证据紧凑 · 论文原图 · 原生公式 · 可编辑 PPTX**
 
-![Version](https://img.shields.io/badge/version-1.0.0-4455AA?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.1.0-4455AA?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![PowerPoint](https://img.shields.io/badge/PowerPoint-%2Epptx-D24726?style=flat-square)
@@ -52,22 +52,22 @@ PaperLoom 面向科研组会，把论文整理成紧凑、图表优先的可编�
 
 ## 🖼️ 效果预览
 
-以下三页展示原生、可编辑的版式，使用明确标注的**虚构数据**，仅用于演示设计，不代表真实论文结论。
+以下三页展示“总览与机制同页”“训练与推理泳道”“主结果与消融及边界同页”，内容均明确标注为**虚构**。包内已固化 AeroDuo 参考稿的信息组织规则，无需每次再次上传参考 PDF；不分发第三方论文和原图。
 
 <table>
 <tr>
-<th width="33%">文献综述分块</th>
-<th width="33%">技术机制与公式</th>
+<th width="33%">总览与机制</th>
+<th width="33%">训练与推理</th>
 <th width="33%">实验表格与图表</th>
 </tr>
 <tr>
-<td><a href="../../examples/layout-demo/preview-01.png"><img src="../../examples/layout-demo/preview-01.png" alt="文献综述分块" width="100%"></a></td>
-<td><a href="../../examples/layout-demo/preview-02.png"><img src="../../examples/layout-demo/preview-02.png" alt="技术机制与公式" width="100%"></a></td>
-<td><a href="../../examples/layout-demo/preview-03.png"><img src="../../examples/layout-demo/preview-03.png" alt="实验表格与图表" width="100%"></a></td>
+<td><a href="../../examples/evidence-demo/preview-01.png"><img src="../../examples/evidence-demo/preview-01.png" alt="总览与机制" width="100%"></a></td>
+<td><a href="../../examples/evidence-demo/preview-02.png"><img src="../../examples/evidence-demo/preview-02.png" alt="训练与推理" width="100%"></a></td>
+<td><a href="../../examples/evidence-demo/preview-03.png"><img src="../../examples/evidence-demo/preview-03.png" alt="实验表格与图表" width="100%"></a></td>
 </tr>
 </table>
 
-[打开可编辑 PowerPoint](../../examples/layout-demo/layout-demo.pptx) · [查看示例源码与复现步骤](../../examples/layout-demo/README.md)
+[打开可编辑 PowerPoint](../../examples/evidence-demo/evidence-demo.pptx) · [查看示例源码与复现步骤](../../examples/evidence-demo/README.md)
 
 <a id="quick-start"></a>
 
@@ -92,13 +92,15 @@ python scripts/install_skill.py
 
 ### 🌐 网页上传
 
-将**完整项目目录（包括所需字体）**压缩为 ZIP，与**论文 PDF** 一起上传，然后发送：
+优先上传发布的 **paper-loom-v1.1.0-full.zip** 与**论文 PDF**。如需从仓库重建，执行 `python scripts/package_skill.py --variant full --output ../paper-loom-v1.1.0-full.zip`，自动排除工作文件和缓存，然后发送：
 
 ```text
-请解压我上传的 PaperLoom，先读取 SKILL.md，再按照其中要求制作这篇论文的科研组会
-PowerPoint。默认问题 1 页、综述 1 页、技术 3–5 页、实验 2 页、总结 1 页。综述用分块，图
-表优先，使用包内仿宋 GB2312 和 Times New Roman；论文图直接提取，关键公式转换为
-PowerPoint 原生公式。证据放备注，不放来源页脚小字。请实际生成并检查 .pptx。
+请解压 PaperLoom，先读取 SKILL.md、references/design.md、
+references/reference-patterns.md 和 references/quality-gates.md。
+读取论文并整理证据，完成逐页 slide-plan.json 后直接生成中文科研组会 PPT。
+默认6–8页，复杂内容可增加；相关机制与证据同页，避免文字卡片堆砌、图小空白多。
+保留关键对照、数据、条件与局限，长讲解放备注。使用包内字体、原始提图和原生公式。
+运行结构检查与 audit_slide_quality.py，渲染并实际查看每页、修正问题，再交付 .pptx。
 ```
 
 > [!NOTE]
@@ -108,20 +110,22 @@ PowerPoint 原生公式。证据放备注，不放来源页脚小字。请实际
 
 ## 🧭 默认汇报结构
 
-用 **8–10 页**串起论文主线，技术部分按实际内容调整：
+默认 **6–8 页**，复杂论文可用 8–10 页；用户指定页数优先。以下是覆盖要求，不要求每项独占一页：
 
-| 部分 | 页数 | 表达重点 |
-|---|:---:|---|
-| 🎯 现有问题 | 1 | 研究动机、已有缺口与待解决问题 |
-| 📚 文献综述 | 1 | 研究路线与论文定位 |
-| ⚙️ 技术方法 | 3–5 | 核心机制、信息流与关键公式 |
-| 📊 实验结果 | 2 | 实验结果、对比与评测条件 |
-| 💡 总结 | 1 | 主要贡献与局限 |
+| 内容 | 组织方式 |
+|---|---|
+| 任务与研究定位 | 场景实例、输入输出、相关路线和成功判定 |
+| 核心方法 | 总览条加关键机制、接口和中间状态 |
+| 训练与执行 | 监督来源、部署输入、更新和终止条件 |
+| 实验 | 主结果结合消融、案例、代价和例外 |
+| 总结讨论 | 贡献对应证据，局限说明影响 |
+
+不再强制六宫格综述或按公式数量拆页。制作前读[参考版式](../../references/reference-patterns.md)，填写[逐页计划](../../examples/slide-plan.template.json)，按[质量关卡](../../references/quality-gates.md)审阅。总字数和图片面积均不等于有效信息密度。
 
 <details>
 <summary><b>展开查看制作流程与实践经验</b></summary>
 
-这个 skill 来自一次 GeoNav 组会报告的多轮制作与修改：从压缩内容、调整叙事，到字体和原生公式、Office 格式修复，再到移除页脚说明、将综述大表改成六块研究路线。它把已验证的工作方式变成可复用说明和脚本。
+早期 GeoNav 迭代建立了字体、原生公式与兼容性要求。1.1 版增加 YOPO 与 AeroDuo 的对照经验：先整理证据，再合并相关解释，最后检查真实放映效果。GeoNav 的八页分配只作为历史案例。
 
 1. **确定组会目标和视觉标准**：真实 PPTX、紧凑高密度、图表优先、指定字体和原生公式。
 2. **阅读论文并建立证据索引**：把结论、图表、实验口径、失败案例和判断边界对应起来。
@@ -168,6 +172,7 @@ python scripts/extract_pdf_assets.py paper.pdf --output work/paper-assets
 python scripts/inject_equations.py draft.pptx math.pptx --mapping equations.json --require-all
 python scripts/embed_fonts.py math.pptx final.pptx
 python scripts/validate_pptx.py final.pptx --expected-slides 8 --expected-math 3 --report validation.json
+python scripts/audit_slide_quality.py final.pptx --report work/slide-quality.json
 ```
 
 `8` 页和 `3` 条公式是本次 GeoNav 的示例要求，新论文按实际调整。没有必要公式的论文不必为了凑数量添加。字体嵌入必须符合字体自身许可；默认嵌入 `fonts/` 五个文件。
@@ -175,6 +180,8 @@ python scripts/validate_pptx.py final.pptx --expected-slides 8 --expected-math 3
 验证器检查包结构、关系、字体字符集、原生公式与占位符等，但**不等于全量 OOXML Schema 验证，更不等于桌面版 Microsoft PowerPoint 实测**。渲染后仍需逐页检查内容和版式。[兼容性指南](../../references/powerpoint-compatibility.md)
 
 </details>
+
+质量审计将表格与正文分开统计，提示长段落、小图、小字和重复布局风险。它不以总字数判质量，零告警也不能代替逐页视觉审阅。
 
 运行脚本测试：
 
@@ -186,11 +193,11 @@ python -m unittest discover -s tests -v
 <summary><b>📦 构建发行归档</b></summary>
 
 ```bash
-python scripts/package_skill.py --variant github --output ../paper-loom-v1.0.0-github.zip
-python scripts/package_skill.py --variant full --output ../paper-loom-v1.0.0-full.zip
+python scripts/package_skill.py --variant github --output ../paper-loom-v1.1.0-github.zip
+python scripts/package_skill.py --variant full --output ../paper-loom-v1.1.0-full.zip
 ```
 
-完整归档包含仓库附带的字体，打包器会检查是否齐全；`--variant github` 生成不含独立字体文件的源码归档。
+完整归档包含字体、新版设计规则和示例；打包器排除工作产物，只生成一份与文件内容一致的校验清单；`--variant github` 生成不含独立字体文件的源码归档。
 
 </details>
 
@@ -212,7 +219,9 @@ python scripts/package_skill.py --variant full --output ../paper-loom-v1.0.0-ful
 | `fonts/` | 随仓库提供的字体文件、使用说明与校验清单 |
 | `scripts/` | 提图、原生公式、字体嵌入、PPTX 检查、安装和打包工具 |
 | `references/` | 页面设计、提图、兼容性、客户端使用指南 |
-| `examples/layout-demo/` | 可运行的三页原生版式演示及构建源码 |
+| `examples/evidence-demo/` | 紧凑证据布局、可编辑示例与公开构建源码 |
+| `examples/slide-plan.template.json` | 逐页证据、视觉关系、布局和审阅计划 |
+| `references/rendering.md` | 公开 PPTX/PDF 渲染回退与视觉检查 |
 | `examples/geonav/workflow.md` | 本次制作流程、最终 8 页结构与关键修正 |
 | `examples/evidence.template.json` | 来源、实验口径和验证记录模板 |
 | `tests/` | 脚本行为与回归测试 |

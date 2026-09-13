@@ -4,9 +4,9 @@
 
 ### De l’article scientifique à une présentation claire et visuelle.
 
-**8–10 diapositives · Figures d’origine · Équations natives · PPTX modifiable**
+**6–8 diapositives par défaut · Preuves regroupées · Figures d’origine · Équations natives · PPTX modifiable**
 
-![Version](https://img.shields.io/badge/version-1.0.0-4455AA?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.1.0-4455AA?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![PowerPoint](https://img.shields.io/badge/PowerPoint-%2Epptx-D24726?style=flat-square)
@@ -35,7 +35,7 @@ PaperLoom transforme des articles scientifiques en présentations **PowerPoint `
 
 <table>
   <tr>
-    <td width="50%" valign="top"><strong>🎨 Un récit visuel</strong><br>Synthèse bibliographique en blocs, schémas de processus et de mécanismes pour la méthode, tableaux et graphiques natifs pour lire précisément les résultats expérimentaux.</td>
+    <td width="50%" valign="top"><strong>🎨 Un récit visuel</strong><br>Les figures expliquent les entrées, les états, les transformations et les retours. Les preuves liées partagent une page ; les expériences conservent des tableaux natifs et les résultats défavorables.</td>
     <td width="50%" valign="top"><strong>🖼️ Les figures d’origine</strong><br>Extraction directe des images intégrées au PDF : aucune capture de page ni capture recadrée présentée comme une image extraite.</td>
   </tr>
   <tr>
@@ -43,7 +43,7 @@ PaperLoom transforme des articles scientifiques en présentations **PowerPoint `
     <td width="50%" valign="top"><strong>🔤 Des polices vérifiables</strong><br>FangSong GB2312 (仿宋 GB2312) pour le chinois, Times New Roman pour l’anglais et les chiffres. Les fichiers, leurs propriétés et leurs empreintes de hachage sont vérifiables.</td>
   </tr>
   <tr>
-    <td width="50%" valign="top"><strong>🔎 Des preuves dans les notes</strong><br>Sources et preuves détaillées dans les notes du présentateur ; seul un décor discret et le numéro de diapositive restent en bas de page.</td>
+    <td width="50%" valign="top"><strong>🔎 Des preuves dans les notes</strong><br>Sources détaillées et explications longues dans les notes. Indicateurs, unités, conditions de comparaison et limites importantes restent près des figures et tableaux ; le pied de page reste discret.</td>
     <td width="50%" valign="top"><strong>🛠️ Des révisions ciblées</strong><br>Les modifications préservent les autres diapositives, polices, équations et paramètres de compatibilité déjà validés.</td>
   </tr>
 </table>
@@ -56,18 +56,18 @@ Cette démonstration utilise des **données fictives** clairement signalées ; e
 
 <table>
   <tr>
-    <th width="33%">Synthèse bibliographique</th>
-    <th width="33%">Méthode et équation</th>
-    <th width="33%">Expériences</th>
+    <th width="33%">Mécanismes et états</th>
+    <th width="33%">Entraînement et inférence</th>
+    <th width="33%">Résultats et limites</th>
   </tr>
   <tr>
-    <td><a href="../../examples/layout-demo/preview-01.png"><img src="../../examples/layout-demo/preview-01.png" alt="Synthèse bibliographique en blocs" width="100%"></a></td>
-    <td><a href="../../examples/layout-demo/preview-02.png"><img src="../../examples/layout-demo/preview-02.png" alt="Mécanisme technique et équation native" width="100%"></a></td>
-    <td><a href="../../examples/layout-demo/preview-03.png"><img src="../../examples/layout-demo/preview-03.png" alt="Tableaux et graphiques expérimentaux" width="100%"></a></td>
+    <td><a href="../../examples/evidence-demo/preview-01.png"><img src="../../examples/evidence-demo/preview-01.png" alt="Mécanismes et états" width="100%"></a></td>
+    <td><a href="../../examples/evidence-demo/preview-02.png"><img src="../../examples/evidence-demo/preview-02.png" alt="Entraînement et inférence" width="100%"></a></td>
+    <td><a href="../../examples/evidence-demo/preview-03.png"><img src="../../examples/evidence-demo/preview-03.png" alt="Résultats et limites" width="100%"></a></td>
   </tr>
 </table>
 
-[📥 Présentation PPTX modifiable](../../examples/layout-demo/layout-demo.pptx) · [📖 Code source et commandes de reproduction](../../examples/layout-demo/README.md)
+[📥 Présentation PPTX modifiable](../../examples/evidence-demo/evidence-demo.pptx) · [📖 Code source et commandes de reproduction](../../examples/evidence-demo/README.md)
 
 <a id="quick-start"></a>
 
@@ -94,18 +94,18 @@ images et les équations natives, puis livre directement le fichier .pptx.
 
 ### 🌐 Téléversement sur le web
 
-Compressez le **répertoire complet du projet, avec les polices requises, au format ZIP**, puis téléversez-le avec le **PDF de l’article** et envoyez :
+Utilisez de préférence l’archive publiée **`paper-loom-v1.1.0-full.zip`** et téléversez-la avec le PDF de l’article. Pour partir du code source, créez l’archive avec la commande `package_skill.py --variant full` indiquée plus bas ; elle exclut les fichiers de construction et les caches privés. Envoyez ensuite :
 
 ```text
-Décompresse le paquet PaperLoom que j’ai téléversé, lis d’abord SKILL.md, puis suis ses
-exigences pour créer une présentation PowerPoint de cet article pour une réunion de
-laboratoire. Prévois par défaut 1 diapositive pour les problèmes, 1 pour la synthèse
-bibliographique, 3–5 pour la méthode, 2 pour les expériences et 1 pour la conclusion.
-Organise la synthèse bibliographique en blocs, privilégie les figures et les graphiques,
-et utilise les polices FangSong GB2312 et Times New Roman du paquet. Extrais directement
-les figures de l’article et convertis les équations essentielles en équations natives de
-PowerPoint. Place les preuves dans les notes, sans petits textes de sources en pied de
-page. Génère réellement le fichier .pptx et vérifie-le.
+Décompresse PaperLoom et suis le processus de WEB_START.md pour créer la présentation de cet article.
+Lis d’abord SKILL.md, references/design.md, references/reference-patterns.md et references/quality-gates.md.
+Organise les preuves, enregistre slide-plan.json, puis poursuis directement la création.
+Prévois 6–8 diapositives par défaut, ou 8–10 pour un article complexe. N’ajoute pas de page de revue
+bibliographique ou d’équations uniquement pour atteindre un nombre de pages.
+Explique les mécanismes et les preuves liés sur une même page. Garde les conditions de comparaison,
+les unités et les résultats défavorables. Respecte les polices, l’extraction des figures et les équations
+natives nécessaires. Place les sources détaillées et les longues explications dans les notes.
+Vérifie la structure et la qualité, rends et inspecte chaque diapositive, corrige les défauts, puis livre un .pptx téléchargeable.
 ```
 
 > [!NOTE]
@@ -113,29 +113,27 @@ page. Génère réellement le fichier .pptx et vérifie-le.
 
 <a id="workflow"></a>
 
-## 🧭 Structure par défaut des diapositives
+## 🧭 Une structure guidée par les preuves
 
-Par défaut, la présentation compte **8–10 diapositives** :
+Comptez **6–8 diapositives** par défaut, ou **8–10** pour un article complexe. Le nombre et le modèle demandés par l’utilisateur priment. Couvrez la tâche et son positionnement, les mécanismes, l’entraînement et l’exécution, les expériences et leurs limites, puis la synthèse. Ces éléments ne nécessitent pas chacun une page séparée. Une revue bibliographique autonome et un nombre fixe de pages de méthode ne sont pas obligatoires.
 
-| Partie | Diapositives |
-|---|---|
-| Problèmes existants | 1 |
-| Synthèse bibliographique | 1 |
-| Méthode | 3–5 |
-| Expériences | 2 |
-| Conclusion | 1 |
+Avant de créer les diapositives, lisez les guides de [conception](../../references/design.md), de [compositions et contre-exemples](../../references/reference-patterns.md) et de [contrôle qualité](../../references/quality-gates.md). Préparez `slide-plan.json` dans le dossier de travail à partir du [modèle de plan](../../examples/slide-plan.template.json), puis continuez sans attendre par défaut une approbation du plan.
+
+Regroupez la vue d’ensemble, les états intermédiaires et les conditions de retour d’un même mécanisme. Rapprochez les résultats principaux à protocole identique, les ablations et les résultats défavorables. Gardez les conditions près des figures et tableaux, les explications longues et sources détaillées dans les notes. Utilisez la [démonstration centrée sur les preuves](../../examples/evidence-demo/README.md) comme référence visuelle et vérifiez la lisibilité de chaque page.
 
 <details>
 <summary><b>Les étapes de la méthode de travail</b></summary>
+
+Le récit ci-dessous décrit l’ancien cas GeoNav. Son nombre fixe de pages et sa revue en six blocs ne constituent plus les exigences par défaut.
 
 Ce skill est né de plusieurs cycles de création et de révision d’une présentation de GeoNav pour une réunion de laboratoire : condensation du contenu, ajustement du fil narratif, gestion des polices et des équations natives, correction du format Office, suppression des annotations en pied de page et remplacement d’un grand tableau de synthèse bibliographique par six blocs d’axes de recherche. Il transforme ces méthodes éprouvées en instructions et scripts réutilisables.
 
 1. **Définir les objectifs de la réunion et les critères visuels** : véritable PPTX, contenu compact et dense, priorité aux figures et graphiques, polices imposées et équations natives.
 2. **Lire l’article et constituer un index des preuves** : relier les conclusions, les figures et tableaux, les protocoles et définitions des expériences, les cas d’échec et les limites d’interprétation.
-3. **Structurer le récit avant les diapositives** : partir des problèmes existants, puis présenter la synthèse bibliographique, la méthode, les expériences et la conclusion ; répartir les diapositives de méthode selon le travail réellement présenté.
+3. **Organiser les preuves avant les pages** : relier la tâche, les mécanismes, les expériences et les limites dans le plan ; regrouper les pages qui dépendent de la même figure ou du même mécanisme si elles restent lisibles.
 4. **Traiter les ressources d’origine et les objets modifiables** : extraire directement les images, créer des tableaux et graphiques natifs, convertir le LaTeX en Office Math et appliquer les polices à chaque segment de texte (`run`).
 5. **Vérifier le contenu, la mise en page et la compatibilité** : rendre chaque diapositive, comparer les données et remplacer la valeur non conforme `charset=134` de GB2312 par `-122`.
-6. **Procéder à des révisions ciblées selon les retours** : supprimer les sources en pied de page en conservant les notes ; remplacer le tableau de synthèse bibliographique par des blocs ; préserver les autres diapositives et les corrections de format.
+6. **Procéder à des révisions ciblées selon les retours** : conserver les sources détaillées dans les notes et les conditions utiles près des figures, tout en protégeant les pages validées et les corrections de format.
 
 Le déroulement complet est présenté dans le [retour d’expérience GeoNav](../../examples/geonav/workflow.md).
 
@@ -193,8 +191,8 @@ python -m unittest discover -s tests -v
 <summary><b>📦 Créer les archives de distribution</b></summary>
 
 ```bash
-python scripts/package_skill.py --variant github --output ../paper-loom-v1.0.0-github.zip
-python scripts/package_skill.py --variant full --output ../paper-loom-v1.0.0-full.zip
+python scripts/package_skill.py --variant github --output ../paper-loom-v1.1.0-github.zip
+python scripts/package_skill.py --variant full --output ../paper-loom-v1.1.0-full.zip
 ```
 
 L’archive complète inclut les polices fournies avec le dépôt ; l’outil de création de paquets vérifie qu’elles sont toutes présentes. L’option `--variant github` crée une archive du code source sans les fichiers de polices séparés.
@@ -222,9 +220,10 @@ L’archive complète inclut les polices fournies avec le dépôt ; l’outil de
 | `fonts/` | Fichiers de polices inclus, instructions d’utilisation et manifeste de vérification |
 | `scripts/` | Outils d’extraction d’images, d’équations natives, d’incorporation de polices, de vérification PPTX, d’installation et de création de paquets |
 | `references/` | Guides de conception des diapositives, d’extraction d’images, de compatibilité et d’utilisation dans un client |
-| `examples/layout-demo/` | Démonstration exécutable de trois diapositives avec des mises en page natives et code source de génération |
+| `examples/evidence-demo/` | Démonstration exécutable de trois diapositives avec des mises en page natives et code source de génération |
 | `examples/geonav/workflow.md` | Déroulement de cette réalisation, structure finale en 8 diapositives et principales corrections |
 | `examples/evidence.template.json` | Modèle pour les sources, les protocoles et définitions des expériences, et les enregistrements de validation |
+| `examples/slide-plan.template.json` | Modèle des questions, preuves, visuels et décisions de regroupement par page |
 | `tests/` | Tests du comportement des scripts et de non-régression |
 
 </details>

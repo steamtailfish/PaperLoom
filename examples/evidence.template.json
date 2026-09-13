@@ -8,6 +8,6 @@
   ],
   "figures_manifest": "assets/manifest.json",
   "equation_mapping": "equations.json",
-  "presentation": {"slide_count": 8, "sources_in_speaker_notes": true, "visible_source_footer": false},
+  "presentation": {"slide_count": null, "slide_plan": "slide-plan.json", "sources_in_speaker_notes": true, "visible_source_footer": false},
   "validation": {"package_checked": false, "all_slides_visually_reviewed": false, "desktop_powerpoint_opened": false}
 }

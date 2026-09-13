@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Portable editable layout demonstration.
- * Run from the repository root: npm install && npm run demo
+ * Run from the repository root: npm install && npm run demo:legacy
  * Optional: node examples/layout-demo/build.mjs --out /path/to/draft.pptx
  * Then run scripts/inject_equations.py to replace [[EQ_FUSION]] with OMML.
  * Public dependencies only: pptxgenjs and jszip. No private runtime is required.
@@ -56,22 +56,32 @@ const W = 13.333333, H = 7.5;
 const ZH = 'FangSong_GB2312', EN = 'Times New Roman';
 
 // Split by script, including in native table cells. ASCII uses Times New Roman.
-// Newlines and whitespace follow the previous run to avoid unnecessary breaks.
-function runs(text, options = {}) {
-  const groups = [];
-  let buffer = '', previous = null;
-  for (const char of String(text)) {
-    const script = /[\p{Script=Han}\u3000-\u303f\uff00-\uffef]/u.test(char) ? ZH :
-      (/\s/u.test(char) && previous ? previous : EN);
-    if (previous && script !== previous) {
-      groups.push({text: buffer, options: {...options, fontFace: previous}});
+// Split logical lines first: PptxGenJS 4.0.1 leaks breakLine=true from an
+// embedded newline into the last script fragment, stranding following numbers.
+function runs(value, options = {}) {
+  const result = [];
+  const lines = String(value).replace(/\r\n?/g, '\n').split('\n');
+  lines.forEach((line, index) => {
+    let buffer = '', previous = null;
+    const first = result.length;
+    const flush = () => {
+      if (buffer) result.push({text: buffer, options: {...options, fontFace: previous, breakLine: false}});
       buffer = '';
+    };
+    for (const char of line) {
+      const font = /[\p{Script=Han}\u3000-\u303f\uff00-\uffef]/u.test(char) ? ZH :
+        (/\s/u.test(char) && previous ? previous : EN);
+      if (previous && font !== previous) flush();
+      buffer += char;
+      previous = font;
     }
-    buffer += char;
-    previous = script;
-  }
-  if (buffer) groups.push({text: buffer, options: {...options, fontFace: previous}});
-  return groups;
+    flush();
+    // An empty run preserves intentional leading, trailing and consecutive
+    // blank lines without inserting visible placeholder characters.
+    if (result.length === first) result.push({text: '', options: {...options, fontFace: EN, breakLine: false}});
+    result[result.length - 1].options.breakLine = index < lines.length - 1 || options.breakLine === true;
+  });
+  return result;
 }
 function text(s, value, x, y, w, h, options = {}) {
   s.addText(runs(value), {
@@ -286,16 +296,32 @@ await pptx.writeFile({fileName: output});
 // 2. table shape IDs that can repeat an earlier text shape's ID.
 // 3. notesMasterIdLst appearing after sldIdLst instead of before it;
 // 4. identical paragraph properties repeated between mixed-script runs.
+// 5. a shared notes/slide-master theme that fails desktop PowerPoint loading
+//    after correcting presentation child order; use a dedicated notes theme.
 // This deck has no animation/shape-ID links, so a fresh duplicate ID is safe.
 // This is not a general purpose repair tool for arbitrary user presentations.
 const zip = await JSZip.loadAsync(await readFile(output));
 const names = new Set(Object.keys(zip.files));
 const types = await zip.file('[Content_Types].xml').async('string');
-zip.file('[Content_Types].xml', types.replace(/<Override\b[^>]*\/>/g, (entry) => {
+let repairedTypes = types.replace(/<Override\b[^>]*\/>/g, (entry) => {
   const part = /\bPartName="([^"]+)"/.exec(entry)?.[1];
   if (part?.startsWith('/ppt/slideMasters/') && !names.has(part.slice(1))) return '';
   return entry;
-}));
+});
+// Verified with desktop PowerPoint 16.0: retaining the correct notesMasterIdLst
+// order and giving notesMaster its own theme fixes 0x80070570, without removing
+// notes placeholders or altering the slides, fonts or native equation content.
+const notesRelPath = 'ppt/notesMasters/_rels/notesMaster1.xml.rels';
+const notesRels = await zip.file(notesRelPath).async('string');
+if ((notesRels.match(/Target="\.\.\/theme\/theme1\.xml"/g) ?? []).length !== 1 ||
+    names.has('ppt/theme/notesTheme.xml')) {
+  throw new Error('Unexpected notes-theme structure; stop instead of rewriting arbitrary themes.');
+}
+zip.file('ppt/theme/notesTheme.xml', await zip.file('ppt/theme/theme1.xml').async('nodebuffer'));
+zip.file(notesRelPath, notesRels.replace('Target="../theme/theme1.xml"', 'Target="../theme/notesTheme.xml"'));
+repairedTypes = repairedTypes.replace('</Types>',
+  '<Override PartName="/ppt/theme/notesTheme.xml" ContentType="application/vnd.openxmlformats-officedocument.theme+xml"/></Types>');
+zip.file('[Content_Types].xml', repairedTypes);
 let presentationXml = await zip.file('ppt/presentation.xml').async('string');
 const noteLists = Array.from(presentationXml.matchAll(/<p:notesMasterIdLst\b[^>]*>[\s\S]*?<\/p:notesMasterIdLst>/g));
 if (noteLists.length !== 1 || !presentationXml.includes('</p:sldMasterIdLst>')) {

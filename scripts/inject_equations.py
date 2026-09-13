@@ -98,7 +98,9 @@ def latex_to_omml(latex: str, pandoc: str):
     elif latex.startswith("$") and latex.endswith("$"):
         latex = latex[1:-1].strip()
     proc = subprocess.run(
-        [pandoc, "--from=markdown+tex_math_dollars", "--to=docx", "--fail-if-warnings"],
+        # DOCX is binary; current Pandoc requires explicit stdout output even
+        # when subprocess captures stdout through a pipe.
+        [pandoc, "--from=markdown+tex_math_dollars", "--to=docx", "--output=-", "--fail-if-warnings"],
         input=("$$\n" + latex + "\n$$\n").encode("utf-8"),
         stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False,
     )

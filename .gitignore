@@ -4,6 +4,10 @@ __pycache__/
 .venv/
 dist/
 build/
+work/
+tmp/
+output/
+qa/
 .DS_Store
 *.tmp
 *.inspect.ndjson

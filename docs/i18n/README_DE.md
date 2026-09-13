@@ -4,9 +4,9 @@
 
 ### Vom wissenschaftlichen Artikel zur klaren, visuellen Präsentation.
 
-**8–10 Folien · Originalabbildungen · Native Formeln · Bearbeitbares PPTX**
+**Standardmäßig 6–8 Folien · Zusammenhängende Belege · Originalabbildungen · Native Formeln · Bearbeitbares PPTX**
 
-![Version](https://img.shields.io/badge/version-1.0.0-4455AA?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.1.0-4455AA?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![PowerPoint](https://img.shields.io/badge/PowerPoint-%2Epptx-D24726?style=flat-square)
@@ -35,7 +35,7 @@ PaperLoom erstellt aus wissenschaftlichen Artikeln kompakte, bearbeitbare **Powe
 
 <table>
   <tr>
-    <td width="50%" valign="top"><strong>🎨 Visuell erklären</strong><br>Forschungsüberblick in Blöcken, Ablauf- und Mechanismusdiagramme für die Methode sowie native Tabellen und Diagramme zum präzisen Ablesen von Versuchsergebnissen.</td>
+    <td width="50%" valign="top"><strong>🎨 Visuell erklären</strong><br>Abbildungen erklären Eingaben, Zustände, Veränderungen und Rückkopplungen. Zusammengehörige Belege stehen auf derselben Folie; Experimente enthalten native Tabellen und ungünstige Ergebnisse.</td>
     <td width="50%" valign="top"><strong>🖼️ Originalabbildungen</strong><br>Direkte Extraktion der im PDF eingebetteten Bilder: keine Seitenaufnahmen oder zugeschnittenen Screenshots, die als extrahierte Bilder ausgegeben werden.</td>
   </tr>
   <tr>
@@ -43,7 +43,7 @@ PaperLoom erstellt aus wissenschaftlichen Artikeln kompakte, bearbeitbare **Powe
     <td width="50%" valign="top"><strong>🔤 Überprüfbare Schriftarten</strong><br>FangSong GB2312 (仿宋 GB2312) für chinesischen Text, Times New Roman für englischen Text und Zahlen. Dateien, Eigenschaften und Hashwerte lassen sich überprüfen.</td>
   </tr>
   <tr>
-    <td width="50%" valign="top"><strong>🔎 Belege in den Notizen</strong><br>Quellen und ausführliche Belege stehen in den Referentennotizen; am unteren Folienrand bleiben nur dezente Gestaltungselemente und die Foliennummer.</td>
+    <td width="50%" valign="top"><strong>🔎 Belege in den Notizen</strong><br>Ausführliche Quellen und Erklärungen stehen in den Notizen. Kennzahlen, Einheiten, Vergleichsbedingungen und wichtige Grenzen bleiben bei den Abbildungen und Tabellen; die Fußzeile bleibt schlicht.</td>
     <td width="50%" valign="top"><strong>🛠️ Gezielte Überarbeitungen</strong><br>Änderungen schützen bereits bestätigte andere Folien, Schriftarten, Formeln und Kompatibilitätseinstellungen.</td>
   </tr>
 </table>
@@ -56,18 +56,18 @@ Dieses Beispiel verwendet ausdrücklich gekennzeichnete **fiktive Daten**, die k
 
 <table>
   <tr>
-    <th width="33%">Forschungsüberblick</th>
-    <th width="33%">Methode und Formel</th>
-    <th width="33%">Experimente</th>
+    <th width="33%">Mechanismen und Zustände</th>
+    <th width="33%">Training und Inferenz</th>
+    <th width="33%">Ergebnisse und Grenzen</th>
   </tr>
   <tr>
-    <td><a href="../../examples/layout-demo/preview-01.png"><img src="../../examples/layout-demo/preview-01.png" alt="Forschungsüberblick in Blöcken" width="100%"></a></td>
-    <td><a href="../../examples/layout-demo/preview-02.png"><img src="../../examples/layout-demo/preview-02.png" alt="Technischer Mechanismus und native Formel" width="100%"></a></td>
-    <td><a href="../../examples/layout-demo/preview-03.png"><img src="../../examples/layout-demo/preview-03.png" alt="Experimenttabellen und Diagramme" width="100%"></a></td>
+    <td><a href="../../examples/evidence-demo/preview-01.png"><img src="../../examples/evidence-demo/preview-01.png" alt="Mechanismen und Zustände" width="100%"></a></td>
+    <td><a href="../../examples/evidence-demo/preview-02.png"><img src="../../examples/evidence-demo/preview-02.png" alt="Training und Inferenz" width="100%"></a></td>
+    <td><a href="../../examples/evidence-demo/preview-03.png"><img src="../../examples/evidence-demo/preview-03.png" alt="Ergebnisse und Grenzen" width="100%"></a></td>
   </tr>
 </table>
 
-[📥 Bearbeitbare PPTX-Präsentation](../../examples/layout-demo/layout-demo.pptx) · [📖 Quellcode und Befehle zur Reproduktion](../../examples/layout-demo/README.md)
+[📥 Bearbeitbare PPTX-Präsentation](../../examples/evidence-demo/evidence-demo.pptx) · [📖 Quellcode und Befehle zur Reproduktion](../../examples/evidence-demo/README.md)
 
 <a id="quick-start"></a>
 
@@ -94,19 +94,18 @@ Formeln und liefere direkt die .pptx-Datei.
 
 ### 🌐 Upload im Web
 
-Packe das **vollständige Projektverzeichnis einschließlich der erforderlichen Schriftarten in eine ZIP-Datei**, lade sie zusammen mit der **Artikel-PDF** hoch und sende anschließend:
+Verwende bevorzugt das veröffentlichte Archiv **`paper-loom-v1.1.0-full.zip`** und lade es mit der Artikel-PDF hoch. Beim Arbeiten mit dem Quellcode erstellst du das Archiv mit dem weiter unten angegebenen Befehl `package_skill.py --variant full`; dabei werden Build-Artefakte und private Caches ausgeschlossen. Sende anschließend:
 
 ```text
-Entpacke das von mir hochgeladene PaperLoom-Paket und lies zuerst SKILL.md. Erstelle
-anschließend nach den dortigen Vorgaben eine PowerPoint-Präsentation dieses Artikels für
-eine Forschungsgruppenbesprechung. Verwende standardmäßig 1 Folie zu den Problemen, 1
-zum Forschungsüberblick, 3–5 zur Methode, 2 zu Experimenten und 1 zur Zusammenfassung.
-Gliedere den Forschungsüberblick in Blöcke, stelle Abbildungen und Diagramme in den
-Vordergrund und verwende die im Paket enthaltenen Schriftarten FangSong GB2312 und Times
-New Roman. Extrahiere die Abbildungen direkt aus dem Artikel und konvertiere zentrale
-Formeln in native PowerPoint-Formeln. Platziere Belege in den Notizen und keine
-kleingedruckten Quellenangaben am unteren Folienrand. Erzeuge die .pptx-Datei
-tatsächlich und überprüfe sie.
+Entpacke PaperLoom und erstelle die Präsentation dieses Artikels nach dem Ablauf in WEB_START.md.
+Lies zuerst SKILL.md, references/design.md, references/reference-patterns.md und references/quality-gates.md.
+Ordne die Belege, speichere slide-plan.json und fahre direkt mit der Erstellung fort.
+Verwende standardmäßig 6–8 Folien, bei komplexen Artikeln 8–10. Ergänze keine eigenständigen
+Literatur- oder Formelseiten nur zum Erreichen einer Seitenzahl.
+Erkläre zusammengehörige Mechanismen und Belege auf derselben Folie. Erhalte Vergleichsbedingungen,
+Einheiten und ungünstige Ergebnisse. Beachte die Vorgaben zu Schriften, Originalabbildungen und
+notwendigen nativen Formeln. Ausführliche Quellen und Erklärungen gehören in die Notizen.
+Prüfe Struktur und Qualität, rendere und kontrolliere jede Folie, behebe Probleme und liefere eine herunterladbare .pptx-Datei.
 ```
 
 > [!NOTE]
@@ -114,29 +113,27 @@ tatsächlich und überprüfe sie.
 
 <a id="workflow"></a>
 
-## 🧭 Standardmäßige Folienstruktur
+## 🧭 Folien nach Belegen gliedern
 
-Die Präsentation umfasst standardmäßig **8–10 Folien**:
+Standardmäßig sind **6–8 Folien** vorgesehen, bei komplexen Artikeln **8–10**. Die vom Nutzer gewünschte Anzahl und Vorlage haben Vorrang. Behandle Aufgabe und Forschungsposition, Mechanismen, Training und Ausführung, Experimente und Grenzen sowie die Zusammenfassung. Diese Inhalte benötigen nicht jeweils eine eigene Folie. Ein separater Forschungsüberblick und eine feste Anzahl an Methodenfolien sind nicht vorgeschrieben.
 
-| Abschnitt | Folien |
-|---|---|
-| Bestehende Probleme | 1 |
-| Forschungsüberblick | 1 |
-| Methode | 3–5 |
-| Experimente | 2 |
-| Zusammenfassung | 1 |
+Lies vor der Erstellung die Regeln zu [Gestaltung](../../references/design.md), [Kompositionen und Gegenbeispielen](../../references/reference-patterns.md) und [Qualitätsprüfung](../../references/quality-gates.md). Erstelle `slide-plan.json` im Arbeitsverzeichnis anhand der [Planvorlage](../../examples/slide-plan.template.json) und fahre anschließend fort, ohne standardmäßig auf eine Freigabe des Plans zu warten.
+
+Verbinde die Übersicht, Zwischenzustände und Rückkopplungsbedingungen eines Mechanismus. Stelle Hauptergebnisse unter demselben Protokoll, Ablationen und ungünstige Ergebnisse nebeneinander. Vergleichsbedingungen bleiben an den Abbildungen und Tabellen, ausführliche Erklärungen und Quellen in den Notizen. Nutze das [Beispiel zur kompakten Darstellung von Belegen](../../examples/evidence-demo/README.md) und prüfe die Lesbarkeit jeder Folie.
 
 <details>
 <summary><b>Hintergründe zum Arbeitsablauf</b></summary>
+
+Der folgende Rückblick beschreibt den frühen GeoNav-Fall. Dessen feste Seitenzahl und Überblick in sechs Blöcken sind keine aktuellen Standardvorgaben.
 
 Dieser Skill entstand bei der mehrmaligen Erstellung und Überarbeitung einer GeoNav-Präsentation für eine Forschungsgruppenbesprechung: Inhalte wurden verdichtet, der Aufbau angepasst, Schriftarten und native Formeln eingerichtet sowie Office-Formatprobleme behoben. Anschließend wurden Hinweise am unteren Folienrand entfernt und die große Tabelle zum Forschungsüberblick durch sechs Blöcke zu Forschungsrichtungen ersetzt. Der Skill fasst diese bewährten Arbeitsweisen in wiederverwendbaren Anleitungen und Skripten zusammen.
 
 1. **Ziele der Forschungsgruppenbesprechung und visuelle Standards festlegen**: echtes PPTX, kompakte Darstellung mit hoher Informationsdichte, Vorrang für Abbildungen und Diagramme, vorgegebene Schriftarten und native Formeln.
 2. **Artikel lesen und einen Belegindex aufbauen**: Schlussfolgerungen, Abbildungen und Tabellen, Versuchsbedingungen und Messdefinitionen, Fehlerfälle und Grenzen der Aussagen einander zuordnen.
-3. **Zuerst den roten Faden, dann die Folien planen**: von bestehenden Problemen über den Forschungsüberblick zu Methode, Experimenten und Zusammenfassung; die Anzahl der Methodenfolien am tatsächlichen Umfang der Arbeit ausrichten.
+3. **Zuerst Belege ordnen, dann Folien planen**: Aufgabe, Mechanismen, Experimente und Grenzen verbinden; Folien mit derselben Abbildung oder demselben Mechanismus zusammenführen, wenn die Lesbarkeit erhalten bleibt.
 4. **Originalmaterial und bearbeitbare Objekte aufbereiten**: Bilder direkt extrahieren, Tabellen und Diagramme nativ erstellen, LaTeX in Office Math konvertieren und Schriftarten auf jeden Textabschnitt (`run`) anwenden.
 5. **Inhalt, Layout und Kompatibilität prüfen**: jede Folie rendern, Daten abgleichen und den nicht konformen GB2312-Wert `charset=134` in `-122` korrigieren.
-6. **Rückmeldungen durch gezielte Änderungen umsetzen**: Quellenangaben am unteren Folienrand entfernen, die Notizen beibehalten, die Tabelle zum Forschungsüberblick in Blöcke umwandeln und sicherstellen, dass andere Folien sowie Formatkorrekturen erhalten bleiben.
+6. **Rückmeldungen durch gezielte Änderungen umsetzen**: ausführliche Quellen in den Notizen und notwendige Bedingungen bei den Abbildungen erhalten, dabei bestätigte Folien und Formatkorrekturen schützen.
 
 Den vollständigen Ablauf dokumentiert der [GeoNav-Rückblick](../../examples/geonav/workflow.md).
 
@@ -194,8 +191,8 @@ python -m unittest discover -s tests -v
 <summary><b>📦 Distributionsarchive erstellen</b></summary>
 
 ```bash
-python scripts/package_skill.py --variant github --output ../paper-loom-v1.0.0-github.zip
-python scripts/package_skill.py --variant full --output ../paper-loom-v1.0.0-full.zip
+python scripts/package_skill.py --variant github --output ../paper-loom-v1.1.0-github.zip
+python scripts/package_skill.py --variant full --output ../paper-loom-v1.1.0-full.zip
 ```
 
 Das vollständige Archiv enthält die im Repository mitgelieferten Schriftarten; das Paketierungswerkzeug prüft deren Vollständigkeit. Mit `--variant github` wird ein Quellcodearchiv ohne separate Schriftdateien erstellt.
@@ -223,9 +220,10 @@ Das vollständige Archiv enthält die im Repository mitgelieferten Schriftarten;
 | `fonts/` | Enthaltene Schriftdateien, Nutzungshinweise und Prüfmanifest |
 | `scripts/` | Werkzeuge für Bildextraktion, native Formeln, Schrifteinbettung, PPTX-Prüfung, Installation und Paketierung |
 | `references/` | Anleitungen zu Foliengestaltung, Bildextraktion, Kompatibilität und Nutzung im Client |
-| `examples/layout-demo/` | Ausführbares Beispiel mit drei nativen Folienlayouts und Quellcode zur Erstellung |
+| `examples/evidence-demo/` | Ausführbares Beispiel mit drei nativen Folienlayouts und Quellcode zur Erstellung |
 | `examples/geonav/workflow.md` | Ablauf dieser Erstellung, endgültige Struktur mit 8 Folien und wesentliche Korrekturen |
 | `examples/evidence.template.json` | Vorlage für Quellen, Versuchsbedingungen und Messdefinitionen sowie Prüfprotokolle |
+| `examples/slide-plan.template.json` | Vorlage für Fragen, Belege, Abbildungen und Entscheidungen zum Zusammenführen von Folien |
 | `tests/` | Tests des Skriptverhaltens und Regressionstests |
 
 </details>

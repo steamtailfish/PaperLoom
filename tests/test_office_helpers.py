@@ -11,6 +11,7 @@ import os
 from pathlib import Path
 import shutil
 import struct
+import subprocess
 import tempfile
 import unittest
 from zipfile import ZipFile, ZIP_DEFLATED
@@ -61,6 +62,50 @@ class OfficeRegressionTests(unittest.TestCase):
         self.addCleanup(self.temp.cleanup)
         self.dir = Path(self.temp.name)
 
+    @unittest.skipUnless(shutil.which('node'), 'Node.js is not installed')
+    def test_demo_mixed_script_newlines_preserve_paragraphs_and_fonts(self):
+        probe = subprocess.run(['node', '-e', "require('pptxgenjs')"], cwd=ROOT, capture_output=True)
+        if probe.returncode:
+            self.skipTest('Install npm dependencies to test PptxGenJS mixed-script line breaks')
+        samples = ['静态室内；动态遮挡待验证\n端到端延迟，批量 1',
+                   '图像 + 目标\n联合特征 z', 'a\n中文 1', '第一行\n\n中文 2', '\n中文 1\n']
+        script = r"""
+const fs=require('node:fs'), path=require('node:path'), PptxGenJS=require('pptxgenjs');
+(async()=> {
+ const samples=JSON.parse(process.argv[2]);
+ for(const demo of ['evidence-demo','layout-demo']) {
+  const source=fs.readFileSync(`examples/${demo}/build.mjs`,'utf8');
+  const fragment=source.slice(source.indexOf('function runs('),source.indexOf('function text('));
+  const runs=new Function('ZH','EN',fragment+';return runs;')('FangSong_GB2312','Times New Roman');
+  const pptx=new PptxGenJS(); pptx.layout='LAYOUT_WIDE';
+  for(const sample of samples) {
+   const slide=pptx.addSlide();
+   slide.addText(runs(sample),{x:.5,y:.3,w:12,h:3,fontSize:18,margin:0,breakLine:false});
+   slide.addTable([[{text:runs(sample)}]],{x:.5,y:4,w:12,h:2.7,fontSize:18,autoPage:false});
+  }
+  await pptx.writeFile({fileName:path.join(process.argv[1],demo+'.pptx')});
+ }
+})();
+"""
+        result = subprocess.run(['node', '-e', script, str(self.dir), json.dumps(samples)],
+                                cwd=ROOT, capture_output=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        for demo in ('evidence-demo', 'layout-demo'):
+            with ZipFile(self.dir / f'{demo}.pptx') as archive:
+                for number, sample in enumerate(samples, 1):
+                    root = ET.fromstring(archive.read(f'ppt/slides/slide{number}.xml'))
+                    for body in (root.find('.//p:sp/p:txBody', NS), root.find('.//a:tbl/a:tr/a:tc/a:txBody', NS)):
+                        self.assertEqual([''.join(p.xpath('.//a:t/text()', namespaces=NS))
+                                          for p in body.findall('a:p', NS)], sample.split('\n'))
+                        for run in body.findall('.//a:r', NS):
+                            font = run.find('a:rPr/a:latin', NS).get('typeface')
+                            for character in ''.join(run.xpath('a:t/text()', namespaces=NS)):
+                                if character.isspace():
+                                    continue
+                                chinese = ('\u4e00' <= character <= '\u9fff' or '\u3000' <= character <= '\u303f'
+                                           or '\uff00' <= character <= '\uffef')
+                                self.assertEqual(font, 'FangSong_GB2312' if chinese else 'Times New Roman')
+
     def test_absolute_relationship_target(self):
         file = minimal_pptx(self.dir / 'absolute.pptx', text='Ready', absolute_target=True)
         report = validator.validate(file, expected_slides=1, expected_math=0)
@@ -97,8 +142,9 @@ class OfficeRegressionTests(unittest.TestCase):
                         return data
                     root = ET.fromstring(data)
                     master_list = ET.Element(f'{{{NS["p"]}}}notesMasterIdLst')
-                    # Before sldIdLst is legal; after sldIdLst caused Office's
-                    # CT_Presentation schema failure in the public demo.
+                    # ECMA CT_Presentation places this before sldIdLst. This
+                    # checks schema order, not desktop loading: the demo also
+                    # needs a dedicated notes theme for PowerPoint compatibility.
                     root.insert(0 if valid_order else 1, master_list)
                     return ET.tostring(root)
                 rewrite(source, dest, mutate)
@@ -106,6 +152,26 @@ class OfficeRegressionTests(unittest.TestCase):
                 self.assertEqual(report['ok'], valid_order, report['errors'])
                 if not valid_order:
                     self.assertTrue(any('presentation child order' in e for e in report['errors']))
+
+    def test_shared_notes_theme_is_explicit_compatibility_warning(self):
+        for shared in (True, False):
+            with self.subTest(shared=shared):
+                path = minimal_pptx(self.dir / f'notes-theme-{shared}.pptx', 'Ready')
+                notes_target = '../theme/theme1.xml' if shared else '../theme/notesTheme.xml'
+                with ZipFile(path, 'a', ZIP_DEFLATED) as archive:
+                    for folder, root_name in [('slideMasters', 'sldMaster'), ('notesMasters', 'notesMaster')]:
+                        name = 'slideMaster1' if root_name == 'sldMaster' else 'notesMaster1'
+                        archive.writestr(f'ppt/{folder}/{name}.xml', f'<p:{root_name} xmlns:p="{NS["p"]}"/>')
+                        target = '../theme/theme1.xml' if root_name == 'sldMaster' else notes_target
+                        archive.writestr(f'ppt/{folder}/_rels/{name}.xml.rels',
+                            f'<Relationships xmlns="{NS["rel"]}"><Relationship Id="rId1" Type="{NS["r"]}/theme" Target="{target}"/></Relationships>')
+                    archive.writestr('ppt/theme/theme1.xml', f'<a:theme xmlns:a="{NS["a"]}"/>')
+                    if not shared:
+                        archive.writestr('ppt/theme/notesTheme.xml', f'<a:theme xmlns:a="{NS["a"]}"/>')
+                report = validator.validate(path)
+                self.assertTrue(report['ok'], report['errors'])
+                self.assertEqual(report['shared_notes_slide_theme_parts'], ['ppt/theme/theme1.xml'] if shared else [])
+                self.assertEqual(any('Desktop compatibility risk' in warning for warning in report['warnings']), shared)
 
     def test_paragraph_properties_unique_and_before_runs(self):
         source = minimal_pptx(self.dir / 'source.pptx', 'Ready')

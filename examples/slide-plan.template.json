@@ -1,0 +1,63 @@
+{
+  "paper": {
+    "source_pdf": "paper.pdf",
+    "title": "",
+    "evidence_index": "evidence.json",
+    "source_type": "pdf"
+  },
+  "deck": {
+    "audience": "科研组会",
+    "requested_slide_count": null,
+    "planned_slide_count": null,
+    "reference_profile": "references/reference-patterns.md",
+    "coverage": {
+      "task_and_position": [],
+      "mechanism": [],
+      "training_and_execution": [],
+      "results_and_limits": [],
+      "discussion": []
+    },
+    "path_base": "skill_root for reference_profile; work_directory for evidence and generated assets"
+  },
+  "slides": [
+    {
+      "slide": 1,
+      "question": "",
+      "title": "",
+      "evidence_units": [
+        {
+          "claim_id": "",
+          "relationship_to_explain": "",
+          "source": {
+            "pdf_page": null,
+            "figure_table_or_section": "",
+            "locator": ""
+          },
+          "visible_conditions": ""
+        }
+      ],
+      "main_visual": {
+        "kind": "",
+        "asset_or_native_objects": [],
+        "relations_or_comparisons": [],
+        "source_completeness_checked": false,
+        "missing_source_details": []
+      },
+      "layout": {
+        "pattern": "",
+        "regions": [],
+        "reading_order": []
+      },
+      "visible_annotations": [],
+      "speaker_notes": "",
+      "merge_with_neighbor_decision": "",
+      "review": {
+        "render_inspected": false,
+        "specific_observation": "",
+        "revision": "",
+        "recheck_observation": "",
+        "stage": "planned"
+      }
+    }
+  ]
+}

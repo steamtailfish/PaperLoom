@@ -10,7 +10,7 @@
 | 2 | 输入、记忆更新、匹配决策、输出机制图 | 形状和箭头分别可编辑，融合公式为原生 Office Math |
 | 3 | 主结果表与消融柱状图并列 | 表格为原生表格，图表包含可编辑的数据工作簿 |
 
-完整论文汇报仍应遵循 `SKILL.md` 中的顺序：现有问题 1 页、文献综述 1 页、技术部分 3–5 页、实验 2 页、总结 1 页。不要把本示例的 3 页误当作默认完整页数。
+本目录是早期原生对象与公式兼容性示例，六宫格和大流程页不再作为默认设计质量目标。新建汇报优先阅读 [紧凑证据示例](../evidence-demo/README.md) 和 [参考版式](../../references/reference-patterns.md)，按证据与可读性决定页数。
 
 ## 预览
 
@@ -33,7 +33,7 @@ npm install
 python -m pip install -r requirements.txt
 
 # 写入 build/layout-demo.draft.pptx，其中保留一处公式占位符。
-npm run demo
+npm run demo:legacy
 
 # 转换成可编辑的原生 PowerPoint 公式，输出至新文件。
 python scripts/inject_equations.py build/layout-demo.draft.pptx build/layout-demo.pptx --mapping examples/layout-demo/equations.json --font "Times New Roman"
