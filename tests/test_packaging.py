@@ -89,4 +89,17 @@ class PackagingTest(unittest.TestCase):
             with self.assertRaises(ValueError):installer.install(source,target)
             with self.assertRaises(ValueError):installer.install(source,source/'nested')
 
+    def test_install_excludes_local_test_papers_and_outputs(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            source=Path(tmp)/'source';source.mkdir()
+            (source/'SKILL.md').write_text('skill')
+            for name in ['work','output','.codex']:
+                (source/name).mkdir();(source/name/'private.pdf').write_bytes(b'private')
+            (source/'.env.local').write_text('private')
+            (source/'final.draft.pptx').write_bytes(b'draft')
+            (source/'examples').mkdir();(source/'examples'/'reference.pdf').write_bytes(b'reference')
+            target=Path(tmp)/'client';installer.install(source,target)
+            self.assertEqual(sorted(p.relative_to(target).as_posix() for p in target.rglob('*') if p.is_file()),
+                             ['SKILL.md','examples/reference.pdf'])
+
 if __name__=='__main__':unittest.main()

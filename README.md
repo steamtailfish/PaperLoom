@@ -6,7 +6,7 @@
 
 **Complete coverage · Multiple panels per slide · Editable PPTX**
 
-![Version](https://img.shields.io/badge/version-1.2.0-4455AA?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.3.0-4455AA?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![PowerPoint](https://img.shields.io/badge/PowerPoint-%2Epptx-D24726?style=flat-square)
@@ -35,7 +35,7 @@ PaperLoom turns research papers into compact, visual-first presentations for res
 
 ### 🌐 Upload on the Web
 
-Upload **paper-loom-v1.2.0-full.zip** and the **paper PDF**, then say:
+Upload **paper-loom-v1.3.0-full.zip** and the **paper PDF**, then say:
 
 > Please make a PPT of the paper following the skill in the ZIP.
 
@@ -62,10 +62,10 @@ After installation, select PaperLoom in the client or enter:
 <table>
 <tr>
 <td width="50%" valign="top"><b>🎨 Visual storytelling</b><br>Explain inputs, transformations and feedback with diagrams; combine related evidence and present comparisons in native tables and charts.</td>
-<td width="50%" valign="top"><b>🖼️ Original paper figures</b><br>Extract images embedded in the paper PDF directly. Keep original figure assets instead of using page screenshots or cropped screenshots.</td>
+<td width="50%" valign="top"><b>🖼️ Original paper figures</b><br>Export complete native PDF figure groups, including text, arrows and legends. Track each figure’s purpose and use it to explain the method or evidence.</td>
 </tr>
 <tr>
-<td width="50%" valign="top"><b>🧮 Editable equations</b><br>Convert necessary LaTeX equations into native PowerPoint Office Math, ready for further editing.</td>
+<td width="50%" valign="top"><b>🧮 Editable equations</b><br>Use diagrams and operation labels first. Reserve editable Office Math for distinctive relationships that need mathematical notation.</td>
 <td width="50%" valign="top"><b>🔤 Consistent typography</b><br>Use FangSong GB2312 for Chinese and Times New Roman for English and numbers. Verify font files, properties, and hashes.</td>
 </tr>
 <tr>
@@ -101,7 +101,7 @@ These three slides show a compact overview with mechanism details, training/infe
 
 ## 🧭 Default Slide Structure
 
-Build a complete research presentation with **no default slide-count cap**. Use A/B/C sections to explain several related points on each slide, typically starting with 3–5 substantive panels. Add body slides whenever mechanisms, experiments or readable evidence need more space. Keep essential content visible; notes carry supporting explanations. An explicit user slide count takes priority. The following describes coverage, not one slide per item:
+Build a complete research presentation with **no default slide-count cap**. Use A/B/C sections to explain several related points on each slide, with panel size and count determined by the evidence. Add body slides whenever mechanisms, experiments or readable evidence need more space. Keep essential content visible; notes carry supporting explanations. An explicit user slide count takes priority. The following describes coverage, not one slide per item:
 
 | Content | Organization |
 |---|---|
@@ -136,7 +136,7 @@ Native equation conversion also requires the `pandoc` command; follow the [offic
 python scripts/extract_pdf_assets.py paper.pdf --output work/paper-assets
 ```
 
-The output includes original assets and a manifest. `--pages 1,3-5` is supported. An embedded object may be only part of a figure, so check the semantic completeness of each figure against the paper. Pure vector figures or figures with text overlays must not automatically fall back to screenshots. See the [figure extraction guide](references/figure-extraction.md).
+The output includes original assets and a manifest. For a complete Form candidate, export it with `python scripts/export_pdf_form.py paper.pdf --xref 200 --page 3 --output work/figure-2` (replace xref/page from the current manifest). This preserves native resources in PDF/SVG and provides a PNG of the isolated figure. `--pages 1,3-5` is supported. An embedded object may be only part of a figure, so check the semantic completeness of each figure against the paper. Pure vector figures or figures with text overlays must not automatically fall back to screenshots. See the [figure extraction guide](references/figure-extraction.md).
 
 </details>
 
@@ -171,8 +171,8 @@ python -m unittest discover -s tests -v
 <summary><b>📦 Build release archives</b></summary>
 
 ```bash
-python scripts/package_skill.py --variant github --output ../paper-loom-v1.2.0-github.zip
-python scripts/package_skill.py --variant full --output ../paper-loom-v1.2.0-full.zip
+python scripts/package_skill.py --variant github --output ../paper-loom-v1.3.0-github.zip
+python scripts/package_skill.py --variant full --output ../paper-loom-v1.3.0-full.zip
 ```
 
 The full archive includes the bundled fonts, design references and examples. The packager excludes work products and writes one fresh manifest with verified file hashes. `--variant github` creates a source archive without standalone font files.

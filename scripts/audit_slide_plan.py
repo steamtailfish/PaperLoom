@@ -2,7 +2,7 @@
 """Check declared content coverage and panel mappings before building a PPTX.
 
 This checks the plan, not the paper's completeness or the rendered presentation.
-Errors exit 1; advisory panel-count warnings do not block justified layouts.
+Errors exit 1. Panel counts are not quality scores.
 """
 from __future__ import annotations
 
@@ -64,9 +64,6 @@ def audit(plan):
         if not isinstance(panels, list) or not panels:
             error('missing_panels', f'Slide {index}: explicit content panels required')
             continue
-        if len(panels) < 3 and not text(slide.get('panel_count_reason')):
-            report['warnings'].append({'code': 'panel_capacity_review', 'slide': index,
-                'message': '少于三个内容区：检查是否可以展开更多子问题；复杂图表可说明独占空间的理由。'})
         labels = set()
         for panel in panels:
             if not isinstance(panel, dict):
@@ -96,6 +93,30 @@ def audit(plan):
             error('missing_visible_content', f'{key}: required content has no visible panel; notes do not count')
         if item.get('required_on_slide') is False and key not in visible and not text(item.get('exclusion_reason')):
             error('unexplained_exclusion', f'{key}: excluded supplemental content needs a reason')
+
+    for field in ('figure_usage', 'equations'):
+        entries = plan.get(field, [])
+        if not isinstance(entries, list):
+            error('invalid_visual_inventory', f'{field} must be a list')
+            continue
+        seen = set()
+        for item in entries:
+            if not isinstance(item, dict) or not text(item.get('id')) or not text(item.get('source')):
+                error('invalid_visual_entry', f'{field}: id and source required')
+                continue
+            if item['id'] in seen:
+                error('duplicate_visual', f'{field}: duplicate id {item["id"]}')
+            seen.add(item['id'])
+            assigned = item.get('slides', [])
+            if not isinstance(assigned, list) or any(not positive_int(n) or n > len(slides) for n in assigned):
+                error('invalid_visual_slide', f'{item["id"]}: invalid slide references')
+            elif assigned:
+                if not text(item.get('purpose')):
+                    error('missing_visual_purpose', f'{item["id"]}: explain what the visible visual contributes')
+                if field == 'figure_usage' and not text(item.get('route')):
+                    error('missing_figure_route', f'{item["id"]}: extraction or reconstruction route required')
+            elif not text(item.get('exclusion_reason')):
+                error('unexplained_visual_exclusion', f'{item["id"]}: unused visual needs a reason')
 
     deck = plan.get('deck')
     if not isinstance(deck, dict):

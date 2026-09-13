@@ -91,5 +91,7 @@
       "required_on_slide": true,
       "exclusion_reason": ""
     }
-  ]
+  ],
+  "figure_usage": [],
+  "equations": []
 }

@@ -12,7 +12,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 
 def inspect():
-    modules = {n: importlib.util.find_spec(n) is not None for n in ['fitz','PIL','lxml','fontTools','yaml']}
+    modules = {n: importlib.util.find_spec(n) is not None for n in ['fitz','pypdf','PIL','lxml','fontTools','yaml']}
     commands = {n: shutil.which(n) for n in ['node','npm','pandoc','soffice']}
     node_package = False
     if commands['node']:

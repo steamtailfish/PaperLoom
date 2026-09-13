@@ -6,7 +6,7 @@
 
 **完整講解 · 多分區頁面 · PPTX**
 
-![Version](https://img.shields.io/badge/version-1.2.0-4455AA?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.3.0-4455AA?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![PowerPoint](https://img.shields.io/badge/PowerPoint-%2Epptx-D24726?style=flat-square)
@@ -35,7 +35,7 @@ PaperLoom 是一個將科研論文製作成精簡、以圖表為先、可編輯�
 
 ### 🌐 上載至網頁
 
-上載 **paper-loom-v1.2.0-full.zip** 和**論文 PDF**，然後說：
+上載 **paper-loom-v1.3.0-full.zip** 和**論文 PDF**，然後說：
 
 > 請你按照壓縮包內 skill 的要求製作論文的 PPT。
 
@@ -101,13 +101,15 @@ python scripts/install_skill.py
 
 ## 🧭 按證據安排投影片
 
-預設製作**完整科研匯報，不設固定頁數範圍或上限**。每頁以 A/B/C 等區域講解多個相關重點，通常先安排 3–5 個實質分區；機制、實驗或圖表放不下時增加正文頁。核心內容必須可見，不能為壓縮頁數省略或只放備忘稿。用戶明確指定頁數時以其要求為準。
+預設製作**完整科研匯報，不設固定頁數範圍或上限**。每頁以 A/B/C 等區域講解多個相關重點，分區數量與面積由圖表及子問題決定；機制、實驗或圖表放不下時增加正文頁。核心內容必須可見，不能為壓縮頁數省略或只放備忘稿。用戶明確指定頁數時以其要求為準。
 
 製作前必讀[頁面設計](../../references/design.md)、[參考版式與反例](../../references/reference-patterns.md)及[品質關卡](../../references/quality-gates.md)。先按[逐頁設計範本](../../examples/slide-plan.template.json)完成工作目錄的 `slide-plan.json`，然後繼續生成，不預設等待大綱批准。
 
 同一機制的總覽、狀態與回饋條件可合頁；同口徑主結果、消融及不利結果可並列。比較條件留在圖表附近，長講解與詳細來源放備忘稿。以[緊湊證據示例](../../examples/evidence-demo/README.md)作視覺參考，逐頁檢查可讀性。
 
 [分區規劃與內容完整性](../../references/panel-planning.md)
+
+優先以完整原圖解釋任務、機制及結果，逐圖記錄用途與去向。通用公式以操作標籤及訓練關係表達；只有獨特且必要的數學關係才另排公式。原生 Form 匯出工具保留文字、箭嘴及圖例。參見 [圖文取捨](../../references/visual-selection.md) 與 [提圖指南](../../references/figure-extraction.md)。
 
 <a id="development"></a>
 
@@ -162,8 +164,8 @@ python -m unittest discover -s tests -v
 <summary><b>📦 建置發行封存檔</b></summary>
 
 ```bash
-python scripts/package_skill.py --variant github --output ../paper-loom-v1.2.0-github.zip
-python scripts/package_skill.py --variant full --output ../paper-loom-v1.2.0-full.zip
+python scripts/package_skill.py --variant github --output ../paper-loom-v1.3.0-github.zip
+python scripts/package_skill.py --variant full --output ../paper-loom-v1.3.0-full.zip
 ```
 
 完整封存檔包含儲存庫附帶的字型，封裝工具會檢查檔案是否齊全；`--variant github` 會產生不含獨立字型檔案的原始碼封存檔。

@@ -5,7 +5,10 @@ import argparse
 import shutil
 
 ROOT=Path(__file__).resolve().parents[1]
-EXCLUDED={'.git','node_modules','__pycache__','.venv','dist','build'}
+EXCLUDED={'.git','.hg','.svn','node_modules','__pycache__','.venv','venv',
+          'dist','build','work','qa','tmp','temp','output','outputs',
+          '.cache','.pytest_cache','.mypy_cache','.ruff_cache','.ipynb_checkpoints',
+          '.codex','.idea','.vscode'}
 
 def install(source: Path,dest: Path,dry_run=False):
     source=source.resolve();dest=dest.expanduser().resolve()
@@ -14,7 +17,11 @@ def install(source: Path,dest: Path,dry_run=False):
     if dest==source or source in dest.parents:raise ValueError('Destination cannot be inside the source skill')
     if dry_run:return dest
     def ignore(folder,names):
-        return [n for n in names if n in EXCLUDED or n.endswith(('.pyc','.tmp','.inspect.ndjson')) or (Path(folder)/n).is_symlink()]
+        return [n for n in names if n.lower() in EXCLUDED or
+                n.lower() in {'.env','.ds_store','thumbs.db','desktop.ini'} or
+                n.lower().startswith('.env.') or
+                n.lower().endswith(('.pyc','.tmp','.log','.inspect.ndjson','.draft.pptx')) or
+                (Path(folder)/n).is_symlink()]
     dest.parent.mkdir(parents=True,exist_ok=True)
     shutil.copytree(source,dest,ignore=ignore)
     return dest

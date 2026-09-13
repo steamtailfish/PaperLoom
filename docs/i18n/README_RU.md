@@ -6,7 +6,7 @@
 
 **Полное изложение · Несколько разделов на слайде · PPTX**
 
-![Version](https://img.shields.io/badge/version-1.2.0-4455AA?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.3.0-4455AA?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![PowerPoint](https://img.shields.io/badge/PowerPoint-%2Epptx-D24726?style=flat-square)
@@ -35,7 +35,7 @@ PaperLoom превращает научные статьи в компактны
 
 ### 🌐 Загрузка в веб-версию
 
-Загрузите **paper-loom-v1.2.0-full.zip** и **PDF статьи**, затем напишите:
+Загрузите **paper-loom-v1.3.0-full.zip** и **PDF статьи**, затем напишите:
 
 > Создай PPT по статье, следуя требованиям skill внутри ZIP.
 
@@ -101,7 +101,7 @@ python scripts/install_skill.py
 
 ## 🧭 Структура на основе доказательств
 
-Создавайте полную презентацию **без ограничения числа слайдов по умолчанию**. Разделы A/B/C раскрывают несколько связанных вопросов на странице; начните с 3–5 содержательных разделов. Добавляйте основные слайды, если механизмы, эксперименты или читаемые таблицы требуют места. Не пропускайте важное и не переносите его только в заметки. Явное требование пользователя к числу слайдов имеет приоритет.
+Создавайте полную презентацию **без ограничения числа слайдов по умолчанию**. Разделы A/B/C раскрывают несколько связанных вопросов на странице; выбирайте число и размер разделов по материалу. Добавляйте основные слайды, если механизмы, эксперименты или читаемые таблицы требуют места. Не пропускайте важное и не переносите его только в заметки. Явное требование пользователя к числу слайдов имеет приоритет.
 
 До создания слайдов прочитайте [правила оформления](../../references/design.md), [композиции и контрпримеры](../../references/reference-patterns.md), [проверки качества](../../references/quality-gates.md). Сохраните `slide-plan.json` в рабочем каталоге по [шаблону плана](../../examples/slide-plan.template.json), затем продолжайте работу, не ожидая по умолчанию утверждения плана.
 
@@ -162,8 +162,8 @@ python -m unittest discover -s tests -v
 <summary><b>📦 Сборка архивов для распространения</b></summary>
 
 ```bash
-python scripts/package_skill.py --variant github --output ../paper-loom-v1.2.0-github.zip
-python scripts/package_skill.py --variant full --output ../paper-loom-v1.2.0-full.zip
+python scripts/package_skill.py --variant github --output ../paper-loom-v1.3.0-github.zip
+python scripts/package_skill.py --variant full --output ../paper-loom-v1.3.0-full.zip
 ```
 
 Полный архив включает шрифты из репозитория; упаковщик проверяет наличие всех файлов. Параметр `--variant github` создаёт архив исходного кода без отдельных файлов шрифтов.

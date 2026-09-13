@@ -6,7 +6,7 @@
 
 **完整讲解 · 多分区页面 · PPTX**
 
-![Version](https://img.shields.io/badge/version-1.2.0-4455AA?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.3.0-4455AA?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![PowerPoint](https://img.shields.io/badge/PowerPoint-%2Epptx-D24726?style=flat-square)
@@ -35,7 +35,7 @@ PaperLoom 面向科研组会，把论文整理成紧凑、图表优先的可编�
 
 ### 🌐 网页上传
 
-上传 **paper-loom-v1.2.0-full.zip** 和**论文 PDF**，然后说：
+上传 **paper-loom-v1.3.0-full.zip** 和**论文 PDF**，然后说：
 
 > 请你按照压缩包内skill的要求制作论文的ppt
 
@@ -101,7 +101,7 @@ python scripts/install_skill.py
 
 ## 🧭 默认汇报结构
 
-默认制作**完整科研汇报，不设固定页数区间或上限**。每页用 A/B/C 等区域讲多个相关点，通常从 3–5 个实质分区开始安排；机制、实验或图表放不下时增加正文页。核心内容必须可见，不能为压页数省略或仅放备注。用户明确限定页数时以用户要求为准。以下是覆盖范围，各项可安排为分区或展开为多页：
+默认制作**完整科研汇报，不设固定页数区间或上限**。每页用 A/B/C 等区域讲多个相关点，分区数量与面积由图表和子问题决定；机制、实验或图表放不下时增加正文页。核心内容必须可见，不能为压页数省略或仅放备注。用户明确限定页数时以用户要求为准。以下是覆盖范围，各项可安排为分区或展开为多页：
 
 | 内容 | 组织方式 |
 |---|---|
@@ -114,6 +114,10 @@ python scripts/install_skill.py
 按证据关联与可读性分配页面。制作前读[参考版式](../../references/reference-patterns.md)，填写[逐页计划](../../examples/slide-plan.template.json)，按[质量关卡](../../references/quality-gates.md)审阅。总字数和图片面积均不等于有效信息密度。
 
 [分区规划与内容完整性](../../references/panel-planning.md)
+
+优先使用完整原图解释任务、机制和结果。逐图记录用途与去向，通用公式用操作标签和训练关系表达；只对独特且必要的数学关系另排原生公式。参见 [图文取舍](../../references/visual-selection.md)。
+
+复合图可用 `python scripts/export_pdf_form.py paper.pdf --xref 200 --page 3 --output work/figure-2` 导出独立 PDF、SVG 与 PNG；xref 和页码必须来自当前论文候选清单。
 
 <a id="development"></a>
 
@@ -171,8 +175,8 @@ python -m unittest discover -s tests -v
 <summary><b>📦 构建发行归档</b></summary>
 
 ```bash
-python scripts/package_skill.py --variant github --output ../paper-loom-v1.2.0-github.zip
-python scripts/package_skill.py --variant full --output ../paper-loom-v1.2.0-full.zip
+python scripts/package_skill.py --variant github --output ../paper-loom-v1.3.0-github.zip
+python scripts/package_skill.py --variant full --output ../paper-loom-v1.3.0-full.zip
 ```
 
 完整归档包含字体、设计规则和示例；打包器排除工作产物，只生成一份与文件内容一致的校验清单；`--variant github` 生成不含独立字体文件的源码归档。

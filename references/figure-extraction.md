@@ -38,6 +38,16 @@ python scripts/extract_pdf_assets.py paper.pdf --output work/selected-assets --p
 
 ## 纯矢量或复合图
 
+发现完整 Figure 对应一个 Form 时，优先运行：
+
+```bash
+python scripts/export_pdf_form.py paper.pdf --xref 200 --page 3 --output work/figure-2
+```
+
+`xref` 与 `page` 必须来自当前 PDF 的候选清单；示例数字不能直接套用。脚本复制选定 Form 及其字体、图像、矢量资源，处理局部 BBox 与 Matrix，输出独立 `figure.pdf`、`figure.svg`、`figure.png` 和来源哈希清单。PNG 渲染的是已分离的完整 Form，不是截图裁剪论文页。PPT 可使用该兼容预览，同时保存 PDF/SVG 源件；图中文字不会因此成为可编辑 PPT 文字，额外说明与表格仍须原生化。
+
+Form 也可能是整页或装饰；脚本不识别语义。执行者必须对照原图，确认所选对象没有论文正文、没有漏掉外部叠加标签、裁剪和变换正确。`completeness_verified` 默认为 false，实际查看后才更新工作清单。输出目录必须不存在。不是完整 Form 的图继续按下述路线处理，不能因为命令成功就宣布提取完整。
+
 `vector_form_candidates` 只列出可能包含矢量或复合内容的位置，不自动认定为 Figure，也不导出整页图片。Form 可能包含图片、文字或装饰；矢量路径也可能只是表格线。按以下顺序处理：
 
 1. 查找论文补充材料或作者公开仓库中的原始 SVG、PDF、EPS、PNG 等图件，核对版本和图注。

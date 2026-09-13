@@ -6,7 +6,7 @@
 
 **内容を網羅 · 複数の区画で説明 · PPTX**
 
-![Version](https://img.shields.io/badge/version-1.2.0-4455AA?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.3.0-4455AA?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![PowerPoint](https://img.shields.io/badge/PowerPoint-%2Epptx-D24726?style=flat-square)
@@ -35,7 +35,7 @@ PaperLoom は、研究論文をコンパクトで図表を中心とした、編�
 
 ### 🌐 Web にアップロード
 
-**paper-loom-v1.2.0-full.zip** と**論文 PDF**をアップロードし、次のように伝えます。
+**paper-loom-v1.3.0-full.zip** と**論文 PDF**をアップロードし、次のように伝えます。
 
 > ZIP 内の skill の要件に従って、この論文の PPT を作成してください。
 
@@ -101,7 +101,7 @@ python scripts/install_skill.py
 
 ## 🧭 根拠に応じたスライド構成
 
-**既定のスライド数上限を設けず、論文を十分に説明**します。各ページに A/B/C などの区画を設け、関連する複数の論点を扱います。実質的な 3〜5 区画を出発点とし、仕組みや実験を読みやすく収められなければ本文スライドを追加します。重要な内容を省略したりノートだけに移したりしません。ユーザーが明示した枚数を優先します。
+**既定のスライド数上限を設けず、論文を十分に説明**します。各ページに A/B/C などの区画を設け、関連する複数の論点を扱います。図表と論点に応じて区画数と面積を決め、仕組みや実験を読みやすく収められなければ本文スライドを追加します。重要な内容を省略したりノートだけに移したりしません。ユーザーが明示した枚数を優先します。
 
 制作前に[ページ設計](../../references/design.md)、[参考レイアウトと反例](../../references/reference-patterns.md)、[品質チェック](../../references/quality-gates.md)を読みます。[ページ設計テンプレート](../../examples/slide-plan.template.json)に沿って作業ディレクトリに `slide-plan.json` を保存し、構成案の承認待ちを標準動作にせず制作を続けます。
 
@@ -162,8 +162,8 @@ python -m unittest discover -s tests -v
 <summary><b>📦 配布用アーカイブの作成</b></summary>
 
 ```bash
-python scripts/package_skill.py --variant github --output ../paper-loom-v1.2.0-github.zip
-python scripts/package_skill.py --variant full --output ../paper-loom-v1.2.0-full.zip
+python scripts/package_skill.py --variant github --output ../paper-loom-v1.3.0-github.zip
+python scripts/package_skill.py --variant full --output ../paper-loom-v1.3.0-full.zip
 ```
 
 完全版アーカイブにはリポジトリに同梱されたフォントが含まれ、パッケージ作成ツールがファイルの不足を確認します。`--variant github` は、独立したフォントファイルを含まないソースコードアーカイブを作成します。

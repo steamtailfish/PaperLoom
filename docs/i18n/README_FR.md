@@ -6,7 +6,7 @@
 
 **Couverture complète · Plusieurs sections par page · PPTX**
 
-![Version](https://img.shields.io/badge/version-1.2.0-4455AA?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.3.0-4455AA?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![PowerPoint](https://img.shields.io/badge/PowerPoint-%2Epptx-D24726?style=flat-square)
@@ -35,7 +35,7 @@ PaperLoom transforme des articles scientifiques en présentations **PowerPoint `
 
 ### 🌐 Téléversement sur le web
 
-Téléversez **paper-loom-v1.2.0-full.zip** et le **PDF de l’article**, puis demandez :
+Téléversez **paper-loom-v1.3.0-full.zip** et le **PDF de l’article**, puis demandez :
 
 > Crée le PPT de cet article en suivant le skill contenu dans le ZIP.
 
@@ -101,7 +101,7 @@ Cette démonstration utilise des **données fictives** clairement signalées ; e
 
 ## 🧭 Une structure guidée par les preuves
 
-Créez une présentation complète **sans plafond de diapositives par défaut**. Les sections A/B/C expliquent plusieurs points liés sur chaque page, avec 3–5 sections substantielles comme point de départ. Ajoutez des diapositives de contenu lorsque les mécanismes, les expériences ou la lisibilité le nécessitent. Ne supprimez pas les éléments essentiels et ne les reléguez pas uniquement aux notes. Un nombre explicitement demandé par l’utilisateur reste prioritaire.
+Créez une présentation complète **sans plafond de diapositives par défaut**. Les sections A/B/C expliquent plusieurs points liés sur chaque page, avec un nombre de sections adapté aux figures et aux preuves. Ajoutez des diapositives de contenu lorsque les mécanismes, les expériences ou la lisibilité le nécessitent. Ne supprimez pas les éléments essentiels et ne les reléguez pas uniquement aux notes. Un nombre explicitement demandé par l’utilisateur reste prioritaire.
 
 Avant de créer les diapositives, lisez les guides de [conception](../../references/design.md), de [compositions et contre-exemples](../../references/reference-patterns.md) et de [contrôle qualité](../../references/quality-gates.md). Préparez `slide-plan.json` dans le dossier de travail à partir du [modèle de plan](../../examples/slide-plan.template.json), puis continuez sans attendre par défaut une approbation du plan.
 
@@ -162,8 +162,8 @@ python -m unittest discover -s tests -v
 <summary><b>📦 Créer les archives de distribution</b></summary>
 
 ```bash
-python scripts/package_skill.py --variant github --output ../paper-loom-v1.2.0-github.zip
-python scripts/package_skill.py --variant full --output ../paper-loom-v1.2.0-full.zip
+python scripts/package_skill.py --variant github --output ../paper-loom-v1.3.0-github.zip
+python scripts/package_skill.py --variant full --output ../paper-loom-v1.3.0-full.zip
 ```
 
 L’archive complète inclut les polices fournies avec le dépôt ; l’outil de création de paquets vérifie qu’elles sont toutes présentes. L’option `--variant github` crée une archive du code source sans les fichiers de polices séparés.

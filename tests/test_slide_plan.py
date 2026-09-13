@@ -58,13 +58,27 @@ class SlidePlanTest(unittest.TestCase):
         slide = self.plan['slides'][0]
         slide['panels'] = [dict(slide['panels'][0], content_ids=['M01', 'M02', 'M03'])]
         self.assertFalse(self.codes())
-        self.assertTrue(checker.audit(self.plan)['warnings'])
+        self.assertEqual(checker.audit(self.plan)['warnings'], [])
         slide['panel_count_reason'] = 'The full comparison matrix requires the readable canvas.'
         self.assertEqual(checker.audit(self.plan)['warnings'], [])
 
     def test_blank_letter_panels_do_not_satisfy_plan(self):
         self.plan['slides'][0]['panels'][0]['key_points'] = []
         self.assertIn('empty_panel', self.codes())
+
+    def test_figure_routes_and_equation_purpose(self):
+        self.plan['figure_usage'] = [{'id': 'F1', 'source': 'Fig. 1', 'slides': [1], 'purpose': 'Task scene'}]
+        self.assertIn('missing_figure_route', self.codes())
+        self.plan['figure_usage'][0]['route'] = 'native Form export'
+        self.plan['equations'] = [{'id': 'Q1', 'source': 'Eq. 1', 'slides': [2]}]
+        self.assertIn('missing_visual_purpose', self.codes())
+        self.plan['equations'][0] = {'id': 'Q1', 'source': 'Eq. 1', 'slides': [],
+                                    'exclusion_reason': 'Generic MSE; supervision shown in training lane'}
+        self.assertFalse(self.codes())
+
+    def test_invalid_figure_assignment(self):
+        self.plan['figure_usage'] = [{'id': 'F1', 'source': 'Fig. 1', 'slides': [999]}]
+        self.assertIn('invalid_visual_slide', self.codes())
 
     def test_excluded_supplement_needs_reason(self):
         self.plan['content_inventory'].append({'id': 'S01', 'topic': 'Duplicate derivation',
