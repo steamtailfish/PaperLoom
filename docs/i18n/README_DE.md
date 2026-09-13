@@ -6,7 +6,7 @@
 
 **Standardmäßig 6–8 Folien · Zusammenhängende Belege · Originalabbildungen · Native Formeln · Bearbeitbares PPTX**
 
-![Version](https://img.shields.io/badge/version-1.1.0-4455AA?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.1.2-4455AA?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![PowerPoint](https://img.shields.io/badge/PowerPoint-%2Epptx-D24726?style=flat-square)
@@ -28,6 +28,32 @@
 ---
 
 PaperLoom erstellt aus wissenschaftlichen Artikeln kompakte, bearbeitbare **PowerPoint-Präsentationen im Format `.pptx`**, bei denen Abbildungen und Diagramme im Vordergrund stehen. Installiere den Skill in einem kompatiblen Client oder lade das vollständige Projekt als ZIP zusammen mit dem Artikel in einen Web-GPT hoch, der Code ausführen kann.
+
+<a id="quick-start"></a>
+
+## 🚀 Schnellstart
+
+### 🌐 Upload im Web
+
+Lade **paper-loom-v1.1.2-full.zip** und die **Artikel-PDF** hoch und schreibe:
+
+> Erstelle die PPT zu diesem Artikel gemäß dem Skill im ZIP.
+
+Das ist alles. SKILL.md enthält Standardwerte, Erstellung, visuelle Prüfung und Dateiausgabe. Eine lange Eingabe, eine Konfigurationsdatei oder eine zusätzliche Referenzpräsentation ist nicht erforderlich.
+
+### 💻 Lokaler Client
+
+Klone dieses Repository mit den enthaltenen Schriftarten oder lade es herunter. Lies die [Schriftartenanleitung](../../fonts/README.md) und führe anschließend im Stammverzeichnis des Repositorys Folgendes aus:
+
+```bash
+python scripts/install_skill.py
+```
+
+Standardmäßig wird der Skill für den aktuellen Benutzer nach `~/.agents/skills/paper-loom/` kopiert. Ist das Verzeichnis bereits vorhanden, wird die Installation angehalten, ohne deine Version zu überschreiben. In einem Client, der den Import von Skills unterstützt, kannst du auch direkt diesen vollständigen Ordner auswählen. [Ausführliche Anleitung für Clients](../../references/client-mode.md)
+
+Wähle nach der Installation PaperLoom im Client aus oder gib Folgendes ein:
+
+> Erstelle mit $paper-loom eine Präsentation zu diesem Artikel.
 
 <a id="features"></a>
 
@@ -69,47 +95,7 @@ Dieses Beispiel verwendet ausdrücklich gekennzeichnete **fiktive Daten**, die k
 
 [📥 Bearbeitbare PPTX-Präsentation](../../examples/evidence-demo/evidence-demo.pptx) · [📖 Quellcode und Befehle zur Reproduktion](../../examples/evidence-demo/README.md)
 
-<a id="quick-start"></a>
-
-## 🚀 Schnellstart
-
-### 💻 Lokaler Client
-
-Klone dieses Repository mit den enthaltenen Schriftarten oder lade es herunter. Lies die [Schriftartenanleitung](../../fonts/README.md) und führe anschließend im Stammverzeichnis des Repositorys Folgendes aus:
-
-```bash
-python scripts/install_skill.py
-```
-
-Standardmäßig wird der Skill für den aktuellen Benutzer nach `~/.agents/skills/paper-loom/` kopiert. Ist das Verzeichnis bereits vorhanden, wird die Installation angehalten, ohne deine Version zu überschreiben. In einem Client, der den Import von Skills unterstützt, kannst du auch direkt diesen vollständigen Ordner auswählen. [Ausführliche Anleitung für Clients](../../references/client-mode.md)
-
-Wähle nach der Installation PaperLoom im Client aus oder gib Folgendes ein:
-
-```text
-Verwende $paper-loom, um aus diesem Artikel eine PowerPoint-Präsentation für eine
-Forschungsgruppenbesprechung zu erstellen.
-Befolge die Vorgaben des Skills zu Struktur, Schriftarten, Bildextraktion und nativen
-Formeln und liefere direkt die .pptx-Datei.
-```
-
-### 🌐 Upload im Web
-
-Verwende bevorzugt das veröffentlichte Archiv **`paper-loom-v1.1.0-full.zip`** und lade es mit der Artikel-PDF hoch. Beim Arbeiten mit dem Quellcode erstellst du das Archiv mit dem weiter unten angegebenen Befehl `package_skill.py --variant full`; dabei werden Build-Artefakte und private Caches ausgeschlossen. Sende anschließend:
-
-```text
-Entpacke PaperLoom und erstelle die Präsentation dieses Artikels nach dem Ablauf in WEB_START.md.
-Lies zuerst SKILL.md, references/design.md, references/reference-patterns.md und references/quality-gates.md.
-Ordne die Belege, speichere slide-plan.json und fahre direkt mit der Erstellung fort.
-Verwende standardmäßig 6–8 Folien, bei komplexen Artikeln 8–10. Ergänze keine eigenständigen
-Literatur- oder Formelseiten nur zum Erreichen einer Seitenzahl.
-Erkläre zusammengehörige Mechanismen und Belege auf derselben Folie. Erhalte Vergleichsbedingungen,
-Einheiten und ungünstige Ergebnisse. Beachte die Vorgaben zu Schriften, Originalabbildungen und
-notwendigen nativen Formeln. Ausführliche Quellen und Erklärungen gehören in die Notizen.
-Prüfe Struktur und Qualität, rendere und kontrolliere jede Folie, behebe Probleme und liefere eine herunterladbare .pptx-Datei.
-```
-
-> [!NOTE]
-> Der Web-GPT muss Archive entpacken, Code ausführen und herunterladbare Dateien erzeugen können. Der ZIP-Upload stellt diese Werkzeuge nicht bereit und installiert den Skill nicht dauerhaft. Die vollständige Einstiegsanleitung steht in [WEB_START.md](../../WEB_START.md).
+[Enthaltene AeroDuo-Referenz als sechsseitiges PDF](../../examples/aeroduo-reference/AeroDuo_组会汇报_合并精简6页版.pdf)
 
 <a id="workflow"></a>
 
@@ -120,24 +106,6 @@ Standardmäßig sind **6–8 Folien** vorgesehen, bei komplexen Artikeln **8–1
 Lies vor der Erstellung die Regeln zu [Gestaltung](../../references/design.md), [Kompositionen und Gegenbeispielen](../../references/reference-patterns.md) und [Qualitätsprüfung](../../references/quality-gates.md). Erstelle `slide-plan.json` im Arbeitsverzeichnis anhand der [Planvorlage](../../examples/slide-plan.template.json) und fahre anschließend fort, ohne standardmäßig auf eine Freigabe des Plans zu warten.
 
 Verbinde die Übersicht, Zwischenzustände und Rückkopplungsbedingungen eines Mechanismus. Stelle Hauptergebnisse unter demselben Protokoll, Ablationen und ungünstige Ergebnisse nebeneinander. Vergleichsbedingungen bleiben an den Abbildungen und Tabellen, ausführliche Erklärungen und Quellen in den Notizen. Nutze das [Beispiel zur kompakten Darstellung von Belegen](../../examples/evidence-demo/README.md) und prüfe die Lesbarkeit jeder Folie.
-
-<details>
-<summary><b>Hintergründe zum Arbeitsablauf</b></summary>
-
-Der folgende Rückblick beschreibt den frühen GeoNav-Fall. Dessen feste Seitenzahl und Überblick in sechs Blöcken sind keine aktuellen Standardvorgaben.
-
-Dieser Skill entstand bei der mehrmaligen Erstellung und Überarbeitung einer GeoNav-Präsentation für eine Forschungsgruppenbesprechung: Inhalte wurden verdichtet, der Aufbau angepasst, Schriftarten und native Formeln eingerichtet sowie Office-Formatprobleme behoben. Anschließend wurden Hinweise am unteren Folienrand entfernt und die große Tabelle zum Forschungsüberblick durch sechs Blöcke zu Forschungsrichtungen ersetzt. Der Skill fasst diese bewährten Arbeitsweisen in wiederverwendbaren Anleitungen und Skripten zusammen.
-
-1. **Ziele der Forschungsgruppenbesprechung und visuelle Standards festlegen**: echtes PPTX, kompakte Darstellung mit hoher Informationsdichte, Vorrang für Abbildungen und Diagramme, vorgegebene Schriftarten und native Formeln.
-2. **Artikel lesen und einen Belegindex aufbauen**: Schlussfolgerungen, Abbildungen und Tabellen, Versuchsbedingungen und Messdefinitionen, Fehlerfälle und Grenzen der Aussagen einander zuordnen.
-3. **Zuerst Belege ordnen, dann Folien planen**: Aufgabe, Mechanismen, Experimente und Grenzen verbinden; Folien mit derselben Abbildung oder demselben Mechanismus zusammenführen, wenn die Lesbarkeit erhalten bleibt.
-4. **Originalmaterial und bearbeitbare Objekte aufbereiten**: Bilder direkt extrahieren, Tabellen und Diagramme nativ erstellen, LaTeX in Office Math konvertieren und Schriftarten auf jeden Textabschnitt (`run`) anwenden.
-5. **Inhalt, Layout und Kompatibilität prüfen**: jede Folie rendern, Daten abgleichen und den nicht konformen GB2312-Wert `charset=134` in `-122` korrigieren.
-6. **Rückmeldungen durch gezielte Änderungen umsetzen**: ausführliche Quellen in den Notizen und notwendige Bedingungen bei den Abbildungen erhalten, dabei bestätigte Folien und Formatkorrekturen schützen.
-
-Den vollständigen Ablauf dokumentiert der [GeoNav-Rückblick](../../examples/geonav/workflow.md).
-
-</details>
 
 <a id="development"></a>
 
@@ -175,7 +143,7 @@ python scripts/embed_fonts.py math.pptx final.pptx
 python scripts/validate_pptx.py final.pptx --expected-slides 8 --expected-math 3 --report validation.json
 ```
 
-Die `8` Folien und `3` Formeln sind die Vorgaben für dieses GeoNav-Beispiel und müssen bei neuen Artikeln nach Bedarf angepasst werden. Wenn ein Artikel keine Formeln benötigt, sollten keine ergänzt werden, nur um eine bestimmte Anzahl zu erreichen. Die Einbettung von Schriftarten muss deren jeweilige Lizenz einhalten; standardmäßig werden die fünf Dateien aus `fonts/` eingebettet.
+Die Folien- und Formelanzahlen in den Befehlen sind Beispiele und müssen zum Artikel passen. Das Einbetten von Schriftarten muss deren Lizenzen entsprechen; standardmäßig werden die fünf Dateien in `fonts/` eingebettet.
 
 Der Validator prüft unter anderem Paketstruktur, Beziehungen, Schriftzeichensätze, native Formeln und Platzhalter. **Er ersetzt weder eine vollständige Prüfung gegen das OOXML-Schema noch einen tatsächlichen Test in der Desktopversion von Microsoft PowerPoint.** Nach dem Rendern müssen Inhalt und Layout weiterhin Folie für Folie geprüft werden. [Kompatibilitätsleitfaden](../../references/powerpoint-compatibility.md)
 
@@ -191,8 +159,8 @@ python -m unittest discover -s tests -v
 <summary><b>📦 Distributionsarchive erstellen</b></summary>
 
 ```bash
-python scripts/package_skill.py --variant github --output ../paper-loom-v1.1.0-github.zip
-python scripts/package_skill.py --variant full --output ../paper-loom-v1.1.0-full.zip
+python scripts/package_skill.py --variant github --output ../paper-loom-v1.1.2-github.zip
+python scripts/package_skill.py --variant full --output ../paper-loom-v1.1.2-full.zip
 ```
 
 Das vollständige Archiv enthält die im Repository mitgelieferten Schriftarten; das Paketierungswerkzeug prüft deren Vollständigkeit. Mit `--variant github` wird ein Quellcodearchiv ohne separate Schriftdateien erstellt.
@@ -214,14 +182,15 @@ Das vollständige Archiv enthält die im Repository mitgelieferten Schriftarten;
 | Pfad | Inhalt |
 |---|---|
 | `SKILL.md` | Zentraler Arbeitsablauf und Qualitätsanforderungen zum Einlesen durch die KI |
-| `WEB_START.md` | Kopierbare Prompts und Ausführungsanleitung für die Web-Nutzung |
+| `WEB_START.md` | Optionale Hinweise zu Upload und Umgebung; Einstiegspunkt: SKILL.md |
 | `README.md` | Projektbeschreibung auf Englisch |
 | `docs/i18n/` | Übersetzungen der README |
 | `fonts/` | Enthaltene Schriftdateien, Nutzungshinweise und Prüfmanifest |
 | `scripts/` | Werkzeuge für Bildextraktion, native Formeln, Schrifteinbettung, PPTX-Prüfung, Installation und Paketierung |
 | `references/` | Anleitungen zu Foliengestaltung, Bildextraktion, Kompatibilität und Nutzung im Client |
+| `examples/aeroduo-reference/` | Sechsseitige visuelle Referenz und Leseanleitung |
 | `examples/evidence-demo/` | Ausführbares Beispiel mit drei nativen Folienlayouts und Quellcode zur Erstellung |
-| `examples/geonav/workflow.md` | Ablauf dieser Erstellung, endgültige Struktur mit 8 Folien und wesentliche Korrekturen |
+| `examples/geonav/workflow.md` | Beispiel für Belegauswahl und Folienplanung |
 | `examples/evidence.template.json` | Vorlage für Quellen, Versuchsbedingungen und Messdefinitionen sowie Prüfprotokolle |
 | `examples/slide-plan.template.json` | Vorlage für Fragen, Belege, Abbildungen und Entscheidungen zum Zusammenführen von Folien |
 | `tests/` | Tests des Skriptverhaltens und Regressionstests |

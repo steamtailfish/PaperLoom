@@ -6,7 +6,7 @@
 
 **標準 6〜8 枚 · 根拠を集約 · 論文の原図 · ネイティブ数式 · 編集可能な PPTX**
 
-![Version](https://img.shields.io/badge/version-1.1.0-4455AA?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.1.2-4455AA?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![PowerPoint](https://img.shields.io/badge/PowerPoint-%2Epptx-D24726?style=flat-square)
@@ -28,6 +28,32 @@
 ---
 
 PaperLoom は、研究論文をコンパクトで図表を中心とした、編集可能な **PowerPoint `.pptx`** に仕上げるスキルです。ローカルのクライアントにインストールする方法と、プロジェクトの ZIP と論文をコード実行機能のある Web 版 GPT にアップロードする方法に対応しています。
+
+<a id="quick-start"></a>
+
+## 🚀 クイックスタート
+
+### 🌐 Web にアップロード
+
+**paper-loom-v1.1.2-full.zip** と**論文 PDF**をアップロードし、次のように伝えます。
+
+> ZIP 内の skill の要件に従って、この論文の PPT を作成してください。
+
+操作はこれだけです。既定の設定、作成手順、各スライドの確認、ファイルの納品は SKILL.md に定義されています。README の閲覧、長いプロンプト、設定ファイル、別の参考資料は不要です。
+
+### 💻 ローカルクライアント
+
+必要なフォントが同梱されたこのリポジトリをクローンまたはダウンロードし、[フォントガイド](../../fonts/README.md)を確認してから、リポジトリのルートで実行します。
+
+```bash
+python scripts/install_skill.py
+```
+
+既定では現在のユーザーの `~/.agents/skills/paper-loom/` にコピーします。同名のディレクトリがある場合は停止し、既存のバージョンを上書きしません。スキルのインポートに対応したクライアントでは、このフォルダー全体を直接選択することもできます。[クライアントの詳細ガイド](../../references/client-mode.md)
+
+インストール後、クライアントで PaperLoom を選択するか、次のように入力します。
+
+> $paper-loom を使って、この論文の研究室発表用 PPT を作成してください。
 
 <a id="features"></a>
 
@@ -69,45 +95,7 @@ PaperLoom は、研究論文をコンパクトで図表を中心とした、編�
 
 [編集可能な PPTX](../../examples/evidence-demo/evidence-demo.pptx) · [ソースコードと再現手順](../../examples/evidence-demo/README.md)
 
-<a id="quick-start"></a>
-
-## 🚀 クイックスタート
-
-### 💻 ローカルクライアント
-
-必要なフォントが同梱されたこのリポジトリをクローンまたはダウンロードし、[フォントガイド](../../fonts/README.md)を確認してから、リポジトリのルートで実行します。
-
-```bash
-python scripts/install_skill.py
-```
-
-既定では現在のユーザーの `~/.agents/skills/paper-loom/` にコピーします。同名のディレクトリがある場合は停止し、既存のバージョンを上書きしません。スキルのインポートに対応したクライアントでは、このフォルダー全体を直接選択することもできます。[クライアントの詳細ガイド](../../references/client-mode.md)
-
-インストール後、クライアントで PaperLoom を選択するか、次のように入力します。
-
-```text
-$paper-loom を使って、この論文を研究室ミーティング用の PowerPoint にしてください。
-スキルの構成、フォント、画像抽出、ネイティブ数式の要件に従い、.pptx を直接納品してくださ
-い。
-```
-
-### 🌐 Web にアップロード
-
-配布版の **`paper-loom-v1.1.0-full.zip`** を優先して使い、論文 PDF と一緒にアップロードしてください。ソースから作る場合は、下記の `package_skill.py --variant full` コマンドで生成します。ビルド成果物や個人用キャッシュは除外されます。その後、次のメッセージを送信します。
-
-```text
-アップロードした PaperLoom を展開し、WEB_START.md の手順で研究室ミーティング用の
-PowerPoint を作成してください。最初に SKILL.md、references/design.md、
-references/reference-patterns.md、references/quality-gates.md を読んでください。
-論文の根拠を整理し、slide-plan.json を保存してから、そのまま制作を続けてください。
-標準は 6〜8 枚、複雑な論文は 8〜10 枚です。枚数合わせの関連研究や数式の専用ページは不要です。
-関連する仕組みと根拠を同じページの図表で説明し、比較条件、単位、不利な結果も残してください。
-指定フォント、原図抽出、必要なネイティブ数式の要件を守り、詳細な出典と説明はノートに記載してください。
-構造と品質を検査し、全ページをレンダリングして確認・修正した後、ダウンロード可能な .pptx を納品してください。
-```
-
-> [!NOTE]
-> Web 版 GPT には、ZIP の展開、コードの実行、ダウンロード可能なファイルの生成機能が必要です。アップロードだけでこれらのツールが追加されたり、スキルが永続的にインストールされたりするわけではありません。詳しい手順は [WEB_START.md](../../WEB_START.md) を参照してください。
+[同梱の AeroDuo 6 ページ参考 PDF](../../examples/aeroduo-reference/AeroDuo_组会汇报_合并精简6页版.pdf)
 
 <a id="workflow"></a>
 
@@ -118,24 +106,6 @@ references/reference-patterns.md、references/quality-gates.md を読んでく�
 制作前に[ページ設計](../../references/design.md)、[参考レイアウトと反例](../../references/reference-patterns.md)、[品質チェック](../../references/quality-gates.md)を読みます。[ページ設計テンプレート](../../examples/slide-plan.template.json)に沿って作業ディレクトリに `slide-plan.json` を保存し、構成案の承認待ちを標準動作にせず制作を続けます。
 
 同じ仕組みの全体像、状態変化、フィードバック条件をまとめ、同条件の主結果とアブレーション、不利な結果を並べます。比較条件は図表の近くに、詳しい説明と出典はノートに残します。[根拠を集約したデモ](../../examples/evidence-demo/README.md)を参考に、全ページの読みやすさを確認してください。
-
-<details>
-<summary><b>ワークフローの背景</b></summary>
-
-以下は初期の GeoNav 制作事例です。当時の固定枚数や関連研究の 6 ブロック構成は、現在の標準要件ではありません。
-
-このスキルは、GeoNav の研究室ミーティング用発表資料を何度も作成・修正した経験から生まれました。内容の圧縮とストーリーの調整、フォントとネイティブ数式への対応、Office 形式の修復、出典フッターの削除、大きな関連研究一覧表を 6 つの研究アプローチに分ける変更など、実際に検証した作業方法を再利用可能な手順とスクリプトにまとめています。
-
-1. **研究室ミーティングの目的とビジュアル基準を決める**：実際の PPTX、コンパクトで情報密度の高い構成、図表の優先、指定フォント、ネイティブ数式。
-2. **論文を読み、根拠の索引を作る**：結論、図表、実験条件・評価基準、失敗例、判断の限界を対応付ける。
-3. **根拠を整理してからページを設計する**：課題、仕組み、実験、限界を関連付け、同じ図や仕組みに依存するページは読みやすさを確認して統合する。
-4. **元の素材と編集可能なオブジェクトを処理する**：画像を直接抽出し、表とグラフをネイティブ化し、LaTeX を Office Math に変換し、フォントを run 単位で設定する。
-5. **内容、レイアウト、互換性を確認する**：各ページをレンダリングしてデータを照合し、GB2312 の不適合な `charset=134` を `-122` に修正する。
-6. **フィードバックに応じて部分的に修正する**：詳細な出典をノートに、必要な条件を図表の近くに残し、確認済みの他ページや形式の修正を保護する。
-
-全工程は [GeoNav の振り返り](../../examples/geonav/workflow.md)をご覧ください。
-
-</details>
 
 <a id="development"></a>
 
@@ -173,7 +143,7 @@ python scripts/embed_fonts.py math.pptx final.pptx
 python scripts/validate_pptx.py final.pptx --expected-slides 8 --expected-math 3 --report validation.json
 ```
 
-スライド `8` 枚、数式 `3` 個は今回の GeoNav のサンプル要件です。別の論文では実際の必要に応じて調整してください。必要な数式がない論文に、数合わせのために数式を追加する必要はありません。フォントの埋め込みは、そのフォント自体のライセンスに従う必要があります。既定では `fonts/` の 5 個のファイルを埋め込みます。
+コマンドのスライド数と数式数は例です。対象の論文に合わせて指定してください。 フォントの埋め込みは各フォントのライセンスに従います。既定では `fonts/` の 5 ファイルを埋め込みます。
 
 検証ツールはパッケージ構造、リレーションシップ、フォントの文字セット、ネイティブ数式、プレースホルダーなどを検査しますが、**完全な OOXML Schema 検証でも、デスクトップ版 Microsoft PowerPoint での実動作確認でもありません**。レンダリング後も、内容とレイアウトを 1 枚ずつ確認する必要があります。[互換性ガイド](../../references/powerpoint-compatibility.md)
 
@@ -189,8 +159,8 @@ python -m unittest discover -s tests -v
 <summary><b>📦 配布用アーカイブの作成</b></summary>
 
 ```bash
-python scripts/package_skill.py --variant github --output ../paper-loom-v1.1.0-github.zip
-python scripts/package_skill.py --variant full --output ../paper-loom-v1.1.0-full.zip
+python scripts/package_skill.py --variant github --output ../paper-loom-v1.1.2-github.zip
+python scripts/package_skill.py --variant full --output ../paper-loom-v1.1.2-full.zip
 ```
 
 完全版アーカイブにはリポジトリに同梱されたフォントが含まれ、パッケージ作成ツールがファイルの不足を確認します。`--variant github` は、独立したフォントファイルを含まないソースコードアーカイブを作成します。
@@ -212,14 +182,15 @@ python scripts/package_skill.py --variant full --output ../paper-loom-v1.1.0-ful
 | パス | 内容 |
 |---|---|
 | `SKILL.md` | AI が読む、中心となるワークフローと品質要件 |
-| `WEB_START.md` | Web 版向けのコピー用プロンプトと実行手順 |
+| `WEB_START.md` | 任意のアップロード・実行環境の説明。実行入口は SKILL.md |
 | `README.md` | プロジェクトの英語版 README |
 | `docs/i18n/` | その他の言語の README |
 | `fonts/` | 同梱フォントファイル、使用方法、検証用一覧 |
 | `scripts/` | 画像抽出、ネイティブ数式、フォント埋め込み、PPTX 検査、インストール、パッケージ作成用ツール |
 | `references/` | ページデザイン、画像抽出、互換性、クライアント利用のガイド |
+| `examples/aeroduo-reference/` | 6 ページの視覚参考と閲覧ガイド |
 | `examples/evidence-demo/` | 実行可能な 3 枚のネイティブレイアウトデモとビルド用ソース |
-| `examples/geonav/workflow.md` | 今回の制作フロー、最終的な 8 枚の構成、主な修正点 |
+| `examples/geonav/workflow.md` | 論文の根拠整理とスライド計画の例 |
 | `examples/evidence.template.json` | 出典、実験条件・評価基準、検証記録のテンプレート |
 | `examples/slide-plan.template.json` | 各ページの問い、根拠、図表、統合判断のテンプレート |
 | `tests/` | スクリプトの動作テストと回帰テスト |

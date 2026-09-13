@@ -6,7 +6,7 @@
 
 **預設 6–8 頁 · 緊湊證據 · 論文原圖 · 原生公式 · 可編輯 PPTX**
 
-![Version](https://img.shields.io/badge/version-1.1.0-4455AA?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.1.2-4455AA?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![PowerPoint](https://img.shields.io/badge/PowerPoint-%2Epptx-D24726?style=flat-square)
@@ -28,6 +28,32 @@
 ---
 
 PaperLoom 是一個將科研論文製作成精簡、以圖表為先、可編輯的 **PowerPoint `.pptx`** 的 skill。支援在本機客戶端安裝，亦可將專案 ZIP 與論文上載至具備程式碼執行功能的網頁版 GPT。
+
+<a id="quick-start"></a>
+
+## 🚀 快速開始
+
+### 🌐 上載至網頁
+
+上載 **paper-loom-v1.1.2-full.zip** 和**論文 PDF**，然後說：
+
+> 請你按照壓縮包內 skill 的要求製作論文的 PPT。
+
+這就是全部操作。預設設定、製作流程、逐頁檢查及成品交付都已寫入 SKILL.md，毋須閱讀 README、複製長提示詞、填寫設定或另傳參考稿。
+
+### 💻 本機客戶端
+
+複製或下載本儲存庫（已附帶所需字型），閱讀[字型指南](../../fonts/README.md)，然後在儲存庫根目錄執行：
+
+```bash
+python scripts/install_skill.py
+```
+
+預設複製至目前用戶的 `~/.agents/skills/paper-loom/`，如目錄已存在便會停止，不會覆寫你的版本。亦可在支援匯入 skill 的客戶端中直接選取這個完整資料夾。[客戶端詳細指南](../../references/client-mode.md)
+
+安裝後，在客戶端選取 PaperLoom，或輸入：
+
+> 使用 $paper-loom，將這篇論文製作成科研組會 PPT。
 
 <a id="features"></a>
 
@@ -69,43 +95,7 @@ PaperLoom 是一個將科研論文製作成精簡、以圖表為先、可編輯�
 
 [可編輯 PPTX](../../examples/evidence-demo/evidence-demo.pptx) · [原始碼與重現步驟](../../examples/evidence-demo/README.md)
 
-<a id="quick-start"></a>
-
-## 🚀 快速開始
-
-### 💻 本機客戶端
-
-複製或下載本儲存庫（已附帶所需字型），閱讀[字型指南](../../fonts/README.md)，然後在儲存庫根目錄執行：
-
-```bash
-python scripts/install_skill.py
-```
-
-預設複製至目前用戶的 `~/.agents/skills/paper-loom/`，如目錄已存在便會停止，不會覆寫你的版本。亦可在支援匯入 skill 的客戶端中直接選取這個完整資料夾。[客戶端詳細指南](../../references/client-mode.md)
-
-安裝後，在客戶端選取 PaperLoom，或輸入：
-
-```text
-使用 $paper-loom，將這篇論文製作成科研組會議 PowerPoint。
-按照 skill 的結構、字型、圖片擷取及原生公式要求，直接交付 .pptx。
-```
-
-### 🌐 上載至網頁
-
-優先使用發行版 **`paper-loom-v1.1.0-full.zip`**，與論文 PDF 一併上載。若由原始碼建立，請使用下方 `package_skill.py --variant full` 指令產生完整套件；它會排除建置產物與私有快取。然後傳送：
-
-```text
-請解壓縮我上載的 PaperLoom，閱讀 WEB_START.md，按照其中的完整流程製作這篇論文的
-科研組會 PowerPoint。先讀 SKILL.md、references/design.md、references/reference-patterns.md
-及 references/quality-gates.md，整理證據並保存 slide-plan.json，然後直接生成。
-預設 6–8 頁，複雜內容可用 8–10 頁；不用為湊頁數另做綜述或公式頁。
-讓同一頁的圖表解釋相關機制與證據，保留實驗條件、比較對象、單位和不利結果。
-遵守套件的字型、原圖擷取及必要原生公式要求，詳細來源與長講解放備忘稿。
-執行結構及品質檢查，逐頁渲染、查看和修正，最後交付可下載的 .pptx。
-```
-
-> [!NOTE]
-> 網頁版 GPT 需要能夠解壓縮、執行程式碼及產生可下載的檔案；上載 ZIP 本身不會賦予這些工具，也不會永久安裝 skill。完整操作入口請參閱 [WEB_START.md](../../WEB_START.md)。
+[套件內 AeroDuo 六頁參考 PDF](../../examples/aeroduo-reference/AeroDuo_组会汇报_合并精简6页版.pdf)
 
 <a id="workflow"></a>
 
@@ -116,24 +106,6 @@ python scripts/install_skill.py
 製作前必讀[頁面設計](../../references/design.md)、[參考版式與反例](../../references/reference-patterns.md)及[品質關卡](../../references/quality-gates.md)。先按[逐頁設計範本](../../examples/slide-plan.template.json)完成工作目錄的 `slide-plan.json`，然後繼續生成，不預設等待大綱批准。
 
 同一機制的總覽、狀態與回饋條件可合頁；同口徑主結果、消融及不利結果可並列。比較條件留在圖表附近，長講解與詳細來源放備忘稿。以[緊湊證據示例](../../examples/evidence-demo/README.md)作視覺參考，逐頁檢查可讀性。
-
-<details>
-<summary><b>工作流程背後的經驗</b></summary>
-
-以下是早期 GeoNav 個案的回顧，當時的固定頁數與六區塊綜述不是目前的預設要求。
-
-這個 skill 源自一次 GeoNav 研究組會議匯報的多輪製作與修改：從精簡內容、調整敘事，到字型與原生公式、Office 格式修復，再到移除頁尾說明、將大型文獻綜述表格改成六個研究路線區塊。它將經過驗證的工作方式整理成可重用的說明與指令碼。
-
-1. **確定研究組會議目標與視覺標準**：真正的 PPTX、精簡高密度、圖表優先、指定字型與原生公式。
-2. **閱讀論文並建立證據索引**：將結論、圖表、實驗條件與評估標準、失敗案例及判斷界限逐一對應。
-3. **先組織證據，再安排頁面**：以逐頁設計串連任務、機制、實驗和邊界；合併依賴同一圖表或機制的頁面，按可讀性決定是否拆頁。
-4. **處理原始素材與可編輯物件**：直接擷取圖片，將表格與圖表轉為原生物件，LaTeX 轉為 Office Math，字型設定落實至每個 run。
-5. **檢查內容、版面與相容性**：逐頁渲染、比對數據，將 GB2312 `charset=134` 的不合規寫法修正為 `-122`。
-6. **按回饋作局部修改**：保留詳細來源備忘稿及必要的圖旁條件，保護其餘已確認頁面與格式修復。
-
-完整過程請參閱 [GeoNav 製作回顧](../../examples/geonav/workflow.md)。
-
-</details>
 
 <a id="development"></a>
 
@@ -171,7 +143,7 @@ python scripts/embed_fonts.py math.pptx final.pptx
 python scripts/validate_pptx.py final.pptx --expected-slides 8 --expected-math 3 --report validation.json
 ```
 
-`8` 頁與 `3` 條公式是本次 GeoNav 的示例要求，新的論文應按實際需要調整。沒有必要公式的論文，毋須為了湊數而加入公式。字型內嵌必須符合字型本身的授權條款；預設內嵌 `fonts/` 的五個檔案。
+指令中的頁數與公式數僅為示例，請按目前論文調整。 字型內嵌必須符合字型本身的授權條款；預設內嵌 `fonts/` 的五個檔案。
 
 驗證工具會檢查套件結構、關聯、字型字元集、原生公式及預留位置等，但**不等於完整的 OOXML Schema 驗證，更不等於在桌面版 Microsoft PowerPoint 中實測**。渲染後仍需逐頁檢查內容與版面。[相容性指南](../../references/powerpoint-compatibility.md)
 
@@ -187,8 +159,8 @@ python -m unittest discover -s tests -v
 <summary><b>📦 建置發行封存檔</b></summary>
 
 ```bash
-python scripts/package_skill.py --variant github --output ../paper-loom-v1.1.0-github.zip
-python scripts/package_skill.py --variant full --output ../paper-loom-v1.1.0-full.zip
+python scripts/package_skill.py --variant github --output ../paper-loom-v1.1.2-github.zip
+python scripts/package_skill.py --variant full --output ../paper-loom-v1.1.2-full.zip
 ```
 
 完整封存檔包含儲存庫附帶的字型，封裝工具會檢查檔案是否齊全；`--variant github` 會產生不含獨立字型檔案的原始碼封存檔。
@@ -210,14 +182,15 @@ python scripts/package_skill.py --variant full --output ../paper-loom-v1.1.0-ful
 | 路徑 | 內容 |
 |---|---|
 | `SKILL.md` | 供 AI 閱讀的核心工作流程與品質要求 |
-| `WEB_START.md` | 網頁版可複製的提示詞與執行入口 |
+| `WEB_START.md` | 可選的上載及環境說明；SKILL.md 是執行入口 |
 | `README.md` | 專案的英文版 README |
 | `docs/i18n/` | 其他語言的 README |
 | `fonts/` | 隨儲存庫提供的字型檔案、使用說明與核對清單 |
 | `scripts/` | 圖片擷取、原生公式、字型內嵌、PPTX 檢查、安裝及封裝工具 |
 | `references/` | 頁面設計、圖片擷取、相容性及客戶端使用指南 |
+| `examples/aeroduo-reference/` | 六頁視覺參考與閱讀指南 |
 | `examples/evidence-demo/` | 可執行的三頁原生版面示範及建置原始碼 |
-| `examples/geonav/workflow.md` | 本次製作流程、最終 8 頁結構及關鍵修正 |
+| `examples/geonav/workflow.md` | 論文證據與頁面規劃示例 |
 | `examples/evidence.template.json` | 來源、實驗條件與評估標準、驗證紀錄範本 |
 | `examples/slide-plan.template.json` | 逐頁問題、證據、視覺與合頁判斷範本 |
 | `tests/` | 指令碼行為測試與回歸測試 |

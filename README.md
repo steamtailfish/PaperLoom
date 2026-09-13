@@ -6,7 +6,7 @@
 
 **Evidence-rich slides · Original figures · Native equations · Editable PPTX**
 
-![Version](https://img.shields.io/badge/version-1.1.0-4455AA?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.1.2-4455AA?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![PowerPoint](https://img.shields.io/badge/PowerPoint-%2Epptx-D24726?style=flat-square)
@@ -29,13 +29,39 @@
 
 PaperLoom turns research papers into compact, visual-first presentations for research group meetings. Use it as a skill in a local client, or upload the complete project ZIP and a paper to a web GPT with code execution capabilities.
 
+<a id="quick-start"></a>
+
+## 🚀 Quick Start
+
+### 🌐 Upload on the Web
+
+Upload **paper-loom-v1.1.2-full.zip** and the **paper PDF**, then say:
+
+> Please make a PPT of the paper following the skill in the ZIP.
+
+That is the entire user workflow. SKILL.md contains the defaults and the complete process, including visual review and file delivery. No long prompt, configuration, or separate reference deck is required.
+
+### 💻 Install in a Local Client
+
+Clone or download this repository with its bundled fonts, review the [font guide](fonts/README.md), then run from the repository root:
+
+```bash
+python scripts/install_skill.py
+```
+
+By default, this copies the skill to `~/.agents/skills/paper-loom/` for the current user. It stops if the directory already exists, preserving your version. In clients that support importing skills, you can also select the complete folder directly. See the [detailed client guide](references/client-mode.md).
+
+After installation, select PaperLoom in the client or enter:
+
+> Use $paper-loom to make a research presentation from this paper.
+
 <a id="features"></a>
 
 ## ✨ Key Features
 
 <table>
 <tr>
-<td width="50%" valign="top"><b>🎨 Visual storytelling</b><br>Organize literature reviews into thematic blocks, explain methods with flowcharts and mechanism diagrams, and present results in native tables and charts.</td>
+<td width="50%" valign="top"><b>🎨 Visual storytelling</b><br>Explain inputs, transformations and feedback with diagrams; combine related evidence and present comparisons in native tables and charts.</td>
 <td width="50%" valign="top"><b>🖼️ Original paper figures</b><br>Extract images embedded in the paper PDF directly. Keep original figure assets instead of using page screenshots or cropped screenshots.</td>
 </tr>
 <tr>
@@ -52,7 +78,7 @@ PaperLoom turns research papers into compact, visual-first presentations for res
 
 ## 🖼️ Preview
 
-These three slides show a compact overview with mechanism details, training/inference lanes, and results with ablations and limitations. All content is explicitly **fictional**. The package includes design patterns distilled from the user's AeroDuo reference, without redistributing third-party PDFs or paper figures.
+These three slides show a compact overview with mechanism details, training/inference lanes, and results with ablations and limitations. All content is explicitly **fictional**. The bundled six-page AeroDuo PDF provides a complete visual reference for web and client use. See the reference below and THIRD_PARTY_NOTICES.md.
 
 <table>
 <tr>
@@ -69,47 +95,7 @@ These three slides show a compact overview with mechanism details, training/infe
 
 [Open the editable PowerPoint](examples/evidence-demo/evidence-demo.pptx) · [View demo source & build instructions](examples/evidence-demo/README.md)
 
-<a id="quick-start"></a>
-
-## 🚀 Quick Start
-
-### 💻 Install in a Local Client
-
-Clone or download this repository with its bundled fonts, review the [font guide](fonts/README.md), then run from the repository root:
-
-```bash
-python scripts/install_skill.py
-```
-
-By default, this copies the skill to `~/.agents/skills/paper-loom/` for the current user. It stops if the directory already exists, preserving your version. In clients that support importing skills, you can also select the complete folder directly. See the [detailed client guide](references/client-mode.md).
-
-After installation, select PaperLoom in the client or enter:
-
-```text
-Use $paper-loom to turn this paper into a PowerPoint presentation for a research group
-meeting.
-Follow the skill's structure, font, figure extraction, and native equation requirements,
-and deliver the .pptx file.
-```
-
-### 🌐 Upload on the Web
-
-Upload the released **paper-loom-v1.1.0-full.zip** together with the **paper PDF**. To rebuild from this repository, use `python scripts/package_skill.py --variant full --output ../paper-loom-v1.1.0-full.zip`; this excludes working files and caches. Then send:
-
-```text
-Unzip PaperLoom and read SKILL.md, references/design.md,
-references/reference-patterns.md and references/quality-gates.md before authoring.
-Read the paper, map its evidence and prepare slide-plan.json, then continue directly
-to an editable research presentation. Aim for 6–8 slides unless the evidence needs more.
-Combine related mechanisms and evidence; avoid repetitive text cards, small figures
-surrounded by whitespace, and splitting one mechanism across several pages.
-Keep comparisons, data and conditions; put long explanations in speaker notes.
-Use the bundled fonts, original extracted figures and native equations. Run the package
-and slide-quality audits, render and inspect every slide, fix issues, then deliver .pptx.
-```
-
-> [!NOTE]
-> The web GPT must be able to extract archives, run code, and generate downloadable files. Uploading a ZIP does not grant these tools or permanently install the skill. See [WEB_START.md](WEB_START.md) for the full guide.
+[Bundled AeroDuo six-page reference PDF](examples/aeroduo-reference/AeroDuo_组会汇报_合并精简6页版.pdf)
 
 <a id="workflow"></a>
 
@@ -126,22 +112,6 @@ Default to **6–8 slides**; complex papers may need 8–10. A user-specified co
 | Discussion | Contributions paired with evidence and remaining questions |
 
 Do not force a six-card literature page or one slide per equation. Read the [reference patterns](references/reference-patterns.md), use the [slide-plan template](examples/slide-plan.template.json), and apply the [quality gates](references/quality-gates.md). Total word count and picture area are not quality scores.
-
-<details>
-<summary><b>Behind the workflow</b></summary>
-
-The original GeoNav iteration established fonts, native equations and Office compatibility. Version 1.1 adds lessons from comparing YOPO with AeroDuo: plan evidence before pages, combine related explanations, and inspect the actual visual result. The old GeoNav allocation is a historical example.
-
-1. **Define the meeting's goals and visual standards**: a real PPTX, compact and information-rich slides, priority for figures and charts, specified fonts, and native equations.
-2. **Read the paper and build an evidence index**: connect conclusions, figures, experimental conditions, failure cases, and the limits of each claim.
-3. **Plan the narrative before the slides**: move from the problem to the literature review, methods, experiments, and conclusion; allocate method slides according to the actual content.
-4. **Prepare original assets and editable objects**: extract figures directly, use native tables and charts, convert LaTeX to Office Math, and apply fonts at the text-run level.
-5. **Check content, layout, and compatibility**: render every slide, cross-check data, and correct the invalid GB2312 `charset=134` value to `-122`.
-6. **Iterate locally on feedback**: remove source footers while keeping speaker notes, replace the literature review table with thematic blocks, and preserve other slides and formatting fixes.
-
-See the [GeoNav retrospective](examples/geonav/workflow.md) for the complete process.
-
-</details>
 
 <a id="development"></a>
 
@@ -180,7 +150,7 @@ python scripts/validate_pptx.py final.pptx --expected-slides 8 --expected-math 3
 python scripts/audit_slide_quality.py final.pptx --report work/slide-quality.json
 ```
 
-The `8` slides and `3` equations are example requirements from the GeoNav presentation; adjust them for each new paper. Do not add equations just to reach a count when the paper does not need them. Font embedding must comply with the fonts' own licenses; by default, the five files in `fonts/` are embedded.
+The slide and equation counts in these commands are illustrative; choose them for the paper. Font embedding must comply with each font’s license; by default the five files in `fonts/` are embedded.
 
 The validator checks package structure, relationships, font character sets, native equations, and placeholders. It **does not provide full OOXML Schema validation or replace testing in desktop Microsoft PowerPoint**. After rendering, inspect the content and layout of every slide. See the [compatibility guide](references/powerpoint-compatibility.md).
 
@@ -198,11 +168,11 @@ python -m unittest discover -s tests -v
 <summary><b>📦 Build release archives</b></summary>
 
 ```bash
-python scripts/package_skill.py --variant github --output ../paper-loom-v1.1.0-github.zip
-python scripts/package_skill.py --variant full --output ../paper-loom-v1.1.0-full.zip
+python scripts/package_skill.py --variant github --output ../paper-loom-v1.1.2-github.zip
+python scripts/package_skill.py --variant full --output ../paper-loom-v1.1.2-full.zip
 ```
 
-The full archive includes the bundled fonts, new design references and examples. The packager excludes work products and writes one fresh manifest with verified file hashes. `--variant github` creates a source archive without standalone font files.
+The full archive includes the bundled fonts, design references and examples. The packager excludes work products and writes one fresh manifest with verified file hashes. `--variant github` creates a source archive without standalone font files.
 
 </details>
 
@@ -218,16 +188,17 @@ The full archive includes the bundled fonts, new design references and examples.
 | Path | Contents |
 |---|---|
 | `SKILL.md` | Core workflow and quality requirements for the AI |
-| `WEB_START.md` | Copyable prompts and execution entry point for web use |
+| `WEB_START.md` | Optional upload and environment notes; SKILL.md is the execution entry point |
 | `README.md` | English project overview and language navigation |
 | `docs/i18n/` | READMEs in Simplified Chinese, Traditional Chinese (Hong Kong), Japanese, French, Russian, and German |
 | `fonts/` | Bundled font files, usage notes, and verification manifest |
 | `scripts/` | Tools for figure extraction, native equations, font embedding, PPTX inspection, installation, and packaging |
 | `references/` | Guides to slide design, figure extraction, compatibility, and client use |
+| `examples/aeroduo-reference/` | Six-page visual reference and reading guide |
 | `examples/evidence-demo/` | Evidence compositions, editable demo and portable build source |
 | `examples/slide-plan.template.json` | Per-slide evidence, layout and review plan |
 | `references/rendering.md` | Public PPTX/PDF rendering fallback for visual review |
-| `examples/geonav/workflow.md` | The production workflow, final eight-slide structure, and key corrections |
+| `examples/geonav/workflow.md` | A paper-to-presentation planning example |
 | `examples/evidence.template.json` | Template for sources, experimental conditions, and validation records |
 | `tests/` | Script behavior and regression tests |
 

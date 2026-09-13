@@ -6,7 +6,7 @@
 
 **6–8 diapositives par défaut · Preuves regroupées · Figures d’origine · Équations natives · PPTX modifiable**
 
-![Version](https://img.shields.io/badge/version-1.1.0-4455AA?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.1.2-4455AA?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![PowerPoint](https://img.shields.io/badge/PowerPoint-%2Epptx-D24726?style=flat-square)
@@ -28,6 +28,32 @@
 ---
 
 PaperLoom transforme des articles scientifiques en présentations **PowerPoint `.pptx`** compactes, modifiables et centrées sur les figures et les graphiques. Installez le skill dans un client compatible, ou téléversez le projet complet au format ZIP avec l’article dans un GPT web capable d’exécuter du code.
+
+<a id="quick-start"></a>
+
+## 🚀 Démarrage rapide
+
+### 🌐 Téléversement sur le web
+
+Téléversez **paper-loom-v1.1.2-full.zip** et le **PDF de l’article**, puis demandez :
+
+> Crée le PPT de cet article en suivant le skill contenu dans le ZIP.
+
+Cela suffit. SKILL.md définit les paramètres par défaut, la création, la vérification visuelle et la livraison du fichier. Aucun long prompt, fichier de configuration ou diaporama de référence supplémentaire n’est nécessaire.
+
+### 💻 Client local
+
+Clonez ou téléchargez ce dépôt avec les polices incluses, consultez le [guide des polices](../../fonts/README.md), puis exécutez la commande suivante à la racine du dépôt :
+
+```bash
+python scripts/install_skill.py
+```
+
+Par défaut, le skill est copié dans `~/.agents/skills/paper-loom/` pour l’utilisateur courant. Si ce répertoire existe déjà, l’installation s’arrête sans écraser votre version. Vous pouvez aussi sélectionner directement ce dossier complet dans un client prenant en charge l’importation de skills. [Guide détaillé pour les clients](../../references/client-mode.md)
+
+Après l’installation, sélectionnez PaperLoom dans le client ou saisissez :
+
+> Utilise $paper-loom pour créer une présentation de cet article.
 
 <a id="features"></a>
 
@@ -69,47 +95,7 @@ Cette démonstration utilise des **données fictives** clairement signalées ; e
 
 [📥 Présentation PPTX modifiable](../../examples/evidence-demo/evidence-demo.pptx) · [📖 Code source et commandes de reproduction](../../examples/evidence-demo/README.md)
 
-<a id="quick-start"></a>
-
-## 🚀 Démarrage rapide
-
-### 💻 Client local
-
-Clonez ou téléchargez ce dépôt avec les polices incluses, consultez le [guide des polices](../../fonts/README.md), puis exécutez la commande suivante à la racine du dépôt :
-
-```bash
-python scripts/install_skill.py
-```
-
-Par défaut, le skill est copié dans `~/.agents/skills/paper-loom/` pour l’utilisateur courant. Si ce répertoire existe déjà, l’installation s’arrête sans écraser votre version. Vous pouvez aussi sélectionner directement ce dossier complet dans un client prenant en charge l’importation de skills. [Guide détaillé pour les clients](../../references/client-mode.md)
-
-Après l’installation, sélectionnez PaperLoom dans le client ou saisissez :
-
-```text
-Utilise $paper-loom pour transformer cet article en une présentation PowerPoint pour une
-réunion de laboratoire.
-Respecte les exigences du skill concernant la structure, les polices, l’extraction des
-images et les équations natives, puis livre directement le fichier .pptx.
-```
-
-### 🌐 Téléversement sur le web
-
-Utilisez de préférence l’archive publiée **`paper-loom-v1.1.0-full.zip`** et téléversez-la avec le PDF de l’article. Pour partir du code source, créez l’archive avec la commande `package_skill.py --variant full` indiquée plus bas ; elle exclut les fichiers de construction et les caches privés. Envoyez ensuite :
-
-```text
-Décompresse PaperLoom et suis le processus de WEB_START.md pour créer la présentation de cet article.
-Lis d’abord SKILL.md, references/design.md, references/reference-patterns.md et references/quality-gates.md.
-Organise les preuves, enregistre slide-plan.json, puis poursuis directement la création.
-Prévois 6–8 diapositives par défaut, ou 8–10 pour un article complexe. N’ajoute pas de page de revue
-bibliographique ou d’équations uniquement pour atteindre un nombre de pages.
-Explique les mécanismes et les preuves liés sur une même page. Garde les conditions de comparaison,
-les unités et les résultats défavorables. Respecte les polices, l’extraction des figures et les équations
-natives nécessaires. Place les sources détaillées et les longues explications dans les notes.
-Vérifie la structure et la qualité, rends et inspecte chaque diapositive, corrige les défauts, puis livre un .pptx téléchargeable.
-```
-
-> [!NOTE]
-> Le GPT web doit pouvoir décompresser des archives, exécuter du code et produire des fichiers téléchargeables. Téléverser le ZIP ne lui fournit pas ces outils et n’installe pas le skill de façon permanente. Les instructions complètes se trouvent dans [WEB_START.md](../../WEB_START.md).
+[PDF de référence AeroDuo de six pages inclus](../../examples/aeroduo-reference/AeroDuo_组会汇报_合并精简6页版.pdf)
 
 <a id="workflow"></a>
 
@@ -120,24 +106,6 @@ Comptez **6–8 diapositives** par défaut, ou **8–10** pour un article comple
 Avant de créer les diapositives, lisez les guides de [conception](../../references/design.md), de [compositions et contre-exemples](../../references/reference-patterns.md) et de [contrôle qualité](../../references/quality-gates.md). Préparez `slide-plan.json` dans le dossier de travail à partir du [modèle de plan](../../examples/slide-plan.template.json), puis continuez sans attendre par défaut une approbation du plan.
 
 Regroupez la vue d’ensemble, les états intermédiaires et les conditions de retour d’un même mécanisme. Rapprochez les résultats principaux à protocole identique, les ablations et les résultats défavorables. Gardez les conditions près des figures et tableaux, les explications longues et sources détaillées dans les notes. Utilisez la [démonstration centrée sur les preuves](../../examples/evidence-demo/README.md) comme référence visuelle et vérifiez la lisibilité de chaque page.
-
-<details>
-<summary><b>Les étapes de la méthode de travail</b></summary>
-
-Le récit ci-dessous décrit l’ancien cas GeoNav. Son nombre fixe de pages et sa revue en six blocs ne constituent plus les exigences par défaut.
-
-Ce skill est né de plusieurs cycles de création et de révision d’une présentation de GeoNav pour une réunion de laboratoire : condensation du contenu, ajustement du fil narratif, gestion des polices et des équations natives, correction du format Office, suppression des annotations en pied de page et remplacement d’un grand tableau de synthèse bibliographique par six blocs d’axes de recherche. Il transforme ces méthodes éprouvées en instructions et scripts réutilisables.
-
-1. **Définir les objectifs de la réunion et les critères visuels** : véritable PPTX, contenu compact et dense, priorité aux figures et graphiques, polices imposées et équations natives.
-2. **Lire l’article et constituer un index des preuves** : relier les conclusions, les figures et tableaux, les protocoles et définitions des expériences, les cas d’échec et les limites d’interprétation.
-3. **Organiser les preuves avant les pages** : relier la tâche, les mécanismes, les expériences et les limites dans le plan ; regrouper les pages qui dépendent de la même figure ou du même mécanisme si elles restent lisibles.
-4. **Traiter les ressources d’origine et les objets modifiables** : extraire directement les images, créer des tableaux et graphiques natifs, convertir le LaTeX en Office Math et appliquer les polices à chaque segment de texte (`run`).
-5. **Vérifier le contenu, la mise en page et la compatibilité** : rendre chaque diapositive, comparer les données et remplacer la valeur non conforme `charset=134` de GB2312 par `-122`.
-6. **Procéder à des révisions ciblées selon les retours** : conserver les sources détaillées dans les notes et les conditions utiles près des figures, tout en protégeant les pages validées et les corrections de format.
-
-Le déroulement complet est présenté dans le [retour d’expérience GeoNav](../../examples/geonav/workflow.md).
-
-</details>
 
 <a id="development"></a>
 
@@ -175,7 +143,7 @@ python scripts/embed_fonts.py math.pptx final.pptx
 python scripts/validate_pptx.py final.pptx --expected-slides 8 --expected-math 3 --report validation.json
 ```
 
-Les `8` diapositives et les `3` équations correspondent aux exigences de cet exemple GeoNav ; adaptez-les à chaque nouvel article. Si un article n’a pas besoin d’équations, il n’est pas nécessaire d’en ajouter pour atteindre un nombre donné. L’incorporation des polices doit respecter leurs licences ; par défaut, les cinq fichiers de `fonts/` sont incorporés.
+Les nombres de diapositives et de formules dans ces commandes sont des exemples à adapter à l’article. L’incorporation des polices doit respecter leurs licences ; les cinq fichiers de `fonts/` sont utilisés par défaut.
 
 Le validateur vérifie notamment la structure du paquet, les relations, les jeux de caractères des polices, les équations natives et les espaces réservés, mais **il ne constitue ni une validation complète du schéma OOXML, ni un test dans la version de bureau de Microsoft PowerPoint**. Après le rendu, le contenu et la mise en page doivent encore être contrôlés diapositive par diapositive. [Guide de compatibilité](../../references/powerpoint-compatibility.md)
 
@@ -191,8 +159,8 @@ python -m unittest discover -s tests -v
 <summary><b>📦 Créer les archives de distribution</b></summary>
 
 ```bash
-python scripts/package_skill.py --variant github --output ../paper-loom-v1.1.0-github.zip
-python scripts/package_skill.py --variant full --output ../paper-loom-v1.1.0-full.zip
+python scripts/package_skill.py --variant github --output ../paper-loom-v1.1.2-github.zip
+python scripts/package_skill.py --variant full --output ../paper-loom-v1.1.2-full.zip
 ```
 
 L’archive complète inclut les polices fournies avec le dépôt ; l’outil de création de paquets vérifie qu’elles sont toutes présentes. L’option `--variant github` crée une archive du code source sans les fichiers de polices séparés.
@@ -214,14 +182,15 @@ L’archive complète inclut les polices fournies avec le dépôt ; l’outil de
 | Chemin | Contenu |
 |---|---|
 | `SKILL.md` | Flux de travail principal et exigences de qualité à lire par l’IA |
-| `WEB_START.md` | Prompts à copier et instructions d’exécution pour le web |
+| `WEB_START.md` | Notes facultatives sur le téléversement et l’environnement ; entrée : SKILL.md |
 | `README.md` | Présentation du projet en anglais |
 | `docs/i18n/` | Traductions du README |
 | `fonts/` | Fichiers de polices inclus, instructions d’utilisation et manifeste de vérification |
 | `scripts/` | Outils d’extraction d’images, d’équations natives, d’incorporation de polices, de vérification PPTX, d’installation et de création de paquets |
 | `references/` | Guides de conception des diapositives, d’extraction d’images, de compatibilité et d’utilisation dans un client |
+| `examples/aeroduo-reference/` | Référence visuelle de six pages et guide de lecture |
 | `examples/evidence-demo/` | Démonstration exécutable de trois diapositives avec des mises en page natives et code source de génération |
-| `examples/geonav/workflow.md` | Déroulement de cette réalisation, structure finale en 8 diapositives et principales corrections |
+| `examples/geonav/workflow.md` | Exemple de planification à partir des preuves de l’article |
 | `examples/evidence.template.json` | Modèle pour les sources, les protocoles et définitions des expériences, et les enregistrements de validation |
 | `examples/slide-plan.template.json` | Modèle des questions, preuves, visuels et décisions de regroupement par page |
 | `tests/` | Tests du comportement des scripts et de non-régression |

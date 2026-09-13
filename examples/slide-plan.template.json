@@ -10,6 +10,12 @@
     "requested_slide_count": null,
     "planned_slide_count": null,
     "reference_profile": "references/reference-patterns.md",
+    "reference_pdf": "examples/aeroduo-reference/AeroDuo_组会汇报_合并精简6页版.pdf",
+    "reference_review": {
+      "viewed_pages": [],
+      "visual_inspection_completed": false,
+      "limitations": ""
+    },
     "coverage": {
       "task_and_position": [],
       "mechanism": [],
@@ -17,7 +23,7 @@
       "results_and_limits": [],
       "discussion": []
     },
-    "path_base": "skill_root for reference_profile; work_directory for evidence and generated assets"
+    "path_base": "skill_root for reference_profile and reference_pdf; work_directory for evidence and generated assets"
   },
   "slides": [
     {
@@ -45,6 +51,8 @@
       },
       "layout": {
         "pattern": "",
+        "reference_pages": [],
+        "reason": "",
         "regions": [],
         "reading_order": []
       },

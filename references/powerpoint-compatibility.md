@@ -2,9 +2,9 @@
 
 交付物是 `.pptx`。WPS、LibreOffice 或渲染器可以打开，不能单独证明桌面 Microsoft PowerPoint 能打开；生成预览图也不能证明原生公式仍然可编辑。保留生成前的输入文件，所有修复输出到新文件。
 
-## 本次制作发现的确定缺陷
+## GB2312 字符集表示
 
-GeoNav 的早期版本在 `ppt/presentation.xml` 的 `p:font` 上写了 `charset="134"`。这个 XML 字段是 `SByteValue`，范围为 `-128..127`；简体中文 GB2312 的字节值 134 在此应写为 **−122**。Microsoft PowerPoint 拒绝读取文件，WPS 能打开。修复了这个确定的不合规字段后，继续做包结构检查；没有桌面 PowerPoint 实测时，不把推断写成已经验证的因果结论。
+`ppt/presentation.xml` 的 `p:font/@charset` 以及 DrawingML 字体字符集属性使用 `SByteValue`，范围为 `-128..127`。简体中文 GB2312 的字节值 134 在 XML 中应写为 **-122**；写成 `charset="134"` 不符合该字段类型。字符集合法性与桌面软件兼容性分别检查，不能从单项结构检查推断整个文件已通过 PowerPoint 验证。
 
 注意两个位置的类型不同：
 
@@ -79,7 +79,7 @@ python scripts/embed_fonts.py build/equations.pptx build/embedded.pptx
 
 本包在 PowerPoint 16.0 实测中发现：仅将 PptxGenJS 4.0.1 的 `notesMasterIdLst` 调到规范顺序，而备注母版与幻灯片母版仍共用 `theme1.xml` 时，两份示例无法打开。为备注母版复制相同内容的独立主题、更新其关系与 Content Type 后，文件可以打开，备注仍在。
 
-两个示例生成器已采用这一最小修复，保留规范顺序，不删除备注、公式或字体。验证器将共享主题报告为兼容风险提示，不将其一概判为 XSD 错误。其他生成器或文件须按实际关系和目标应用验证，不能盲目替换所有主题。规范顺序也可见 [Microsoft 的主题应用示例](https://learn.microsoft.com/en-us/office/open-xml/presentation/how-to-apply-a-theme-to-a-presentation)。
+两个示例生成器使用独立备注主题和规范顺序，并保留备注、公式及字体。验证器将共享主题报告为兼容风险提示，不将其一概判为 XSD 错误。其他生成器或文件须按实际关系和目标应用验证，不能盲目替换所有主题。规范顺序也可见 [Microsoft 的主题应用示例](https://learn.microsoft.com/en-us/office/open-xml/presentation/how-to-apply-a-theme-to-a-presentation)。
 
 ### 检查命令
 
@@ -119,4 +119,4 @@ python -m unittest discover -s tests -v
 
 Office 辅助脚本测试包括：演示文稿备注母版列表顺序、段落属性重复或后置、非法 `charset=134` 必须失败、乱序字体输入必须生成合法顺序、EOT 字节仍为 134、包内绝对 Target、LaTeX 分式变为原生公式、非目标页改动检测，以及拒绝覆盖源文件。没有字体文件或 Pandoc 时，相应测试以明确原因跳过，不把跳过报告成通过。
 
-Office 兼容性回归检查旧 `layout-demo` 的 3 页 / 1 个原生公式；新 `evidence-demo` 为 3 页 / 0 公式，无需为了凑数量添加公式。可用环境变量 `PAPER_DECK_REAL_PPTX` 指向 GeoNav 的 8 页 / 3 公式文件，以运行该特定回归。其他论文按实际页数与公式数调用验证器；渲染检查和桌面软件检查需另行执行。
+Office 兼容性回归检查 `layout-demo` 的 3 页 / 1 个原生公式；`evidence-demo` 为 3 页 / 0 公式，无需为了凑数量添加公式。可用环境变量 `PAPER_DECK_REAL_PPTX` 指向 GeoNav 的 8 页 / 3 公式文件，以运行该特定回归。其他论文按实际页数与公式数调用验证器；渲染检查和桌面软件检查需另行执行。

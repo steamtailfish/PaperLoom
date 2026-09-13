@@ -4,9 +4,11 @@
 
 ## 写页面代码前
 
+新建或整体重做时，先实际查看包内 [AeroDuo 六页参考稿](../examples/aeroduo-reference/AeroDuo_组会汇报_合并精简6页版.pdf) 的全部页面。每页计划的 `layout.reason` 写清借鉴的参考页及迁移方式，或说明为何选择其他结构；页数和布局不机械照搬。记录真实查看情况，不能只读文字说明便声称看过参考 PDF。用户模板优先。
+
 完成 `slide-plan.json`，可从 [模板](../examples/slide-plan.template.json) 复制。对每页回答：
 
-模板中的 `reference_profile` 相对 skill 根目录解析；证据索引、素材和生成文件相对工作目录解析。纯文字材料可将 `source_pdf` 和 `pdf_page` 设为 `null`，记录 `source_type` 与段落/表格定位，不虚构 PDF 页码。
+模板中的 `reference_profile` 与 `reference_pdf` 相对 skill 根目录解析；`reference_review` 记录实际看过的参考页与未完成的检查，不能预填为已完成；证据索引、素材和生成文件相对工作目录解析。纯文字材料可将 `source_pdf` 和 `pdf_page` 设为 `null`，记录 `source_type` 与段落/表格定位，不虚构 PDF 页码。
 
 `source_completeness_checked` 仅表示核对素材是否忠实完整，不表示论文足够复现；缺少的实现细节单独记录。设计阶段保持 `review.stage="planned"` 和 `render_inspected=false`，真正看过渲染结果后再更新，不能混同计划核对与视觉检查。
 

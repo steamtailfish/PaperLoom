@@ -1,6 +1,6 @@
 {
   "name": "paper-loom",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "private": true,
   "description": "Compact, evidence-based research paper PowerPoint workflow and editable layout examples",
   "type": "module",
