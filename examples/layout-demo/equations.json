@@ -1,0 +1,13 @@
+{
+  "source": "Fictional DemoNav example; not a published paper or a research claim.",
+  "equations": [
+    {
+      "token": "[[EQ_FUSION]]",
+      "latex": "S=\\alpha S_{\\mathrm{global}}+(1-\\alpha)S_{\\mathrm{local}}",
+      "font_size": 25,
+      "color": "142B4A",
+      "kind": "fictional_layout_example",
+      "note": "Only demonstrates one native editable PowerPoint equation. The method and all numerical results in this demo are fictional."
+    }
+  ]
+}

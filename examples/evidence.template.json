@@ -1,0 +1,13 @@
+{
+  "paper": {"title": "", "doi": "", "source_pdf": "paper.pdf", "sha256": ""},
+  "claims": [
+    {"id": "C01", "statement": "", "type": "author_claim", "source": {"page": 1, "section": "", "figure_or_table": ""}, "slide": 1, "scope": "", "reviewed": false}
+  ],
+  "experiments": [
+    {"id": "E01", "source_table": "", "split": "", "training_setting": "", "runs": null, "metric": "", "unit": "", "direction": "higher_is_better", "baseline": null, "method": null, "difference_pp": null, "uncertainty_type": "not_reported", "notes": "只在口径相同的行间比较；百分比的差值用百分点。"}
+  ],
+  "figures_manifest": "assets/manifest.json",
+  "equation_mapping": "equations.json",
+  "presentation": {"slide_count": 8, "sources_in_speaker_notes": true, "visible_source_footer": false},
+  "validation": {"package_checked": false, "all_slides_visually_reviewed": false, "desktop_powerpoint_opened": false}
+}

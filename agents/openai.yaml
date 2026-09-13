@@ -1,0 +1,4 @@
+interface:
+  display_name: "PaperLoom · 论文织图"
+  short_description: "用原始论文图、原生公式和指定中英文字体制作紧凑的可编辑科研组会 PowerPoint"
+  default_prompt: "使用 $paper-loom 将这篇论文制作为图表优先、结构紧凑的科研组会 PowerPoint。"

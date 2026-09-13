@@ -1,0 +1,15 @@
+{
+  "name": "paper-loom",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Compact, evidence-based research paper PowerPoint workflow and editable layout examples",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "demo": "node examples/layout-demo/build.mjs"
+  },
+  "dependencies": {
+    "pptxgenjs": "4.0.1",
+    "jszip": "3.10.1"
+  }
+}
